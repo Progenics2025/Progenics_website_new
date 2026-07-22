@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact Progenics Labs | Genetic Testing Lab in Hyderabad</title>
+<link href="styles.css" rel="stylesheet"/>
+<style>
+ .contact-hero {
+ padding: 10rem 5vw 6rem;
+ background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('Images/contact_hero_bg_1773638025167.png');
+ background-size: cover;
+ background-position: center;
+ text-align: center;
+ position: relative;
+ overflow: hidden;
+ color: white;
+ width: 100%;
+ box-sizing: border-box;
+ }
+
+ .contact-hero h1 {
+ color: white !important;
+ font-size: 4.5rem;
+ margin-bottom: 1.5rem;
+ text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+ }
+
+ .contact-hero .sans-caps {
+ color: #80cfff !important; /* Lighter light blue for premium contrast on dark overlay */
+ font-size: 1.2rem;
+ letter-spacing: 4px;
+ font-weight: 600;
+ }
+
+ .contact-container-wrapper {
+ background-image: linear-gradient(rgba(250, 249, 246, 0.8), rgba(250, 249, 246, 0.8)), url('Images/contact_page_body_bg_1773638527985.png');
+ background-size: cover;
+ background-position: center;
+ background-attachment: fixed;
+ position: relative;
+ animation: slowZoom 30s infinite alternate;
+ width: 100%;
+ overflow-x: hidden; /* Prevent horizontal scroll from any children */
+ box-sizing: border-box;
+ }
+
+ [data-theme="dark"] .contact-container-wrapper {
+ background-image: linear-gradient(rgba(10, 11, 13, 0.92), rgba(10, 11, 13, 0.92)), url('Images/contact_page_body_bg_1773638527985.png');
+ }
+
+ @keyframes slowZoom {
+ from {
+ background-size: 100%;
+ }
+
+ to {
+ background-size: 110%;
+ }
+ }
+
+ .contact-container {
+ width: 100%;
+ max-width: 1200px;
+ margin: 0 auto;
+ display: grid;
+ grid-template-columns: 1fr 1.5fr;
+ gap: 4rem;
+ padding: 4rem 20px;
+ position: relative;
+ z-index: 2;
+ box-sizing: border-box;
+ }
+
+ .contact-info {
+ display: flex;
+ flex-direction: column;
+ gap: 2.5rem;
+ width: 100%;
+ box-sizing: border-box;
+ }
+
+ .info-item {
+ display: flex;
+ gap: 1.5rem;
+ align-items: flex-start;
+ background: rgba(255, 255, 255, 0.4);
+ padding: 1.5rem;
+ border-radius: 20px;
+ backdrop-filter: blur(5px);
+ border: 1px solid rgba(255, 255, 255, 0.3);
+ transition: all 0.3s ease;
+ width: 100%;
+ box-sizing: border-box;
+ }
+
+ .info-item:hover {
+ transform: translateX(10px);
+ background: rgba(255, 255, 255, 0.6);
+ border-color: var(--accent-blue);
+ }
+
+ [data-theme="dark"] .info-item {
+ background: rgba(26, 29, 35, 0.6);
+ border-color: rgba(255, 255, 255, 0.08);
+ }
+
+ [data-theme="dark"] .info-item:hover {
+ background: rgba(26, 29, 35, 0.85);
+ border-color: var(--accent-blue);
+ }
+
+ .info-icon {
+ width: 50px;
+ height: 50px;
+ background: var(--accent-blue);
+ border-radius: 15px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: white;
+ flex-shrink: 0;
+ box-shadow: 0 5px 15px rgba(0, 110, 184, 0.2);
+ }
+
+ .info-text {
+ min-width: 0;
+ flex: 1; /* Grow and shrink to fit */
+ word-wrap: break-word;
+ overflow-wrap: break-word;
+ }
+
+ .info-text h3 {
+ font-size: 1.1rem !important;
+ margin-bottom: 0.5rem;
+ color: var(--accent-blue-deep);
+ font-weight: 700;
+ }
+
+ .info-text p {
+ color: var(--text-primary);
+ font-size: 0.95rem !important; /* Specific override for standard paragraphs */
+ line-height: 1.6 !important;
+ font-weight: 500;
+ }
+
+ .contact-link {
+ color: inherit;
+ text-decoration: none;
+ transition: color 0.3s ease;
+ font-weight: 600;
+ display: inline-block;
+ word-break: break-all; /* Ensure long links wrap */
+ }
+
+ .contact-link:hover {
+ color: var(--accent-blue);
+ text-decoration: underline;
+ }
+
+ .contact-form-wrapper {
+ background: rgba(255, 255, 255, 0.7);
+ backdrop-filter: blur(25px);
+ border: 1px solid rgba(255, 255, 255, 0.5);
+ padding: 3.5rem;
+ border-radius: 40px;
+ box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+ width: 100%;
+ box-sizing: border-box;
+ }
+
+ [data-theme="dark"] .contact-form-wrapper {
+ background: rgba(20, 22, 26, 0.75);
+ border-color: rgba(255, 255, 255, 0.08);
+ box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+ }
+
+ .form-group {
+ margin-bottom: 1.5rem;
+ width: 100%;
+ }
+
+ .form-group label {
+ display: block;
+ font-size: 0.85rem;
+ font-weight: 600;
+ margin-bottom: 0.75rem;
+ color: var(--text-primary);
+ }
+
+ .form-control {
+ width: 100%;
+ padding: 1rem 1.2rem;
+ background: rgba(255, 255, 255, 0.5);
+ border: 1px solid rgba(0, 0, 0, 0.05);
+ border-radius: 12px;
+ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif ;
+ font-size: 0.95rem;
+ transition: all 0.3s ease;
+ color: var(--text-primary);
+ box-sizing: border-box;
+ }
+
+ [data-theme="dark"] .form-control {
+ background: rgba(255, 255, 255, 0.02);
+ border-color: rgba(255, 255, 255, 0.1);
+ }
+
+ .form-control:focus {
+ outline: none;
+ border-color: var(--accent-blue);
+ background: #ffffff;
+ box-shadow: 0 0 0 4px rgba(0, 110, 184, 0.1);
+ }
+
+ [data-theme="dark"] .form-control:focus {
+ background: rgba(255, 255, 255, 0.05);
+ }
+
+ .submit-btn {
+ width: 100%;
+ padding: 1rem;
+ background: var(--accent-blue);
+ color: white;
+ border: none;
+ border-radius: 12px;
+ font-weight: 600;
+ font-size: 1rem;
+ cursor: pointer;
+ transition: all 0.4s ease;
+ margin-top: 1rem;
+ box-sizing: border-box;
+ }
+
+ .submit-btn:hover {
+ background: var(--accent-blue-deep);
+ transform: translateY(-2px);
+ box-shadow: 0 10px 20px rgba(0, 110, 184, 0.2);
+ }
+
+ .map-section {
+ padding: 4rem 20px 8rem;
+ max-width: 1200px;
+ margin: 0 auto;
+ position: relative;
+ z-index: 2;
+ width: 100%;
+ box-sizing: border-box;
+ }
+
+ .map-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+ gap: 3rem;
+ width: 100%;
+ box-sizing: border-box;
+ }
+
+ .map-container {
+ width: 100%;
+ height: 350px;
+ border-radius: 30px;
+ overflow: hidden;
+ box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+ border: 1px solid rgba(255, 255, 255, 0.5);
+ backdrop-filter: blur(10px);
+ box-sizing: border-box;
+ }
+
+ .map-container iframe {
+ width: 100%;
+ height: 100%;
+ filter: grayscale(1) invert(0.1) contrast(0.9);
+ transition: all 0.5s ease;
+ }
+
+ .map-container:hover iframe {
+ filter: grayscale(0) invert(0) contrast(1);
+ }
+
+ @media (max-width: 900px) {
+ .contact-container {
+ grid-template-columns: 1fr;
+ gap: 3rem;
+ padding: 3rem 20px;
+ }
+
+ .map-container {
+ height: 320px;
+ }
+
+ .map-grid {
+ gap: 2rem;
+ }
+ }
+
+ @media (max-width: 768px) {
+ .contact-hero { padding: 6rem 15px 3rem; }
+ .contact-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+ .contact-hero .sans-caps { font-size: 0.95rem; letter-spacing: 2px; }
+ .contact-container { padding: 2rem 15px; gap: 2rem; }
+ .contact-form-wrapper { padding: 2rem 15px; border-radius: 20px; }
+ .info-item { padding: 1.2rem; gap: 1rem; }
+ .info-icon { width: 40px; height: 40px; }
+ 
+ .contact-container-wrapper {
+ background-attachment: scroll;
+ animation: none;
+ }
+
+ .map-section {
+ padding: 2rem 15px 4rem;
+ }
+
+ .map-grid {
+ grid-template-columns: 1fr;
+ gap: 1.5rem;
+ }
+
+ .map-container {
+ height: 280px;
+ border-radius: 20px;
+ }
+ }
+
+ @media (max-width: 480px) {
+ .contact-hero h1 { font-size: 2.2rem; }
+ .map-container {
+ height: 240px;
+ }
+ .contact-form-wrapper {
+ padding: 1.5rem 12px;
+ }
+ .form-control {
+ padding: 0.8rem 10px;
+ }
+ .info-item {
+ padding: 1rem 8px;
+ gap: 0.75rem;
+ }
+ }
+</style>
+
+ <meta name="description" content="Contact Progenics Labs in Hyderabad for genetic testing, DNA analysis, molecular diagnostics, and expert genetic counseling. Book your consultation today." />
+  <!-- SEO & Social Meta Tags -->
+  <link rel="canonical" href="https://www.progenicslabs.com/contact-us/" />
+  <meta property="og:url" content="https://www.progenicslabs.com/contact-us/" />
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contact Progenics Labs | Genetic Testing Lab in Hyderabad" />
+  <meta property="og:description" content="Contact Progenics Labs in Hyderabad for genetic testing, DNA analysis, molecular diagnostics, and expert genetic counseling. Book your consultation today." />
+  <meta property="og:site_name" content="Progenics Labs" />
+  <meta property="og:image" content="https://www.progenicslabs.com/wp-content/uploads/2026/06/contact-us-og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Contact Progenics Labs — genetic testing lab in Hyderabad" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@ProgenicsLabs" />
+  <meta name="twitter:title" content="Contact Progenics Labs | Genetic Testing Lab in Hyderabad" />
+  <meta name="twitter:description" content="Contact Progenics Labs in Hyderabad for genetic testing, DNA analysis, molecular diagnostics, and expert genetic counseling. Book your consultation today." />
+  <meta name="twitter:image" content="https://www.progenicslabs.com/wp-content/uploads/2026/06/contact-us-og.jpg" />
+  <meta name="twitter:image:alt" content="Contact Progenics Labs — genetic testing lab in Hyderabad" />
+    <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
+    <link rel="icon" href="favicon.png?v=2" type="image/png" />
+</head>
+<body>
+<!-- Custom Cursor -->
+<div class="cursor-dot" data-cursor-dot=""></div>
+<div class="cursor-outline" data-cursor-outline=""></div>
+<!-- Background Animation Container -->
+<div class="bg-animation-container">
+<div class="bg-layer layer-1"></div>
+<div class="bg-layer layer-2"></div>
+</div>
+<!-- Navigation -->
+<div id="header-placeholder"></div>
+<!-- Contact Hero -->
+<header class="contact-hero">
+<h1 class="serif-italic">Get in Touch</h1>
+<p class="sans-caps">Connect with our Team</p>
+</header>
+<div class="contact-container-wrapper">
+<main class="contact-container">
+<!-- Contact Information -->
+<section class="contact-info">
+<div class="info-item">
+<div class="info-icon">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+<circle cx="12" cy="10" r="3"></circle>
+</svg>
+</div>
+<div class="info-text">
+<h3>Head Office - Hyderabad</h3>
+<p>Sy. No. 85, Jain Friends Square, 308, 3rd floor, Suchitra Rd, beside Suchitra Academy,
+ Padmanagar Phase II, Hyderabad - 500067</p>
+</div>
+</div>
+<div class="info-item">
+<div class="info-icon">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+<circle cx="12" cy="10" r="3"></circle>
+</svg>
+</div>
+<div class="info-text">
+<h3>Visakhapatnam</h3>
+<p>Chamber no. 103, Doctors' Chamber, Surya Hospital Road, opposite Baba Hospital, Srirangapuram, Krishna Nagar, Maharani Peta, Visakhapatnam, Andhra Pradesh 530002</p>
+</div>
+</div>
+<div class="info-item">
+<div class="info-icon">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+<circle cx="12" cy="10" r="3"></circle>
+</svg>
+</div>
+<div class="info-text">
+<h3>Bangalore</h3>
+<p>Number #4/1 TOWARDS, Service Rd, near Auttuguppe Metro station, Hampi Nagar, RPC Layout, Vijayanagar, Bengaluru, Karnataka 560104</p>
+</div>
+</div>
+<div class="info-item">
+<div class="info-icon">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-2.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+</path>
+</svg>
+</div>
+<div class="info-text">
+<h3>Direct Call</h3>
+<p>Mob: <a href="tel:+918977751239" class="contact-link" title="Call Progenics Labs">+91 89777 51239</a>, <a href="tel:+918977507781" class="contact-link" title="Call Progenics Labs">+91 89775 07781</a></p>
+</div>
+</div>
+<div class="info-item">
+<div class="info-icon">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<rect height="16" rx="2" width="20" x="2" y="4"></rect>
+<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+</svg>
+</div>
+<div class="info-text">
+<h3>Email Address</h3>
+<p><a href="mailto:connect@progenicslabs.com" class="contact-link" title="Email Progenics Labs">connect@progenicslabs.com</a></p>
+</div>
+</div>
+<div class="info-item">
+<div class="info-icon">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="10"></circle>
+<polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+</div>
+<div class="info-text">
+<h3>Working Hours</h3>
+<p>Mon - Sat: 9:00 AM - 6:00 PM</p>
+</div>
+</div>
+</section>
+<!-- Contact Form -->
+<section class="contact-form-wrapper">
+<form id="contact-form" action="/submit" method="POST">
+<div class="form-group">
+<label for="name">Full Name</label>
+<input class="form-control" id="name" placeholder="Enter your name" required="" type="text"/>
+</div>
+<div class="form-group">
+<label for="email">Email Address</label>
+<input class="form-control" id="email" placeholder="Enter your email" required="" type="email"/>
+</div>
+<div class="form-group">
+<label for="subject">Subject</label>
+<select class="form-control" id="subject">
+<option value="general">General Inquiry</option>
+<option value="test">Genetic Testing</option>
+<option value="partnership">Partnership</option>
+<option value="support">Customer Support</option>
+</select>
+</div>
+<div class="form-group">
+<label for="message">Your Message</label>
+<textarea class="form-control" id="message" placeholder="How can we help you?" required="" rows="5"></textarea>
+</div>
+<button class="submit-btn" type="submit">Send Message</button>
+</form>
+</section>
+</main>
+<!-- Map Location Section -->
+<section class="map-section">
+<h2 class="serif-italic" style="font-size: 2.5rem; color: var(--accent-blue-deep); margin-bottom: 2rem; text-align: center;">Find
+ Us on the Map</h2>
+<div class="map-grid">
+<!-- Hyderabad Map -->
+<div>
+<h3 style="color: var(--accent-blue); margin-bottom: 1rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px;">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+<circle cx="12" cy="10" r="3"></circle>
+</svg>
+ Head Office - Hyderabad
+ </h3>
+<div class="map-container">
+<iframe allowfullscreen="" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=17.4851,78.4716&amp;z=15&amp;output=embed" style="border:0;" width="100%"></iframe>
+</div>
+<div style="text-align: center; margin-top: 1.5rem;">
+<a class="know-more" href="https://maps.app.goo.gl/HdEgbu9ZnQ85wNdv7" style="display: inline-flex; justify-content: center; align-items: center; gap: 8px;" target="_blank" rel="noopener noreferrer" title="Get Directions to Progenics Labs">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+<circle cx="12" cy="10" r="3"></circle>
+</svg>
+ View on Google Maps <span>&gt;&gt;</span>
+</a>
+</div>
+</div>
+<!-- Visakhapatnam Map -->
+<div>
+<h3 style="color: var(--accent-blue); margin-bottom: 1rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px;">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+<circle cx="12" cy="10" r="3"></circle>
+</svg>
+ Visakhapatnam
+ </h3>
+<div class="map-container">
+<iframe allowfullscreen="" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=17.7077399,83.3085852&amp;z=15&amp;output=embed" style="border:0;" width="100%"></iframe>
+</div>
+<div style="text-align: center; margin-top: 1.5rem;">
+<a class="know-more" href="https://maps.app.goo.gl/Tsr4sL8wsCUHYoYo6" style="display: inline-flex; justify-content: center; align-items: center; gap: 8px;" target="_blank" rel="noopener noreferrer" title="Get Directions to Progenics Labs">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+<circle cx="12" cy="10" r="3"></circle>
+</svg>
+ View on Google Maps <span>&gt;&gt;</span>
+</a>
+</div>
+</div>
+<!-- Bangalore Map -->
+<div>
+<h3 style="color: var(--accent-blue); margin-bottom: 1rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px;">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+<circle cx="12" cy="10" r="3"></circle>
+</svg>
+ Bangalore
+ </h3>
+<div class="map-container">
+<iframe allowfullscreen="" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Number+4/1,+Service+Rd,+near+Attiguppe+Metro+station,+RPC+Layout,+Vijayanagar,+Bengaluru&amp;z=15&amp;output=embed" style="border:0;" width="100%"></iframe>
+</div>
+<div style="text-align: center; margin-top: 1.5rem;">
+<a class="know-more" href="https://www.google.com/maps/search/?api=1&amp;query=Number+4/1,+Service+Rd,+near+Attiguppe+Metro+station,+RPC+Layout,+Vijayanagar,+Bengaluru" style="display: inline-flex; justify-content: center; align-items: center; gap: 8px;" target="_blank" rel="noopener noreferrer">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+<circle cx="12" cy="10" r="3"></circle>
+</svg>
+ View on Google Maps <span>&gt;&gt;</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Section -->
+<div id="footer-placeholder"></div>
+<!-- Scripts -->
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="script.js?v=2"></script>
+</body>
+</html>

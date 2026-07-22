@@ -1,0 +1,2280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <!-- Prevent search engines from indexing the admin panel -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+  <title>Admin Dashboard | Progenics Labs Content Manager</title>
+  <link href="styles.css" rel="stylesheet" />
+  <style>
+    /* Dashboard Specific Modern Styling */
+    .admin-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 6rem 5vw 4rem;
+      min-height: 80vh;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .dashboard-title {
+      font-size: 2.5rem;
+      color: #211d5f;
+      font-weight: 700;
+    }
+
+    [data-theme="dark"] .dashboard-title {
+      color: var(--accent-blue);
+    }
+
+    .user-badge {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--card-border);
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-size: 0.9rem;
+    }
+
+    .logout-btn {
+      background: transparent;
+      border: 1px solid var(--promo-color);
+      color: var(--promo-color);
+      padding: 8px 16px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background: var(--promo-color);
+      color: white;
+      box-shadow: 0 4px 12px rgba(230, 30, 42, 0.2);
+    }
+
+    /* Auth Screen styling */
+    .auth-card {
+      max-width: 480px;
+      margin: 10vh auto;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 3rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .auth-title {
+      text-align: center;
+      font-size: 2rem;
+      color: #211d5f;
+      margin-bottom: 0.5rem;
+    }
+
+    [data-theme="dark"] .auth-title {
+      color: var(--text-primary);
+    }
+
+    .auth-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Tabs styling */
+    .tabs-nav {
+      display: flex;
+      gap: 15px;
+      border-bottom: 2px solid var(--card-border);
+      margin-bottom: 2.5rem;
+      padding-bottom: 2px;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      padding: 12px 24px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--accent-blue);
+    }
+
+    .tab-btn.active {
+      color: var(--accent-blue);
+    }
+
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--accent-blue);
+      border-radius: 10px;
+    }
+
+    /* Panel States */
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Management grid */
+    .panel-header-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .action-btn {
+      background: var(--accent-blue);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0, 110, 184, 0.2);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .action-btn:hover {
+      background: var(--accent-blue-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 110, 184, 0.3);
+    }
+
+    .action-btn-secondary {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--card-border);
+      color: var(--text-primary);
+    }
+
+    .action-btn-secondary:hover {
+      background: var(--card-border);
+      transform: translateY(-2px);
+    }
+
+    /* Tables/Lists styling */
+    .data-table-wrapper {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .data-table th {
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tr:hover td {
+      background: rgba(0, 110, 184, 0.02);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-active {
+      background: rgba(5, 150, 105, 0.1);
+      color: #059669;
+    }
+
+    .badge-inactive {
+      background: rgba(220, 38, 38, 0.1);
+      color: #dc2626;
+    }
+
+    .row-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .row-btn {
+      background: none;
+      border: 1px solid var(--card-border);
+      color: var(--text-primary);
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .row-btn:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      background: rgba(0, 110, 184, 0.05);
+    }
+
+    .row-btn-delete {
+      color: var(--promo-color);
+    }
+
+    .row-btn-delete:hover {
+      border-color: var(--promo-color);
+      color: white;
+      background: var(--promo-color);
+    }
+
+    .row-btn-restore {
+      color: #16a34a;
+      border-color: rgba(22, 163, 74, 0.3);
+    }
+
+    .row-btn-restore:hover {
+      border-color: #16a34a;
+      color: white;
+      background: #16a34a;
+    }
+
+    /* Modal / Form Overlay */
+    .form-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .form-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .form-modal-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--card-border);
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 24px;
+      padding: 3rem;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+      position: relative;
+      transform: translateY(30px);
+      transition: transform 0.3s ease;
+    }
+
+    .form-overlay.active .form-modal-card {
+      transform: translateY(0);
+    }
+
+    .close-modal-btn {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .close-modal-btn:hover {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+    }
+
+    .modal-title {
+      font-size: 1.8rem;
+      color: #211d5f;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 10px;
+    }
+
+    [data-theme="dark"] .modal-title {
+      color: var(--text-primary);
+    }
+
+    /* Form Fields styling */
+    .form-group {
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1.5px solid var(--card-border);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      font-size: 0.95rem;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(0, 110, 184, 0.15);
+    }
+
+    .helper-text {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .checkbox-group {
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .checkbox-group input {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-top: 2rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 1.5rem;
+    }
+
+    /* Database Script Setup Card helper */
+    .setup-help-card {
+      margin-top: 4rem;
+      background: rgba(0, 110, 184, 0.03);
+      border: 1px dashed var(--accent-blue);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+
+    .setup-help-card h3 {
+      color: #211d5f;
+      margin-bottom: 0.75rem;
+      font-size: 1.3rem;
+    }
+
+    [data-theme="dark"] .setup-help-card h3 {
+      color: var(--accent-blue);
+    }
+
+    .sql-code-box {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 1.5rem;
+      border-radius: 12px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      max-height: 250px;
+      margin: 1rem 0;
+    }
+
+    /* Loading text */
+    .loading-state {
+      text-align: center;
+      padding: 4rem;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .admin-container {
+        padding: 5rem 4vw 2rem;
+      }
+
+      .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .data-table th,
+      .data-table td {
+        padding: 1rem;
+        font-size: 0.85rem;
+      }
+
+      .row-actions {
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+  </style>
+
+  <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
+  <link rel="icon" href="favicon.png?v=2" type="image/png" />
+</head>
+
+<body>
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" data-cursor-dot=""></div>
+  <div class="cursor-outline" data-cursor-outline=""></div>
+
+  <!-- Background Animation -->
+  <div class="bg-animation-container">
+    <div class="bg-layer layer-1"></div>
+    <div class="bg-layer layer-2"></div>
+  </div>
+
+  <!-- Navigation -->
+  <div id="header-placeholder"></div>
+
+  <!-- Admin Area -->
+  <main class="admin-container">
+
+    <!-- ─── AUTH SCREEN (LOGGED OUT) ───────────────────────────── -->
+    <div id="auth-panel" class="auth-card" style="display: none;">
+      <h2 class="auth-title serif-italic">Portal Sign In</h2>
+      <p class="auth-subtitle">Log in to update Progenics blogs & job openings.</p>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="auth-email">Email Address</label>
+          <input id="auth-email" type="email" placeholder="admin@progenics.com" required />
+        </div>
+        <div class="form-group" style="margin-bottom: 2rem;">
+          <label for="auth-password">Password</label>
+          <input id="auth-password" type="password" placeholder="••••••••" required />
+        </div>
+        <button class="action-btn" type="submit" style="width: 100%; justify-content: center;">Sign In</button>
+      </form>
+    </div>
+
+    <!-- ─── WORKSPACE (LOGGED IN) ───────────────────────────── -->
+    <div id="workspace-panel" style="display: none;">
+
+      <header class="dashboard-header">
+        <div>
+          <h1 class="dashboard-title serif-italic">Content Dashboard</h1>
+          <p style="color: var(--text-secondary);">Manage your live website content securely.</p>
+        </div>
+        <div class="user-badge">
+          <span id="user-email-display">admin@progenics.com</span>
+          <button class="logout-btn" id="logout-button">Log Out</button>
+        </div>
+      </header>
+
+      <!-- Navigation Tabs -->
+      <nav class="tabs-nav">
+        <button class="tab-btn active" data-tab="blogs-tab">Blog Insights</button>
+        <button class="tab-btn" data-tab="careers-tab">Job Openings</button>
+        <button class="tab-btn" data-tab="publications-tab">Publications</button>
+        <button class="tab-btn" data-tab="events-tab">Events</button>
+        <button class="tab-btn" data-tab="news-tab">News</button>
+        <button class="tab-btn" data-tab="recycle-tab">🗑️ Recycle Bin</button>
+      </nav>
+
+      <!-- ─── BLOGS PANEL ───────────────────────────── -->
+      <section id="blogs-tab" class="tab-panel active">
+        <div class="panel-header-actions">
+          <h2 class="serif-italic" style="color: var(--accent-blue-deep);">Manage Articles</h2>
+          <button class="action-btn" id="add-blog-btn">
+            <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2.5" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+              <line x1="12" x2="12" y1="5" y2="19"></line>
+              <line x1="5" x2="19" y1="12" y2="12"></line>
+            </svg>
+            Add New Article
+          </button>
+        </div>
+
+        <div class="data-table-wrapper">
+          <table class="data-table" id="blogs-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Published Date</th>
+                <th>Read Time</th>
+                <th style="width: 180px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="blogs-table-body">
+              <!-- Dynamically populated -->
+              <tr>
+                <td colspan="5" class="loading-state">Loading posts...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ─── CAREERS PANEL ───────────────────────────── -->
+      <section id="careers-tab" class="tab-panel">
+        <div class="panel-header-actions">
+          <h2 class="serif-italic" style="color: var(--accent-blue-deep);">Manage Job Openings</h2>
+          <button class="action-btn" id="add-career-btn">
+            <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2.5" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+              <line x1="12" x2="12" y1="5" y2="19"></line>
+              <line x1="5" x2="19" y1="12" y2="12"></line>
+            </svg>
+            Add New Job Opening
+          </button>
+        </div>
+
+        <div class="data-table-wrapper">
+          <table class="data-table" id="careers-table">
+            <thead>
+              <tr>
+                <th>Job Title</th>
+                <th>Location</th>
+                <th>Level</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th style="width: 180px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="careers-table-body">
+              <!-- Dynamically populated -->
+              <tr>
+                <td colspan="6" class="loading-state">Loading openings...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ─── PUBLICATIONS PANEL ───────────────────────────── -->
+      <section id="publications-tab" class="tab-panel">
+        <div class="panel-header-actions">
+          <h2 class="serif-italic" style="color: var(--accent-blue-deep);">Manage Publications</h2>
+          <button class="action-btn" id="add-publication-btn">
+            <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2.5" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+              <line x1="12" x2="12" y1="5" y2="19"></line>
+              <line x1="5" x2="19" y1="12" y2="12"></line>
+            </svg>
+            Add Publication
+          </button>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Publish Status</th>
+                <th>Visibility</th>
+                <th style="width: 180px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="publications-table-body">
+              <!-- Dynamically populated -->
+              <tr>
+                <td colspan="5" class="loading-state">Loading publications...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ─── EVENTS PANEL ───────────────────────────── -->
+      <section id="events-tab" class="tab-panel">
+        <div class="panel-header-actions">
+          <h2 class="serif-italic" style="color: var(--accent-blue-deep);">Manage Events</h2>
+          <button class="action-btn" id="add-event-btn">
+            <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2.5" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+              <line x1="12" x2="12" y1="5" y2="19"></line>
+              <line x1="5" x2="19" y1="12" y2="12"></line>
+            </svg>
+            Add Event
+          </button>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Publish Status</th>
+                <th>Visibility</th>
+                <th style="width: 180px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="events-table-body">
+              <!-- Dynamically populated -->
+              <tr>
+                <td colspan="5" class="loading-state">Loading events...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ─── NEWS PANEL ───────────────────────────── -->
+      <section id="news-tab" class="tab-panel">
+        <div class="panel-header-actions">
+          <h2 class="serif-italic" style="color: var(--accent-blue-deep);">Manage News</h2>
+          <button class="action-btn" id="add-news-btn">
+            <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2.5" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+              <line x1="12" x2="12" y1="5" y2="19"></line>
+              <line x1="5" x2="19" y1="12" y2="12"></line>
+            </svg>
+            Add News
+          </button>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Publish Status</th>
+                <th>Visibility</th>
+                <th style="width: 180px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="news-table-body">
+              <!-- Dynamically populated -->
+              <tr>
+                <td colspan="5" class="loading-state">Loading news...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ─── RECYCLE BIN PANEL ───────────────────────────── -->
+      <section id="recycle-tab" class="tab-panel">
+        <div class="panel-header-actions">
+          <h2 class="serif-italic" style="color: var(--accent-blue-deep);">Recycle Bin</h2>
+          <span style="font-size: 0.9rem; color: var(--text-secondary);">Items deleted from the portal are kept here and can be restored.</span>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Deleted Date</th>
+                <th style="width: 250px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="recycle-table-body">
+              <!-- Dynamically populated -->
+              <tr>
+                <td colspan="4" class="loading-state">Loading recycle bin...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ─── BLOG FORM MODAL ───────────────────────────── -->
+  <div class="form-overlay" id="blog-modal">
+    <div class="form-modal-card" data-lenis-prevent>
+      <button class="close-modal-btn" id="close-blog-modal">&times;</button>
+      <h2 class="modal-title serif-italic" id="blog-modal-title">Create Article</h2>
+
+      <form id="blog-form">
+        <input type="hidden" id="blog-id-field" value="" />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="blog-title-field">Article Title</label>
+            <input id="blog-title-field" type="text" placeholder="e.g. DNA Testing Benefits" required />
+          </div>
+          <div class="form-group">
+            <label for="blog-seo-title-field">SEO Meta Title</label>
+            <input id="blog-seo-title-field" type="text" placeholder="e.g. DNA Testing Benefits | Progenics Labs"
+              required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="blog-slug-field">URL Slug</label>
+            <input id="blog-slug-field" type="text" placeholder="e.g. dna-testing-benefits" required />
+            <span class="helper-text">Unique URL ID (auto-generated from title, safe to edit)</span>
+          </div>
+          <div class="form-group">
+            <label for="blog-category-field">Category</label>
+            <select id="blog-category-field" required>
+              <option value="Clinical Genetics">Clinical Genetics</option>
+              <option value="Reproductive Health">Reproductive Health</option>
+              <option value="Oncology">Oncology</option>
+              <option value="Preventive Health">Preventive Health</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="blog-status-field">Publish Status</label>
+            <select id="blog-status-field" required>
+              <option value="Published">Published</option>
+              <option value="Draft">Draft</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="blog-visibility-field">Visibility</label>
+            <select id="blog-visibility-field" required>
+              <option value="Public">Public (Direct)</option>
+              <option value="Private">Private</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="blog-date-field">Publish Date</label>
+            <input id="blog-date-field" type="date" required />
+          </div>
+          <div class="form-group">
+            <label for="blog-read-field">Read Time (minutes)</label>
+            <input id="blog-read-field" type="text" placeholder="e.g. 5 min read" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="blog-title-image-field">Title Image URL (Card Preview)</label>
+            <div class="upload-group" style="display: flex; gap: 10px; align-items: center; margin-top: 5px;">
+              <input id="blog-title-image-field" type="text" placeholder="e.g. Images/blog_post_custom.png" style="flex: 1; margin: 0;" required />
+              <div class="file-upload-btn-wrapper" style="position: relative; overflow: hidden; display: inline-block;">
+                <button class="action-btn" type="button" style="padding: 10px 15px; font-size: 0.85rem; margin: 0; white-space: nowrap;">
+                  Upload File
+                </button>
+                <input id="blog-title-image-file-field" type="file" accept="image/*" style="position: absolute; font-size: 100px; left: 0; top: 0; opacity: 0; cursor: pointer;" />
+              </div>
+            </div>
+            <div id="blog-title-image-preview" style="margin-top: 10px; display: none;">
+              <img id="blog-title-preview-img" src="" alt="Title Preview" style="max-height: 80px; border-radius: 6px; border: 1px solid var(--card-border);" />
+            </div>
+            <span class="helper-text">Card preview image on blog list page</span>
+          </div>
+          <div class="form-group">
+            <label for="blog-banner-image-field">Banner Image URL (Large Header)</label>
+            <div class="upload-group" style="display: flex; gap: 10px; align-items: center; margin-top: 5px;">
+              <input id="blog-banner-image-field" type="text" placeholder="e.g. Images/blog_post_custom_banner.png" style="flex: 1; margin: 0;" required />
+              <div class="file-upload-btn-wrapper" style="position: relative; overflow: hidden; display: inline-block;">
+                <button class="action-btn" type="button" style="padding: 10px 15px; font-size: 0.85rem; margin: 0; white-space: nowrap;">
+                  Upload File
+                </button>
+                <input id="blog-banner-image-file-field" type="file" accept="image/*" style="position: absolute; font-size: 100px; left: 0; top: 0; opacity: 0; cursor: pointer;" />
+              </div>
+            </div>
+            <div id="blog-banner-image-preview" style="margin-top: 10px; display: none;">
+              <img id="blog-banner-preview-img" src="" alt="Banner Preview" style="max-height: 80px; border-radius: 6px; border: 1px solid var(--card-border);" />
+            </div>
+            <span class="helper-text">Large header image at the top of the article</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="blog-publication-field">Publication / Author</label>
+            <input id="blog-publication-field" type="text" placeholder="e.g. Progenics Labs" required />
+          </div>
+          <div class="form-group">
+            <label for="blog-tags-field">Tags (Comma-separated)</label>
+            <input id="blog-tags-field" type="text" placeholder="e.g. Cancer, BRCA, Prevention" />
+            <span class="helper-text">Separate tags with commas</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="blog-excerpt-field">Brief Summary Excerpt</label>
+          <textarea id="blog-excerpt-field" rows="2"
+            placeholder="Write a short summary that appears on the card list..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="blog-content-field">Article Body (Supports HTML tags)</label>
+          <textarea id="blog-content-field" rows="12"
+            placeholder="Write your full article body here. You can use standard <p>, <h2>, <ul>, <li>, <strong>, or <blockquote> HTML tags for formatting..."
+            required></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="action-btn action-btn-secondary" type="button" id="cancel-blog-form">Cancel</button>
+          <button class="action-btn" type="submit" id="save-blog-btn">Publish Article</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ─── CAREER FORM MODAL ───────────────────────────── -->
+  <div class="form-overlay" id="career-modal">
+    <div class="form-modal-card" data-lenis-prevent>
+      <button class="close-modal-btn" id="close-career-modal">&times;</button>
+      <h2 class="modal-title serif-italic" id="career-modal-title">Create Job Opening</h2>
+
+      <form id="career-form">
+        <input type="hidden" id="career-id-field" value="" />
+
+        <div class="form-group">
+          <label for="career-title-field">Job Title</label>
+          <input id="career-title-field" type="text" placeholder="e.g. Senior Geneticist" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="career-location-field">Location</label>
+            <input id="career-location-field" type="text" placeholder="e.g. Hyderabad" required />
+          </div>
+          <div class="form-group">
+            <label for="career-type-field">Job Type</label>
+            <select id="career-type-field" required>
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
+              <option value="Contract">Contract</option>
+              <option value="Internship">Internship</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="career-level-field">Experience Level</label>
+            <select id="career-level-field" required>
+              <option value="Entry-Level">Entry-Level</option>
+              <option value="Mid-Level">Mid-Level</option>
+              <option value="Senior-Level">Senior-Level</option>
+              <option value="Lead / Executive">Lead / Executive</option>
+            </select>
+          </div>
+          <div class="form-group checkbox-group" style="padding-top: 1.5rem;">
+            <input id="career-active-field" type="checkbox" checked />
+            <label for="career-active-field">Show Live on Website (Active)</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="career-desc-field">Job Summary / Brief Details (Optional)</label>
+          <textarea id="career-desc-field" rows="4"
+            placeholder="Briefly state key role details or leave blank if using application form directly..."></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="action-btn action-btn-secondary" type="button" id="cancel-career-form">Cancel</button>
+          <button class="action-btn" type="submit" id="save-career-btn">Post Opening</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ─── GALLERY FORM MODAL ───────────────────────────── -->
+  <div class="form-overlay" id="gallery-modal">
+    <div class="form-modal-card" data-lenis-prevent>
+      <button class="close-modal-btn" id="close-gallery-modal">&times;</button>
+      <h2 class="modal-title serif-italic" id="gallery-modal-title">Create Gallery Item</h2>
+      
+      <form id="gallery-form">
+        <input type="hidden" id="gallery-id-field" value="" />
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="gallery-title-field">Item Title</label>
+            <input id="gallery-title-field" type="text" placeholder="e.g. Clinical Genomics Study" required />
+          </div>
+          <div class="form-group">
+            <label for="gallery-category-field">Category</label>
+            <select id="gallery-category-field" required>
+              <option value="Publications">Publications</option>
+              <option value="Events">Events</option>
+              <option value="News">News</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="gallery-date-field">Date / Year</label>
+            <input id="gallery-date-field" type="text" placeholder="e.g. June 2026 or July 24, 2026" required />
+          </div>
+          <input type="hidden" id="gallery-image-field" value="" />
+        </div>
+
+        <div class="form-group" id="gallery-images-section" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 1.5rem;">
+          <!-- Dynamic Image Slots will be injected here -->
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="gallery-link-field">External URL Link</label>
+            <input id="gallery-link-field" type="text" placeholder="e.g. https://pubmed.ncbi.nlm.nih.gov/..." />
+            <span class="helper-text">Link to publication, news, or event. For Publications, you can separate NCBI and Website links with a pipe (e.g., NCBI_URL | Website_URL)</span>
+          </div>
+          <div class="form-group">
+            <label for="gallery-status-field">Publish Status</label>
+            <select id="gallery-status-field" required>
+              <option value="Published">Published</option>
+              <option value="Draft">Draft</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="gallery-visibility-field">Visibility</label>
+            <select id="gallery-visibility-field" required>
+              <option value="Public">Public (Direct)</option>
+              <option value="Private">Private</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="gallery-desc-field">Short Description / Summary</label>
+          <textarea id="gallery-desc-field" rows="4" placeholder="Briefly state publication abstract, event info, or news snippet..." required></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="action-btn action-btn-secondary" type="button" id="cancel-gallery-form">Cancel</button>
+          <button class="action-btn" type="submit" id="save-gallery-btn">Save Gallery Item</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Core Scripts -->
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="assets/portal-sdk.min.js"></script>
+  <script src="assets/portal-core.js"></script>
+  <script src="script.js?v=2"></script>
+  <script>
+
+
+    // ─── ADMIN DASHBOARD APPLICATION LOGIC ─────────────────────────────
+    (async function () {
+      const authPanel = document.getElementById('auth-panel');
+      const workspacePanel = document.getElementById('workspace-panel');
+      const loginForm = document.getElementById('login-form');
+      const userDisplay = document.getElementById('user-email-display');
+      const logoutBtn = document.getElementById('logout-button');
+
+      const blogsTableBody = document.getElementById('blogs-table-body');
+      const careersTableBody = document.getElementById('careers-table-body');
+      const publicationsTableBody = document.getElementById('publications-table-body');
+      const eventsTableBody = document.getElementById('events-table-body');
+      const newsTableBody = document.getElementById('news-table-body');
+      const recycleTableBody = document.getElementById('recycle-table-body');
+
+      const isSupabaseConfigured = typeof SUPABASE_URL !== 'undefined' &&
+        SUPABASE_URL &&
+        !SUPABASE_URL.includes('YOUR_PROJECT_ID') &&
+        supabaseClient;
+
+      if (!isSupabaseConfigured) {
+        // Supabase not set up yet
+        authPanel.style.display = 'block';
+        authPanel.innerHTML = `
+          <h2 class="auth-title serif-italic">Configuration Required</h2>
+          <p class="auth-subtitle">Please open <code>assets/portal-core.js</code> and configure your database project URL and public key to activate this dashboard.</p>
+          <div class="setup-help-card" style="margin-top: 1rem; padding: 1.5rem;">
+            <p style="font-size:0.9rem; line-height:1.5;">After setting up, you can log in using any email/password user account created inside your <strong>Database Dashboard → Authentication → Users</strong>.</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Check current session
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      updateAuthUI(session);
+
+      // Listen for auth state changes
+      supabaseClient.auth.onAuthStateChange((event, session) => {
+        updateAuthUI(session);
+      });
+
+      function updateAuthUI(session) {
+        if (session) {
+          authPanel.style.display = 'none';
+          workspacePanel.style.display = 'block';
+          userDisplay.textContent = session.user.email;
+          loadBlogs();
+          loadCareers();
+          loadGallery();
+          loadRecycleBin();
+        } else {
+          authPanel.style.display = 'block';
+          workspacePanel.style.display = 'none';
+        }
+      }
+
+      // ─── BRUTE-FORCE LOGIN LOCKOUT ───────────────────────────
+      const MAX_ATTEMPTS   = 5;
+      const LOCKOUT_MS     = 15 * 60 * 1000; // 15 minutes
+      const ATTEMPT_KEY    = 'pgx_login_attempts';
+      const LOCKOUT_KEY    = 'pgx_lockout_until';
+      let lockoutTimerInterval = null;
+
+      function getRemainingLockout() {
+        const until = parseInt(sessionStorage.getItem(LOCKOUT_KEY) || '0', 10);
+        return Math.max(0, until - Date.now());
+      }
+
+      function formatCountdown(ms) {
+        const totalSeconds = Math.ceil(ms / 1000);
+        const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+        const seconds = (totalSeconds % 60).toString().padStart(2, '0');
+        return `${minutes}:${seconds}`;
+      }
+
+      function showLockoutMessage(remainingMs) {
+        const submitBtn = loginForm.querySelector('button[type="submit"]');
+        const existingMsg = document.getElementById('lockout-message');
+        if (existingMsg) existingMsg.remove();
+
+        const msg = document.createElement('p');
+        msg.id = 'lockout-message';
+        msg.style.cssText = 'color:#e61e2a; font-size:0.88rem; margin-top:0.75rem; text-align:center; font-weight:600;';
+        msg.textContent = `Too many failed attempts. Try again in ${formatCountdown(remainingMs)}.`;
+        loginForm.appendChild(msg);
+        if (submitBtn) submitBtn.disabled = true;
+
+        clearInterval(lockoutTimerInterval);
+        lockoutTimerInterval = setInterval(() => {
+          const left = getRemainingLockout();
+          if (left <= 0) {
+            clearInterval(lockoutTimerInterval);
+            msg.remove();
+            if (submitBtn) submitBtn.disabled = false;
+            sessionStorage.removeItem(LOCKOUT_KEY);
+            sessionStorage.removeItem(ATTEMPT_KEY);
+          } else {
+            msg.textContent = `Too many failed attempts. Try again in ${formatCountdown(left)}.`;
+          }
+        }, 1000);
+      }
+
+      // Resume lockout if page is refreshed during an active ban
+      const initialRemaining = getRemainingLockout();
+      if (initialRemaining > 0) showLockoutMessage(initialRemaining);
+
+      // Login handler with brute-force protection
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Block if currently locked out
+        if (getRemainingLockout() > 0) return;
+
+        const email    = document.getElementById('auth-email').value.trim();
+        const password = document.getElementById('auth-password').value;
+        const submitBtn = loginForm.querySelector('button[type="submit"]');
+
+        if (submitBtn) submitBtn.disabled = true;
+
+        try {
+          const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+          if (error) {
+            // Increment failed attempt counter (stored in sessionStorage, resets on tab close)
+            const attempts = parseInt(sessionStorage.getItem(ATTEMPT_KEY) || '0', 10) + 1;
+            sessionStorage.setItem(ATTEMPT_KEY, attempts);
+
+            const remaining = MAX_ATTEMPTS - attempts;
+            const existingMsg = document.getElementById('lockout-message');
+            if (existingMsg) existingMsg.remove();
+
+            if (attempts >= MAX_ATTEMPTS) {
+              const lockUntil = Date.now() + LOCKOUT_MS;
+              sessionStorage.setItem(LOCKOUT_KEY, lockUntil);
+              showLockoutMessage(LOCKOUT_MS);
+            } else {
+              const warn = document.createElement('p');
+              warn.id = 'lockout-message';
+              warn.style.cssText = 'color:#e61e2a; font-size:0.88rem; margin-top:0.75rem; text-align:center;';
+              warn.textContent = `Incorrect credentials. ${remaining} attempt${remaining !== 1 ? 's' : ''} remaining.`;
+              loginForm.appendChild(warn);
+              if (submitBtn) submitBtn.disabled = false;
+            }
+          }
+        } catch (err) {
+          if (submitBtn) submitBtn.disabled = false;
+        }
+      });
+
+      // Logout handler
+      logoutBtn.addEventListener('click', async () => {
+        await supabaseClient.auth.signOut();
+      });
+
+      // ─── TAB NAVIGATION ─────────────────────────────
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabPanels = document.querySelectorAll('.tab-panel');
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => b.classList.remove('active'));
+          tabPanels.forEach(p => p.classList.remove('active'));
+
+          btn.classList.add('active');
+          const panelId = btn.getAttribute('data-tab');
+          document.getElementById(panelId).classList.add('active');
+        });
+      });
+
+      // ─── BLOGS MANAGEMENT ─────────────────────────────
+      async function loadBlogs() {
+        blogsTableBody.innerHTML = '<tr><td colspan="5" class="loading-state">Loading posts...</td></tr>';
+
+        try {
+          const { data: posts, error } = await supabaseClient
+            .from('blogs')
+            .select('*')
+            .order('published_date', { ascending: false });
+
+          if (error) throw error;
+
+          if (!posts || posts.length === 0) {
+            blogsTableBody.innerHTML = '<tr><td colspan="5" class="loading-state">No articles found in the database.</td></tr>';
+            return;
+          }
+
+          blogsTableBody.innerHTML = '';
+          posts.forEach(post => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td style="font-weight: 600; color: #211d5f;">${post.title}</td>
+              <td><span class="badge" style="background: rgba(0,110,184,0.08); color: var(--accent-blue);">${post.category}</span></td>
+              <td>${post.published_date}</td>
+              <td>${post.read_time || '5 min read'}</td>
+              <td class="row-actions">
+                <button class="row-btn edit-blog-btn" data-id="${post.id}">Edit</button>
+                <button class="row-btn row-btn-delete delete-blog-btn" data-id="${post.id}" data-title="${post.title}">Delete</button>
+              </td>
+            `;
+            blogsTableBody.appendChild(tr);
+          });
+
+          // Bind edit buttons
+          blogsTableBody.querySelectorAll('.edit-blog-btn').forEach(btn => {
+            btn.addEventListener('click', () => openBlogForm(btn.getAttribute('data-id')));
+          });
+
+          // Bind delete buttons
+          blogsTableBody.querySelectorAll('.delete-blog-btn').forEach(btn => {
+            btn.addEventListener('click', () => deleteBlog(btn.getAttribute('data-id'), btn.getAttribute('data-title')));
+          });
+
+        } catch (err) {
+          blogsTableBody.innerHTML = `<tr><td colspan="5" class="loading-state" style="color:var(--promo-color);">Error: ${err.message}</td></tr>`;
+        }
+      }
+
+      // ─── BLOG FORM LOGIC ─────────────────────────────
+      const blogModal = document.getElementById('blog-modal');
+      const blogForm = document.getElementById('blog-form');
+      const addBlogBtn = document.getElementById('add-blog-btn');
+      const closeBlogModal = document.getElementById('close-blog-modal');
+      const cancelBlogForm = document.getElementById('cancel-blog-form');
+      const blogModalTitle = document.getElementById('blog-modal-title');
+      const blogIdField = document.getElementById('blog-id-field');
+
+      const titleField = document.getElementById('blog-title-field');
+      const seoTitleField = document.getElementById('blog-seo-title-field');
+      const slugField = document.getElementById('blog-slug-field');
+      const categoryField = document.getElementById('blog-category-field');
+      const statusField = document.getElementById('blog-status-field');
+      const visibilityField = document.getElementById('blog-visibility-field');
+      const dateField = document.getElementById('blog-date-field');
+      const readField = document.getElementById('blog-read-field');
+      const titleImageField = document.getElementById('blog-title-image-field');
+      const bannerImageField = document.getElementById('blog-banner-image-field');
+      
+      const blogTitleImageFileField = document.getElementById('blog-title-image-file-field');
+      const blogTitleImagePreview = document.getElementById('blog-title-image-preview');
+      const blogTitlePreviewImg = document.getElementById('blog-title-preview-img');
+
+      const blogBannerImageFileField = document.getElementById('blog-banner-image-file-field');
+      const blogBannerImagePreview = document.getElementById('blog-banner-image-preview');
+      const blogBannerPreviewImg = document.getElementById('blog-banner-preview-img');
+      const publicationField = document.getElementById('blog-publication-field');
+      const tagsField = document.getElementById('blog-tags-field');
+      const excerptField = document.getElementById('blog-excerpt-field');
+      const contentField = document.getElementById('blog-content-field');
+
+      // Slug Auto-generation
+      titleField.addEventListener('input', () => {
+        if (!slugField.dataset.manualEdit) {
+          slugField.value = titleField.value
+            .toLowerCase()
+            .trim()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/[\s_]+/g, '-')
+            .replace(/^-+|-+$/g, '');
+        }
+        if (!seoTitleField.dataset.manualEdit) {
+          seoTitleField.value = titleField.value ? `${titleField.value.trim()} | Progenics` : '';
+        }
+      });
+
+      slugField.addEventListener('input', () => {
+        slugField.dataset.manualEdit = 'true';
+      });
+      seoTitleField.addEventListener('input', () => {
+        seoTitleField.dataset.manualEdit = 'true';
+      });
+
+      addBlogBtn.addEventListener('click', () => {
+        blogModalTitle.textContent = 'Create Article';
+        blogIdField.value = '';
+        blogForm.reset();
+        delete slugField.dataset.manualEdit;
+        delete seoTitleField.dataset.manualEdit;
+        dateField.value = new Date().toISOString().split('T')[0];
+        readField.value = '5 min read';
+        titleImageField.value = 'Images/blog_genetic_counselor.png';
+        bannerImageField.value = 'Images/blog_genetic_counselor.png';
+        
+        // Show default image previews
+        blogTitlePreviewImg.src = 'Images/blog_genetic_counselor.png';
+        blogTitleImagePreview.style.display = 'block';
+        blogBannerPreviewImg.src = 'Images/blog_genetic_counselor.png';
+        blogBannerImagePreview.style.display = 'block';
+        blogTitleImageFileField.value = '';
+        blogBannerImageFileField.value = '';
+
+        publicationField.value = 'Progenics Labs';
+        statusField.value = 'Published';
+        visibilityField.value = 'Public';
+        blogModal.classList.add('active');
+      });
+
+      function closeBlog() {
+        blogModal.classList.remove('active');
+        blogForm.reset();
+        
+        // Clear image previews & file inputs
+        blogTitleImageFileField.value = '';
+        blogTitleImagePreview.style.display = 'none';
+        blogTitlePreviewImg.src = '';
+        blogBannerImageFileField.value = '';
+        blogBannerImagePreview.style.display = 'none';
+        blogBannerPreviewImg.src = '';
+      }
+
+      closeBlogModal.addEventListener('click', closeBlog);
+      cancelBlogForm.addEventListener('click', closeBlog);
+
+      async function openBlogForm(id) {
+        try {
+          const { data: post, error } = await supabaseClient
+            .from('blogs')
+            .select('*')
+            .eq('id', id)
+            .single();
+
+          if (error) throw error;
+
+          blogModalTitle.textContent = 'Edit Article';
+          blogIdField.value = post.id;
+          titleField.value = post.title;
+          seoTitleField.value = post.seo_meta_title || post.title;
+          seoTitleField.dataset.manualEdit = 'true';
+          slugField.value = post.slug;
+          slugField.dataset.manualEdit = 'true';
+          categoryField.value = post.category;
+          statusField.value = post.publish_status || 'Published';
+          visibilityField.value = post.visibility || 'Public';
+          dateField.value = post.published_date;
+          readField.value = post.read_time;
+          titleImageField.value = post.title_image_url || post.image_url || '';
+          bannerImageField.value = post.banner_image_url || post.image_url || '';
+          
+          if (titleImageField.value) {
+            blogTitlePreviewImg.src = titleImageField.value;
+            blogTitleImagePreview.style.display = 'block';
+          } else {
+            blogTitleImagePreview.style.display = 'none';
+          }
+          if (bannerImageField.value) {
+            blogBannerPreviewImg.src = bannerImageField.value;
+            blogBannerImagePreview.style.display = 'block';
+          } else {
+            blogBannerImagePreview.style.display = 'none';
+          }
+          blogTitleImageFileField.value = '';
+          blogBannerImageFileField.value = '';
+
+          publicationField.value = post.publication || 'Progenics Labs';
+          tagsField.value = Array.isArray(post.tags) ? post.tags.join(', ') : (post.tags || '');
+          excerptField.value = post.excerpt;
+          contentField.value = post.content;
+
+          blogModal.classList.add('active');
+        } catch (err) {
+          alert('Error loading article: ' + err.message);
+        }
+      }
+
+      blogForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const id = blogIdField.value;
+        const tags = tagsField.value.split(',').map(t => t.trim()).filter(t => t.length > 0);
+
+        const blogData = {
+          title: titleField.value.trim(),
+          seo_meta_title: seoTitleField.value.trim(),
+          slug: slugField.value.trim(),
+          category: categoryField.value,
+          publish_status: statusField.value,
+          visibility: visibilityField.value,
+          published_date: dateField.value,
+          read_time: readField.value.trim(),
+          title_image_url: titleImageField.value.trim(),
+          banner_image_url: bannerImageField.value.trim(),
+          image_url: titleImageField.value.trim(), // for backward compatibility
+          publication: publicationField.value.trim(),
+          author: publicationField.value.trim(), // backup
+          tags: tags,
+          excerpt: excerptField.value.trim(),
+          content: contentField.value.trim(),
+        };
+
+        try {
+          let res;
+          if (id) {
+            res = await supabaseClient.from('blogs').update(blogData).eq('id', id);
+          } else {
+            res = await supabaseClient.from('blogs').insert([blogData]);
+          }
+
+          if (res.error) throw res.error;
+
+          closeBlog();
+          loadBlogs();
+          alert(id ? 'Article updated successfully!' : 'Article published successfully!');
+        } catch (err) {
+          alert('Failed to save article: ' + err.message);
+        }
+      });
+
+      async function deleteBlog(id, title) {
+        if (confirm(`Are you sure you want to move "${title}" to the Recycle Bin?`)) {
+          try {
+            const { data: record, error: fetchErr } = await supabaseClient
+              .from('blogs')
+              .select('*')
+              .eq('id', id)
+              .single();
+            if (fetchErr) throw fetchErr;
+
+            const { error: binErr } = await supabaseClient
+              .from('recycle_bin')
+              .insert([{
+                item_id: record.id,
+                original_table: 'blogs',
+                title: record.title,
+                deleted_data: record
+              }]);
+
+            if (binErr) {
+              const errStr = String(binErr.message || binErr);
+              if (errStr.toLowerCase().includes('quota') || errStr.toLowerCase().includes('storage') || errStr.toLowerCase().includes('setitem')) {
+                if (confirm(`Browser storage quota is full. We cannot save a copy of this article in the Recycle Bin.\n\nWould you like to delete "${title}" permanently instead?`)) {
+                  const { error: delErr } = await supabaseClient.from('blogs').delete().eq('id', id);
+                  if (delErr) throw delErr;
+                  loadBlogs();
+                  alert('Article permanently deleted.');
+                  return;
+                } else {
+                  return;
+                }
+              }
+              throw binErr;
+            }
+
+            const { error: delErr } = await supabaseClient.from('blogs').delete().eq('id', id);
+            if (delErr) throw delErr;
+
+            loadBlogs();
+            loadRecycleBin();
+            alert('Article moved to Recycle Bin.');
+          } catch (err) {
+            alert('Failed to delete article: ' + err.message);
+          }
+        }
+      }
+
+      // ─── CAREERS MANAGEMENT ─────────────────────────────
+      async function loadCareers() {
+        careersTableBody.innerHTML = '<tr><td colspan="6" class="loading-state">Loading openings...</td></tr>';
+
+        try {
+          const { data: jobs, error } = await supabaseClient
+            .from('careers')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+          if (error) throw error;
+
+          if (!jobs || jobs.length === 0) {
+            careersTableBody.innerHTML = '<tr><td colspan="6" class="loading-state">No job openings found in the database.</td></tr>';
+            return;
+          }
+
+          careersTableBody.innerHTML = '';
+          jobs.forEach(job => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td style="font-weight: 600; color: #211d5f;">${job.title}</td>
+              <td>${job.location || 'Hyderabad'}</td>
+              <td>${job.level || 'Mid-Level'}</td>
+              <td>${job.type || 'Full-time'}</td>
+              <td>
+                <span class="badge ${job.is_active ? 'badge-active' : 'badge-inactive'}">
+                  ${job.is_active ? 'Active' : 'Inactive'}
+                </span>
+              </td>
+              <td class="row-actions">
+                <button class="row-btn edit-career-btn" data-id="${job.id}">Edit</button>
+                <button class="row-btn row-btn-delete delete-career-btn" data-id="${job.id}" data-title="${job.title}">Delete</button>
+              </td>
+            `;
+            careersTableBody.appendChild(tr);
+          });
+
+          // Bind edit buttons
+          careersTableBody.querySelectorAll('.edit-career-btn').forEach(btn => {
+            btn.addEventListener('click', () => openCareerForm(btn.getAttribute('data-id')));
+          });
+
+          // Bind delete buttons
+          careersTableBody.querySelectorAll('.delete-career-btn').forEach(btn => {
+            btn.addEventListener('click', () => deleteCareer(btn.getAttribute('data-id'), btn.getAttribute('data-title')));
+          });
+
+        } catch (err) {
+          careersTableBody.innerHTML = `<tr><td colspan="6" class="loading-state" style="color:var(--promo-color);">Error: ${err.message}</td></tr>`;
+        }
+      }
+
+      // ─── CAREER FORM LOGIC ─────────────────────────────
+      const careerModal = document.getElementById('career-modal');
+      const careerForm = document.getElementById('career-form');
+      const addCareerBtn = document.getElementById('add-career-btn');
+      const closeCareerModal = document.getElementById('close-career-modal');
+      const cancelCareerForm = document.getElementById('cancel-career-form');
+      const careerModalTitle = document.getElementById('career-modal-title');
+      const careerIdField = document.getElementById('career-id-field');
+
+      const jobTitleField = document.getElementById('career-title-field');
+      const locationField = document.getElementById('career-location-field');
+      const jobTypeField = document.getElementById('career-type-field');
+      const experienceField = document.getElementById('career-level-field');
+      const activeField = document.getElementById('career-active-field');
+      const descField = document.getElementById('career-desc-field');
+
+      addCareerBtn.addEventListener('click', () => {
+        careerModalTitle.textContent = 'Create Job Opening';
+        careerIdField.value = '';
+        careerForm.reset();
+        locationField.value = 'Hyderabad';
+        jobTypeField.value = 'Full-time';
+        experienceField.value = 'Mid-Level';
+        activeField.checked = true;
+        careerModal.classList.add('active');
+      });
+
+      function closeCareer() {
+        careerModal.classList.remove('active');
+        careerForm.reset();
+      }
+
+      closeCareerModal.addEventListener('click', closeCareer);
+      cancelCareerForm.addEventListener('click', closeCareer);
+
+      async function openCareerForm(id) {
+        try {
+          const { data: job, error } = await supabaseClient
+            .from('careers')
+            .select('*')
+            .eq('id', id)
+            .single();
+
+          if (error) throw error;
+
+          careerModalTitle.textContent = 'Edit Job Opening';
+          careerIdField.value = job.id;
+          jobTitleField.value = job.title;
+          locationField.value = job.location;
+          jobTypeField.value = job.type;
+          experienceField.value = job.level;
+          activeField.checked = job.is_active;
+          descField.value = job.description || '';
+
+          careerModal.classList.add('active');
+        } catch (err) {
+          alert('Error loading job: ' + err.message);
+        }
+      }
+
+      careerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const id = careerIdField.value;
+
+        const jobData = {
+          title: jobTitleField.value.trim(),
+          location: locationField.value.trim(),
+          type: jobTypeField.value,
+          level: experienceField.value,
+          is_active: activeField.checked,
+          description: descField.value.trim(),
+        };
+
+        try {
+          let res;
+          if (id) {
+            res = await supabaseClient.from('careers').update(jobData).eq('id', id);
+          } else {
+            res = await supabaseClient.from('careers').insert([jobData]);
+          }
+
+          if (res.error) throw res.error;
+
+          closeCareer();
+          loadCareers();
+          alert(id ? 'Job opening updated successfully!' : 'Job opening posted successfully!');
+        } catch (err) {
+          alert('Failed to save job opening: ' + err.message);
+        }
+      });
+
+      async function deleteCareer(id, title) {
+        if (confirm(`Are you sure you want to move the job opening for "${title}" to the Recycle Bin?`)) {
+          try {
+            const { data: record, error: fetchErr } = await supabaseClient
+              .from('careers')
+              .select('*')
+              .eq('id', id)
+              .single();
+            if (fetchErr) throw fetchErr;
+
+            const { error: binErr } = await supabaseClient
+              .from('recycle_bin')
+              .insert([{
+                item_id: record.id,
+                original_table: 'careers',
+                title: record.title,
+                deleted_data: record
+              }]);
+
+            if (binErr) {
+              const errStr = String(binErr.message || binErr);
+              if (errStr.toLowerCase().includes('quota') || errStr.toLowerCase().includes('storage') || errStr.toLowerCase().includes('setitem')) {
+                if (confirm(`Browser storage quota is full. We cannot save a copy of this job opening in the Recycle Bin.\n\nWould you like to delete "${title}" permanently instead?`)) {
+                  const { error: delErr } = await supabaseClient.from('careers').delete().eq('id', id);
+                  if (delErr) throw delErr;
+                  loadCareers();
+                  alert('Job opening permanently deleted.');
+                  return;
+                } else {
+                  return;
+                }
+              }
+              throw binErr;
+            }
+
+            const { error: delErr } = await supabaseClient.from('careers').delete().eq('id', id);
+            if (delErr) throw delErr;
+
+            loadCareers();
+            loadRecycleBin();
+            alert('Job opening moved to Recycle Bin.');
+          } catch (err) {
+            alert('Failed to delete job opening: ' + err.message);
+          }
+        }
+      }
+
+      // ─── GALLERY MANAGEMENT ─────────────────────────────
+      const galleryModal = document.getElementById('gallery-modal');
+      const galleryForm = document.getElementById('gallery-form');
+      const addPublicationBtn = document.getElementById('add-publication-btn');
+      const addEventBtn = document.getElementById('add-event-btn');
+      const addNewsBtn = document.getElementById('add-news-btn');
+      const closeGalleryModal = document.getElementById('close-gallery-modal');
+      const cancelGalleryForm = document.getElementById('cancel-gallery-form');
+      const galleryModalTitle = document.getElementById('gallery-modal-title');
+      const galleryIdField = document.getElementById('gallery-id-field');
+
+      const galleryTitleField = document.getElementById('gallery-title-field');
+      const galleryCategoryField = document.getElementById('gallery-category-field');
+      const galleryDateField = document.getElementById('gallery-date-field');
+      const galleryImageField = document.getElementById('gallery-image-field');
+      const galleryImagesSection = document.getElementById('gallery-images-section');
+      const galleryLinkField = document.getElementById('gallery-link-field');
+      const galleryStatusField = document.getElementById('gallery-status-field');
+      const galleryVisibilityField = document.getElementById('gallery-visibility-field');
+      const galleryDescField = document.getElementById('gallery-desc-field');
+
+      async function loadGallery() {
+        if (!isSupabaseConfigured) return;
+        
+        publicationsTableBody.innerHTML = '<tr><td colspan="5" class="loading-state">Loading publications...</td></tr>';
+        eventsTableBody.innerHTML = '<tr><td colspan="5" class="loading-state">Loading events...</td></tr>';
+        newsTableBody.innerHTML = '<tr><td colspan="5" class="loading-state">Loading news...</td></tr>';
+        
+        try {
+          const { data: items, error } = await supabaseClient
+            .from('gallery')
+            .select('*')
+            .order('id', { ascending: false });
+
+          if (error) throw error;
+
+          publicationsTableBody.innerHTML = '';
+          eventsTableBody.innerHTML = '';
+          newsTableBody.innerHTML = '';
+
+          const pubs = items.filter(item => item.category === 'Publications');
+          const evts = items.filter(item => item.category === 'Events');
+          const nws = items.filter(item => item.category === 'News');
+
+          if (pubs.length === 0) {
+            publicationsTableBody.innerHTML = '<tr><td colspan="5" class="loading-state">No publications found.</td></tr>';
+          } else {
+            pubs.forEach(item => publicationsTableBody.appendChild(createGalleryRow(item)));
+          }
+
+          if (evts.length === 0) {
+            eventsTableBody.innerHTML = '<tr><td colspan="5" class="loading-state">No events found.</td></tr>';
+          } else {
+            evts.forEach(item => eventsTableBody.appendChild(createGalleryRow(item)));
+          }
+
+          if (nws.length === 0) {
+            newsTableBody.innerHTML = '<tr><td colspan="5" class="loading-state">No news items found.</td></tr>';
+          } else {
+            nws.forEach(item => newsTableBody.appendChild(createGalleryRow(item)));
+          }
+
+          // Bind buttons
+          document.querySelectorAll('.edit-gallery-btn').forEach(btn => {
+            btn.addEventListener('click', () => openGalleryForm(btn.getAttribute('data-id')));
+          });
+          document.querySelectorAll('.delete-gallery-btn').forEach(btn => {
+            btn.addEventListener('click', () => deleteGallery(btn.getAttribute('data-id'), btn.getAttribute('data-title')));
+          });
+
+        } catch (err) {
+          const errMsg = `<tr><td colspan="5" class="loading-state" style="color:var(--promo-color);">Error loading: ${err.message}</td></tr>`;
+          publicationsTableBody.innerHTML = errMsg;
+          eventsTableBody.innerHTML = errMsg;
+          newsTableBody.innerHTML = errMsg;
+        }
+      }
+
+      function createGalleryRow(item) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-weight: 600; color: #211d5f;">${item.title}</td>
+          <td>${item.date}</td>
+          <td>
+            <span class="badge ${item.publish_status === 'Published' ? 'badge-active' : 'badge-inactive'}">
+              ${item.publish_status}
+            </span>
+          </td>
+          <td>
+            <span class="badge ${item.visibility === 'Public' ? 'badge-active' : 'badge-inactive'}">
+              ${item.visibility}
+            </span>
+          </td>
+          <td class="row-actions">
+            <button class="row-btn edit-gallery-btn" data-id="${item.id}">Edit</button>
+            <button class="row-btn row-btn-delete delete-gallery-btn" data-id="${item.id}" data-title="${item.title.replace(/"/g, '&quot;')}">Delete</button>
+          </td>
+        `;
+        return tr;
+      }
+
+      const galleryLinkGroup = galleryLinkField.closest('.form-group');
+      
+      function toggleGalleryLinkField() {
+        if (galleryCategoryField.value === 'Events') {
+          galleryLinkGroup.style.display = 'none';
+          galleryLinkField.value = ''; // clear value for events
+        } else {
+          galleryLinkGroup.style.display = 'block';
+        }
+      }
+      
+      galleryCategoryField.addEventListener('change', () => {
+        toggleGalleryLinkField();
+        // Recalculate slots preserving values
+        const slotInputs = Array.from(galleryImagesSection.querySelectorAll('.image-slot-input'));
+        const currentVals = slotInputs.map(input => input.value.trim());
+        renderImageSlots(currentVals);
+      });
+
+      function renderImageSlots(prefilledValues = []) {
+        const category = galleryCategoryField.value;
+        const numSlots = (category === 'Events' || category === 'News') ? 6 : 1;
+        
+        galleryImagesSection.innerHTML = '';
+        
+        for (let i = 0; i < numSlots; i++) {
+          const slotValue = prefilledValues[i] || '';
+          const labelText = numSlots > 1 ? `Image Slot ${i + 1}` : 'Image URL (Optional)';
+          
+          const slotDiv = document.createElement('div');
+          slotDiv.className = 'image-slot-wrapper';
+          slotDiv.style.cssText = 'margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px;';
+          
+          slotDiv.innerHTML = `
+            <label style="font-weight: 500; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 2px;">${labelText}</label>
+            <div class="upload-group" style="display: flex; gap: 10px; align-items: center; margin-top: 2px;">
+              <input class="image-slot-input" type="text" placeholder="e.g. Images/event-photo.jpg" value="${slotValue}" style="flex: 1; margin: 0; padding: 10px 12px; border: 1px solid var(--card-border); border-radius: 6px; background: var(--bg-secondary); color: var(--text-primary); font-size: 0.9rem;" />
+              <div class="file-upload-btn-wrapper" style="position: relative; overflow: hidden; display: inline-block;">
+                <button class="action-btn" type="button" style="padding: 10px 15px; font-size: 0.82rem; margin: 0; white-space: nowrap;">
+                  Upload Image
+                </button>
+                <input class="image-slot-file" type="file" accept="image/*" style="position: absolute; font-size: 100px; left: 0; top: 0; opacity: 0; cursor: pointer;" />
+              </div>
+            </div>
+            <div class="image-slot-preview" style="margin-top: 8px; display: ${slotValue ? 'block' : 'none'};">
+              <img src="${slotValue}" alt="Preview" style="max-height: 70px; border-radius: 6px; border: 1px solid var(--card-border);" />
+            </div>
+          `;
+          
+          const fileInput = slotDiv.querySelector('.image-slot-file');
+          const textInput = slotDiv.querySelector('.image-slot-input');
+          const previewDiv = slotDiv.querySelector('.image-slot-preview');
+          
+          fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+              previewDiv.innerHTML = '<div style="color:var(--text-secondary);font-size:0.85rem;padding:5px;">Compressing...</div>';
+              previewDiv.style.display = 'block';
+              
+              compressAndProcessImage(file, (dataUrl) => {
+                textInput.value = dataUrl;
+                previewDiv.innerHTML = `<img src="${dataUrl}" alt="Preview" style="max-height: 70px; border-radius: 6px; border: 1px solid var(--card-border);" />`;
+                previewDiv.style.display = 'block';
+              });
+            }
+          });
+          
+          textInput.addEventListener('input', () => {
+            const val = textInput.value.trim();
+            if (val) {
+              previewDiv.innerHTML = `<img src="${val}" alt="Preview" style="max-height: 70px; border-radius: 6px; border: 1px solid var(--card-border);" />`;
+              previewDiv.style.display = 'block';
+            } else {
+              previewDiv.style.display = 'none';
+              previewDiv.innerHTML = '';
+            }
+          });
+          
+          galleryImagesSection.appendChild(slotDiv);
+        }
+      }
+
+      function openNewGalleryModal(category) {
+        galleryModalTitle.textContent = `Create ${category.slice(0, -1)} Item`;
+        galleryIdField.value = '';
+        galleryForm.reset();
+        galleryCategoryField.value = category;
+        toggleGalleryLinkField();
+        galleryDateField.value = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        galleryImageField.value = '';
+        renderImageSlots([]);
+        galleryStatusField.value = 'Published';
+        galleryVisibilityField.value = 'Public';
+        galleryModal.classList.add('active');
+      }
+
+      addPublicationBtn.addEventListener('click', () => openNewGalleryModal('Publications'));
+      addEventBtn.addEventListener('click', () => openNewGalleryModal('Events'));
+      addNewsBtn.addEventListener('click', () => openNewGalleryModal('News'));
+
+      function closeGallery() {
+        galleryModal.classList.remove('active');
+        galleryForm.reset();
+        renderImageSlots([]);
+      }
+
+      closeGalleryModal.addEventListener('click', closeGallery);
+      cancelGalleryForm.addEventListener('click', closeGallery);
+
+      async function openGalleryForm(id) {
+        try {
+          const { data: item, error } = await supabaseClient
+            .from('gallery')
+            .select('*')
+            .eq('id', id)
+            .single();
+
+          if (error) throw error;
+
+          galleryModalTitle.textContent = 'Edit Gallery Item';
+          galleryIdField.value = item.id;
+          galleryTitleField.value = item.title;
+          galleryCategoryField.value = item.category;
+          toggleGalleryLinkField();
+          galleryDateField.value = item.date;
+          galleryImageField.value = item.image_url || '';
+          
+          const prefilledUrls = item.image_url ? item.image_url.split('|').map(s => s.trim()) : [];
+          renderImageSlots(prefilledUrls);
+          
+          galleryLinkField.value = item.external_link || '';
+          galleryStatusField.value = item.publish_status || 'Published';
+          galleryVisibilityField.value = item.visibility || 'Public';
+          galleryDescField.value = item.description || '';
+
+          galleryModal.classList.add('active');
+        } catch (err) {
+          alert('Error loading gallery item: ' + err.message);
+        }
+      }
+
+      galleryForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = galleryIdField.value;
+
+        // Gather all populated image slot values and join them
+        const slotInputs = Array.from(galleryImagesSection.querySelectorAll('.image-slot-input'));
+        const joinedImages = slotInputs.map(input => input.value.trim()).filter(Boolean).join(' | ');
+        galleryImageField.value = joinedImages;
+
+        const galleryData = {
+          title: galleryTitleField.value.trim(),
+          category: galleryCategoryField.value,
+          date: galleryDateField.value.trim(),
+          image_url: galleryImageField.value.trim(),
+          external_link: galleryLinkField.value.trim(),
+          publish_status: galleryStatusField.value,
+          visibility: galleryVisibilityField.value,
+          description: galleryDescField.value.trim()
+        };
+
+        try {
+          let res;
+          if (id) {
+            res = await supabaseClient.from('gallery').update(galleryData).eq('id', id);
+          } else {
+            res = await supabaseClient.from('gallery').insert([galleryData]);
+          }
+
+          if (res.error) throw res.error;
+
+          closeGallery();
+          loadGallery();
+          alert(id ? 'Gallery item updated successfully!' : 'Gallery item added successfully!');
+        } catch (err) {
+          alert('Failed to save gallery item: ' + err.message);
+        }
+      });
+
+      async function deleteGallery(id, title) {
+        if (confirm(`Are you sure you want to move "${title}" to the Recycle Bin?`)) {
+          try {
+            const { data: record, error: fetchErr } = await supabaseClient
+              .from('gallery')
+              .select('*')
+              .eq('id', id)
+              .single();
+            if (fetchErr) throw fetchErr;
+
+            const { error: binErr } = await supabaseClient
+              .from('recycle_bin')
+              .insert([{
+                item_id: record.id,
+                original_table: 'gallery',
+                title: record.title,
+                deleted_data: record
+              }]);
+
+            if (binErr) {
+              const errStr = String(binErr.message || binErr);
+              if (errStr.toLowerCase().includes('quota') || errStr.toLowerCase().includes('storage') || errStr.toLowerCase().includes('setitem')) {
+                if (confirm(`Browser storage quota is full. We cannot save a copy of this item in the Recycle Bin.\n\nWould you like to delete "${title}" permanently instead?`)) {
+                  const { error: delErr } = await supabaseClient.from('gallery').delete().eq('id', id);
+                  if (delErr) throw delErr;
+                  loadGallery();
+                  alert('Gallery item permanently deleted.');
+                  return;
+                } else {
+                  return;
+                }
+              }
+              throw binErr;
+            }
+
+            const { error: delErr } = await supabaseClient.from('gallery').delete().eq('id', id);
+            if (delErr) throw delErr;
+
+            loadGallery();
+            loadRecycleBin();
+            alert('Gallery item moved to Recycle Bin.');
+          } catch (err) {
+            alert('Failed to delete gallery item: ' + err.message);
+          }
+        }
+      }
+
+      function compressAndProcessImage(file, callback) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          try {
+            const img = new Image();
+            img.onload = () => {
+              try {
+                const maxDimension = 800;
+                const quality = 0.7;
+                
+                let width = img.width;
+                let height = img.height;
+                if (width > maxDimension || height > maxDimension) {
+                  if (width > height) {
+                    height = Math.round((height * maxDimension) / width);
+                    width = maxDimension;
+                  } else {
+                    width = Math.round((width * maxDimension) / height);
+                    height = maxDimension;
+                  }
+                }
+
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+
+                const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+                callback(compressedDataUrl);
+              } catch (err) {
+                console.warn('Canvas compression failed, falling back to original file:', err);
+                callback(e.target.result);
+              }
+            };
+            img.onerror = () => {
+              callback(e.target.result);
+            };
+            img.src = e.target.result;
+          } catch (err) {
+            console.warn('FileReader load failed, falling back to original:', err);
+            callback(e.target.result);
+          }
+        };
+        reader.onerror = () => {
+          alert('Failed to read file.');
+        };
+        reader.readAsDataURL(file);
+      }
+
+      galleryFileField.addEventListener('change', async (e) => {
+        const files = Array.from(e.target.files);
+        if (files.length > 0) {
+          galleryImagePreview.innerHTML = '<div style="color:var(--text-secondary);font-size:0.85rem;padding:5px;">Compressing images...</div>';
+          galleryImagePreview.style.display = 'block';
+          
+          try {
+            const promises = files.map(file => {
+              return new Promise((resolve) => {
+                compressAndProcessImage(file, (dataUrl) => {
+                  resolve(dataUrl);
+                });
+              });
+            });
+            
+            const dataUrls = await Promise.all(promises);
+            const joinedUrls = dataUrls.join(' | ');
+            galleryImageField.value = joinedUrls;
+            updateGalleryPreviews();
+          } catch (err) {
+            alert('Failed to compress images: ' + err.message);
+          }
+        }
+      });
+
+      galleryImageField.addEventListener('input', updateGalleryPreviews);
+
+      // Blog Image File Upload Handlers
+      blogTitleImageFileField.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          compressAndProcessImage(file, (dataUrl) => {
+            titleImageField.value = dataUrl;
+            blogTitlePreviewImg.src = dataUrl;
+            blogTitleImagePreview.style.display = 'block';
+          });
+        }
+      });
+
+      titleImageField.addEventListener('input', () => {
+        const val = titleImageField.value.trim();
+        if (val) {
+          blogTitlePreviewImg.src = val;
+          blogTitleImagePreview.style.display = 'block';
+        } else {
+          blogTitleImagePreview.style.display = 'none';
+        }
+      });
+
+      blogBannerImageFileField.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          compressAndProcessImage(file, (dataUrl) => {
+            bannerImageField.value = dataUrl;
+            blogBannerPreviewImg.src = dataUrl;
+            blogBannerImagePreview.style.display = 'block';
+          });
+        }
+      });
+
+      bannerImageField.addEventListener('input', () => {
+        const val = bannerImageField.value.trim();
+        if (val) {
+          blogBannerPreviewImg.src = val;
+          blogBannerImagePreview.style.display = 'block';
+        } else {
+          blogBannerImagePreview.style.display = 'none';
+        }
+      });
+
+      // ─── RECYCLE BIN MANAGEMENT ─────────────────────────────
+      async function loadRecycleBin() {
+        if (!isSupabaseConfigured) return;
+        recycleTableBody.innerHTML = '<tr><td colspan="4" class="loading-state">Loading recycle bin...</td></tr>';
+        
+        try {
+          const { data: items, error } = await supabaseClient
+            .from('recycle_bin')
+            .select('*')
+            .order('id', { ascending: false });
+
+          if (error) throw error;
+
+          recycleTableBody.innerHTML = '';
+          if (!items || items.length === 0) {
+            recycleTableBody.innerHTML = '<tr><td colspan="4" class="loading-state">Recycle Bin is empty.</td></tr>';
+            return;
+          }
+
+          items.forEach(item => {
+            const tr = document.createElement('tr');
+            let typeLabel = item.original_table;
+            if (item.original_table === 'blogs') {
+              typeLabel = 'Blog';
+            } else if (item.original_table === 'careers') {
+              typeLabel = 'Career';
+            } else if (item.original_table === 'gallery' && item.deleted_data) {
+              typeLabel = item.deleted_data.category || 'Gallery Item';
+            }
+            
+            const deletedDate = new Date(item.created_at).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            });
+
+            tr.innerHTML = `
+              <td style="font-weight: 600; color: #211d5f;">${item.title}</td>
+              <td><span class="badge" style="background: rgba(0, 110, 184, 0.08); color: var(--accent-blue);">${typeLabel}</span></td>
+              <td>${deletedDate}</td>
+              <td class="row-actions">
+                <button class="row-btn row-btn-restore restore-recycle-btn" data-id="${item.id}">↩ Restore</button>
+                <button class="row-btn row-btn-delete purge-recycle-btn" data-id="${item.id}" data-title="${item.title.replace(/"/g, '&quot;')}">Delete Permanently</button>
+              </td>
+            `;
+            recycleTableBody.appendChild(tr);
+          });
+
+          // Bind buttons
+          document.querySelectorAll('.restore-recycle-btn').forEach(btn => {
+            btn.addEventListener('click', () => restoreRecycleItem(btn.getAttribute('data-id')));
+          });
+          document.querySelectorAll('.purge-recycle-btn').forEach(btn => {
+            btn.addEventListener('click', () => purgeRecycleItem(btn.getAttribute('data-id'), btn.getAttribute('data-title')));
+          });
+
+        } catch (err) {
+          recycleTableBody.innerHTML = `<tr><td colspan="4" class="loading-state" style="color:var(--promo-color);">Error loading recycle bin: ${err.message}</td></tr>`;
+        }
+      }
+
+      async function restoreRecycleItem(id) {
+        try {
+          const { data: item, error: fetchErr } = await supabaseClient
+            .from('recycle_bin')
+            .select('*')
+            .eq('id', id)
+            .single();
+          if (fetchErr) throw fetchErr;
+
+          // Strip the original id to let the DB assign a fresh one on restore
+          const { id: _originalId, ...restoreData } = item.deleted_data;
+
+          const { error: insertErr } = await supabaseClient
+            .from(item.original_table)
+            .insert([restoreData]);
+          if (insertErr) throw insertErr;
+
+          const { error: purgeErr } = await supabaseClient
+            .from('recycle_bin')
+            .delete()
+            .eq('id', id);
+          if (purgeErr) throw purgeErr;
+
+          loadBlogs();
+          loadCareers();
+          loadGallery();
+          loadRecycleBin();
+          
+          alert(`"${item.title}" has been restored successfully!`);
+        } catch (err) {
+          alert('Failed to restore item: ' + err.message);
+        }
+      }
+
+      async function purgeRecycleItem(id, title) {
+        if (confirm(`Are you sure you want to permanently delete "${title}"? This action cannot be undone.`)) {
+          try {
+            const { error } = await supabaseClient
+              .from('recycle_bin')
+              .delete()
+              .eq('id', id);
+            if (error) throw error;
+            
+            loadRecycleBin();
+            alert('Item deleted permanently.');
+          } catch (err) {
+            alert('Failed to permanently delete item: ' + err.message);
+          }
+        }
+      }
+
+    })();
+  </script>
+</body>
+
+</html>

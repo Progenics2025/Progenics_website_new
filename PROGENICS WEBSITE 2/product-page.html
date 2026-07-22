@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Product | Progenics</title>
+
+  <style>
+    iframe[name^="frame-product-"] {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+  </style>
+
+  <meta name="description" content="Learn more about Product | Progenics at Progenics — India's leading precision genomics lab offering advanced genetic testing and personalized healthcare." />
+  <!-- SEO & Social Meta Tags -->
+  <link rel="canonical" href="https://www.progenicslabs.com/product-page/" />
+  <meta property="og:title" content="Product | Progenics" />
+  <meta property="og:description" content="Learn more about Product | Progenics at Progenics — India's leading precision genomics lab offering advanced genetic testing and personalized healthcare." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.progenicslabs.com/product-page/" />
+  <meta property="og:image" content="https://progenicslabs.com/Images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  
+  <link href="styles.css" rel="stylesheet"/>
+    <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
+    <link rel="icon" href="favicon.png?v=2" type="image/png" />
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<script>
+/* --- Reliable window.open interceptor for Shopify iframe --- */
+(function(){
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      mutation.addedNodes.forEach(function(node) {
+        if (node.tagName === 'IFRAME' && node.name && node.name.indexOf('frame-product-') !== -1) {
+          node.addEventListener('load', function() {
+            try {
+              node.contentWindow.open = function(url, target, features) {
+                if (url && (url.indexOf('myshopify.com') !== -1 || url.indexOf('shopify.com') !== -1)) {
+                  document.getElementById('checkout-frame').src = url;
+                  document.getElementById('checkout-overlay').classList.add('active');
+                  document.body.style.overflow = 'hidden';
+                  return null;
+                }
+                return window.open(url, target, features);
+              };
+              
+              node.contentWindow.document.addEventListener('click', function(e) {
+                var btn = e.target.closest('.shopify-buy__btn');
+                if (btn) {
+                  var overlay = document.getElementById('checkout-overlay');
+                  if (overlay) {
+                    overlay.classList.add('active');
+                    document.getElementById('checkout-frame').style.background = 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' fill=\'none\' stroke=\'%23006eb8\' stroke-width=\'10\' r=\'35\' stroke-dasharray=\'164.933 56.977\'>  <animateTransform attributeName=\'transform\' type=\'rotate\' repeatCount=\'indefinite\' dur=\'1s\' values=\'0 50 50;360 50 50\' keyTimes=\'0;1\'></animateTransform></circle></svg>") center center no-repeat';
+                    document.getElementById('checkout-frame').style.backgroundSize = '50px 50px';
+                  }
+                }
+              }, true);
+            } catch(e) {}
+          });
+        }
+      });
+    });
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+
+<script>
+/* --- Intercept window.open from Shopify SDK and show checkout in iframe --- */
+(function(){
+  var _open = window.open;
+  window.open = function(url, target, features) {
+    if (url && (url.indexOf('myshopify.com') !== -1 || url.indexOf('shopify.com') !== -1)) {
+      document.getElementById('checkout-frame').src = url;
+      document.getElementById('checkout-overlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      return { closed: false, focus: function(){}, close: function(){} };
+    }
+    return _open.apply(this, arguments);
+  };
+  window.closeCheckout = function() {
+    document.getElementById('checkout-overlay').classList.remove('active');
+    document.getElementById('checkout-frame').src = '';
+    document.body.style.overflow = '';
+  };
+})();
+</script>
+
+<div id="checkout-overlay">
+  <div id="checkout-bar">
+    <span>🔒 Secure Checkout &mdash; Progenics</span>
+    <button onclick="closeCheckout()">← Back to Product</button>
+  </div>
+  <iframe id="checkout-frame" src="" allow="payment *"></iframe>
+</div>
+
+<div class="product-page-container">
+  <div class="product-modern-card">
+    <div class="product-modern-header">
+      <h1 id="dyn-product-title">Loading Product...</h1>
+      <p id="dyn-product-tagline">Please wait while we load your secure checkout experience.</p>
+    </div>
+    
+    <div class="product-grid-layout">
+      <!-- Left side: image card -->
+      <div class="product-image-side">
+        <img id="dyn-product-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Product Image" title="Product Image" />
+      </div>
+      
+      <!-- Right side: Shopify buy button widget -->
+      <div class="product-info-side">
+        <div id="shopify-product-mount">
+          <div id="pg-loading">
+            <div class="pg-spinner"></div>
+            <p>Connecting to secure payment gateway...</p>
+          </div>
+          <div id="pg-error">
+            <h2>Product Not Found</h2>
+            <p>Please <a href="genetic-test-kits/" title="Shop Genetic Test Kits">go back to the shop</a> and try again.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic Detailed Product Sections -->
+    <div class="product-details-grid">
+      <!-- What's Inside the Kit -->
+      <div class="product-details-card">
+        <h3>What's Inside the Kit</h3>
+        <ul class="kit-checklist" id="dyn-kit-checklist">
+          <!-- Dynamically populated -->
+        </ul>
+      </div>
+
+      <!-- FAQs -->
+      <div class="product-details-card">
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-accordion" id="dyn-faq-accordion">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 7-Step Journey
+    <div class="process-steps-timeline">
+      <h2 id="dyn-journey-title">The 7-Step Testing Journey</h2>
+      <div class="process-steps-container">
+        <div class="process-step-node">
+          <div class="process-step-number">1</div>
+          <h4>Order Kit</h4>
+          <p>Order online; secure delivery to your doorstep.</p>
+        </div>
+        <div class="process-step-node">
+          <div class="process-step-number">2</div>
+          <h4>Register</h4>
+          <p>Activate your kit barcode on our secure portal.</p>
+        </div>
+        <div class="process-step-node">
+          <div class="process-step-number">3</div>
+          <h4>Collect</h4>
+          <p>Follow the simple instructions to collect your sample.</p>
+        </div>
+        <div class="process-step-node">
+          <div class="process-step-number">4</div>
+          <h4>Ship Back</h4>
+          <p>Send it via the pre-paid courier service envelope.</p>
+        </div>
+        <div class="process-step-node">
+          <div class="process-step-number">5</div>
+          <h4>Sequencing</h4>
+          <p>We extract and sequence your DNA in our accredited lab.</p>
+        </div>
+        <div class="process-step-node">
+          <div class="process-step-number">6</div>
+          <h4>Analysis</h4>
+          <p>Bioinformatics processing and clinical interpretation.</p>
+        </div>
+        <div class="process-step-node">
+          <div class="process-step-number">7</div>
+          <h4>Report</h4>
+          <p>Access your detailed reports and health insights online.</p>
+        </div>
+      </div>
+    </div>
+    -->
+
+  </div>
+</div>
+
+<script type="text/javascript">
+/*<![CDATA[*/
+(function () {
+  /* ── Product registry ── */
+  var PRODUCTS = {
+    '9446834995507': { 
+      name: 'GutGenics', 
+      imageAlt: 'GutGenics Gut Microbiome Testing Kit - Progenics Labs',
+      imageTitle: 'GutGenics Gut Microbiome Testing Kit - Progenics Labs',
+      logo: 'Images/Gutgenics logo.png',
+      container: 'product-component-1782301533534',
+      image: 'Images/Gutgenics Kit.png',
+      tagline: 'Complete your secure purchase below. Progenics ensures 99.9% testing accuracy.',
+      kit: [
+        '<strong>Stool Collection Tube:</strong> Barcoded specimen container with DNA stabilizing buffer.',
+        '<strong>Instruction Manual:</strong> Step-by-step pictorial guide for error-free stool sample collection.',
+        '<strong>Prepaid Return Envelope:</strong> Safe-transport packaging to return your sample to our lab.',
+        '<strong>Secure Registration Card:</strong> Activation code to link your kit and secure your online report.'
+      ],
+      faqs: [
+        { q: 'How do I register my kit?', a: 'Scan the QR code on your Registration Card or visit our portal. Enter your unique activation code before collecting your sample.' },
+        { q: 'When will I receive my results?', a: 'Once your sample arrives at our laboratory, analysis takes approximately 2-3 weeks. You will receive an email notification when your digital report is ready.' },
+        { q: 'Is my stool sample stable during transit?', a: 'Yes. The collection tube contains a clinical-grade stabilizing liquid that preserves the microbial DNA for up to 30 days at room temperature.' }
+      ]
+    },
+    '9446805078323': { 
+      name: 'WellGenics', 
+      imageAlt: 'WellGenics Wellness DNA Testing Kit - Progenics Labs',
+      imageTitle: 'WellGenics Wellness DNA Testing Kit - Progenics Labs',
+      logo: 'Images/Wellgenics logo.png',
+      container: 'product-component-1782301899512',
+      image: 'Images/WellGenics Kit.png',
+      tagline: 'Complete your secure purchase below. Progenics ensures 99.9% testing accuracy.',
+      kit: [
+        '<strong>Saliva Collection Kit:</strong> Barcoded FDA-cleared collection tube.',
+        '<strong>Instruction Manual:</strong> Simple guide for collecting saliva without errors.',
+        '<strong>Prepaid Return Envelope:</strong> Specially insulated transit box to ship your sample back.',
+        '<strong>Secure Registration Card:</strong> Activation key to securely associate the kit with your login.'
+      ],
+      faqs: [
+        { q: 'How do I register my kit?', a: 'Scan the QR code on your Registration Card or visit our portal. Enter your unique activation code before collecting your sample.' },
+        { q: 'When will I receive my results?', a: 'Once your sample arrives at our laboratory, analysis takes approximately 2-3 weeks. You will receive an email notification when your digital report is ready.' },
+        { q: 'What instructions should I follow before collection?', a: 'Do not eat, drink, smoke, or chew gum for 30 minutes before providing your saliva sample to ensure high-quality DNA extraction.' }
+      ]
+    },
+    '9446811828531': { 
+      name: 'FitGenics', 
+      imageAlt: 'FitGenics Fitness DNA Testing Kit - Progenics Labs',
+      imageTitle: 'FitGenics Fitness DNA Testing Kit - Progenics Labs',
+      logo: 'Images/Fitgenics logo.png',
+      container: 'product-component-1782301772357',
+      image: 'Images/Fitgenics Kit.png',
+      tagline: 'Complete your secure purchase below. Progenics ensures 99.9% testing accuracy.',
+      kit: [
+        '<strong>Saliva Collection Kit:</strong> Sterile barcode-labeled saliva collection funnel and tube.',
+        '<strong>Instruction Manual:</strong> Detailed steps to collect your sample correctly.',
+        '<strong>Prepaid Return Envelope:</strong> Safe-transport packaging to return your sample to our lab.',
+        '<strong>Secure Registration Card:</strong> Activation code to link your kit and secure your online report.'
+      ],
+      faqs: [
+        { q: 'How do I register my kit?', a: 'Scan the QR code on your Registration Card or visit our portal. Enter your unique activation code before collecting your sample.' },
+        { q: 'When will I receive my results?', a: 'Once your sample arrives at our laboratory, analysis takes approximately 2-3 weeks. You will receive an email notification when your digital report is ready.' },
+        { q: 'What does FitGenics test?', a: 'It analyzes genetic markers associated with muscle type, oxygen utilization, fat metabolism, nutrient absorption, and injury risk.' }
+      ]
+    },
+    '9446799737139': { 
+      name: 'MediGenics', 
+      imageAlt: 'MediGenics Health DNA Testing Kit - Progenics Labs',
+      imageTitle: 'MediGenics Health DNA Testing Kit - Progenics Labs',
+      logo: 'Images/Medigenics logo.png',
+      container: 'product-component-1782302054813',
+      image: 'Images/Medigenics Kit.png',
+      tagline: 'Complete your secure purchase below. Progenics ensures 99.9% testing accuracy.',
+      kit: [
+        '<strong>Saliva Collection Kit:</strong> Sterile clinical-grade DNA collection tube.',
+        '<strong>Instruction Manual:</strong> Step-by-step instructions for medical genetics collection.',
+        '<strong>Prepaid Return Envelope:</strong> Safe-transport packaging to return your sample to our lab.',
+        '<strong>Secure Registration Card:</strong> Activation code to link your kit and secure your online report.'
+      ],
+      faqs: [
+        { q: 'How do I register my kit?', a: 'Scan the QR code on your Registration Card or visit our portal. Enter your unique activation code before collecting your sample.' },
+        { q: 'When will I receive my results?', a: 'Once your sample arrives at our laboratory, analysis takes approximately 2-3 weeks. You will receive an email notification when your digital report is ready.' },
+        { q: 'What is pharmacogenomics (PGx)?', a: 'It studies how your genes affect your response to medications, helping your doctor personalize drug choices and dosages.' }
+      ]
+    },
+    '9499539013939': { 
+      name: 'Combo Kit', 
+      imageAlt: 'GutGenics and WellGenics DNA Testing Combo Kit',
+      imageTitle: 'GutGenics and WellGenics DNA Testing Combo Kit',
+      logo: '',
+      container: 'product-component-1782301221190',
+      image: 'Images/GUT+WELL Combo.png',
+      tagline: 'Complete your secure purchase below. Progenics ensures 99.9% testing accuracy.',
+      kit: [
+        '<strong>Stool Collection Kit (GutGenics):</strong> Professional micro-flora collection system.',
+        '<strong>Saliva Collection Kit (WellGenics):</strong> Premium genetic health DNA collection system.',
+        '<strong>Instructions & Setup Guide:</strong> Separate checklists for gut and health DNA collection.',
+        '<strong>Two Prepaid Envelopes:</strong> High-security transit packaging for both samples.'
+      ],
+      faqs: [
+        { q: 'How do I register my kit?', a: 'Scan the QR code on your Registration Card or visit our portal. Enter your unique activation code before collecting your sample.' },
+        { q: 'When will I receive my results?', a: 'Once your sample arrives at our laboratory, analysis takes approximately 2-3 weeks. You will receive an email notification when your digital report is ready.' },
+        { q: 'Do I have to send both samples together?', a: 'No, you can register and ship them separately or together. Your reports will be generated as each analysis completes.' }
+      ]
+    }
+  };
+
+  /* ── Read product ID from URL param ── */
+  var params = new URLSearchParams(window.location.search);
+  var productId = params.get('id');
+  var product = PRODUCTS[productId];
+
+  if (!product) {
+    document.getElementById('pg-loading').style.display = 'none';
+    document.getElementById('pg-error').style.display = 'block';
+    document.getElementById('dyn-product-title').innerText = 'Product Not Found';
+  } else {
+    document.title = product.name + ' | Progenics';
+    if (product.logo) {
+      document.getElementById('dyn-product-title').innerHTML = '<img src="' + product.logo + '" alt="' + product.name + '" class="product-header-logo" />';
+    } else {
+      document.getElementById('dyn-product-title').innerText = product.name;
+    }
+    document.getElementById('dyn-product-tagline').innerText = product.tagline;
+    document.getElementById('dyn-product-image').src = product.image;
+    document.getElementById('dyn-product-image').alt = product.imageAlt || product.name;
+    document.getElementById('dyn-product-image').title = product.imageTitle || product.name;
+
+    // Populate kit list
+    var kitHtml = '';
+    product.kit.forEach(function(item) {
+      kitHtml += '<li>' + item + '</li>';
+    });
+    document.getElementById('dyn-kit-checklist').innerHTML = kitHtml;
+
+    // Populate FAQs
+    var faqHtml = '';
+    product.faqs.forEach(function(faq, index) {
+      var openAttr = index === 0 ? ' open' : '';
+      faqHtml += '<details' + openAttr + '><summary>' + faq.q + '</summary><p>' + faq.a + '</p></details>';
+    });
+    document.getElementById('dyn-faq-accordion').innerHTML = faqHtml;
+
+    /* Create mount node with the exact container ID from the snippet */
+    var mount = document.getElementById('shopify-product-mount');
+    var node = document.createElement('div');
+    node.id = product.container;
+    mount.appendChild(node);
+
+    /* ── Load Shopify Buy Button SDK ── */
+    var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+
+    function ShopifyBuyInit() {
+      var client = ShopifyBuy.buildClient({
+        domain: 'c5452d-aa.myshopify.com',
+        storefrontAccessToken: '816c8a8824925c2c2bc46059fd0025e2',
+      });
+
+      ShopifyBuy.UI.onReady(client).then(function (ui) {
+        document.getElementById('pg-loading').style.display = 'none';
+
+        ui.createComponent('product', {
+          id: productId,
+          node: document.getElementById(product.container),
+          moneyFormat: 'Rs.%20%7B%7Bamount%7D%7D',
+          options: {
+            "product": {
+              "styles": {
+                "product": {
+                  "@media (min-width: 601px)": {
+                    "max-width": "100%",
+                    "margin-left": "0px",
+                    "margin-bottom": "0px"
+                  },
+                  "carousel-button": {
+                    "display": "none"
+                  }
+                },
+                "title": {
+                  "font-family": "Roboto, sans-serif",
+                  "font-weight": "normal",
+                  "font-size": "26px"
+                },
+                "button": {
+                  "font-family": "Roboto, sans-serif",
+                  ":hover": {
+                    "background-color": "#18143d"
+                  },
+                  "background-color": "#211d4f",
+                  ":focus": {
+                    "background-color": "#18143d"
+                  },
+                  "border-radius": "40px"
+                },
+                "price": {
+                  "font-family": "Roboto, sans-serif",
+                  "font-size": "18px",
+                  "color": "#f54a4a"
+                },
+                "compareAt": {
+                  "font-family": "Roboto, sans-serif",
+                  "font-size": "15.299999999999999px",
+                  "color": "#f54a4a"
+                },
+                "unitPrice": {
+                  "font-family": "Roboto, sans-serif",
+                  "font-size": "15.299999999999999px",
+                  "color": "#f54a4a"
+                }
+              },
+              "buttonDestination": "checkout",
+              "contents": {
+                "img": false,
+                "imgWithCarousel": false,
+                "button": false,
+                "buttonWithQuantity": true
+              },
+              "width": "100%",
+              "text": {
+                "button": "Buy now"
+              },
+              "googleFonts": [
+                "Roboto"
+              ]
+            },
+            "productSet": {
+              "styles": {
+                "products": {
+                  "@media (min-width: 601px)": {
+                    "margin-left": "-20px"
+                  }
+                }
+              }
+            },
+            "modalProduct": {
+              "contents": {
+                "img": false,
+                "imgWithCarousel": false,
+                "button": false,
+                "buttonWithQuantity": true
+              },
+              "styles": {
+                "product": {
+                  "@media (min-width: 601px)": {
+                    "max-width": "100%",
+                    "margin-left": "0px",
+                    "margin-bottom": "0px"
+                  }
+                },
+                "button": {
+                  "font-family": "Roboto, sans-serif",
+                  ":hover": {
+                    "background-color": "#18143d"
+                  },
+                  "background-color": "#211d4f",
+                  ":focus": {
+                    "background-color": "#18143d"
+                  },
+                  "border-radius": "40px"
+                },
+                "title": {
+                  "font-family": "Roboto, sans-serif",
+                  "font-weight": "normal",
+                  "font-size": "26px",
+                  "color": "#4c4c4c"
+                },
+                "price": {
+                  "font-family": "Helvetica Neue, sans-serif",
+                  "font-weight": "normal",
+                  "font-size": "18px",
+                  "color": "#ea5b5b"
+                },
+                "compareAt": {
+                  "font-family": "Helvetica Neue, sans-serif",
+                  "font-weight": "normal",
+                  "font-size": "15.299999999999999px",
+                  "color": "#ea5b5b"
+                },
+                "unitPrice": {
+                  "font-family": "Helvetica Neue, sans-serif",
+                  "font-weight": "normal",
+                  "font-size": "15.299999999999999px",
+                  "color": "#ea5b5b"
+                }
+              },
+              "googleFonts": [
+                "Roboto"
+              ],
+              "text": {
+                "button": "Add to cart"
+              }
+            },
+            "option": {
+              "styles": {
+                "label": {
+                  "font-family": "Roboto, sans-serif"
+                },
+                "select": {
+                  "font-family": "Roboto, sans-serif"
+                }
+              },
+              "googleFonts": [
+                "Roboto"
+              ]
+            },
+            "cart": {
+              "styles": {
+                "button": {
+                  "font-family": "Roboto, sans-serif",
+                  ":hover": {
+                    "background-color": "#18143d"
+                  },
+                  "background-color": "#211d4f",
+                  ":focus": {
+                    "background-color": "#18143d"
+                  },
+                  "border-radius": "40px"
+                }
+              },
+              "text": {
+                "total": "Subtotal",
+                "button": "Checkout"
+              },
+              "googleFonts": [
+                "Roboto"
+              ]
+            },
+            "toggle": {
+              "styles": {
+                "toggle": {
+                  "font-family": "Roboto, sans-serif",
+                  "background-color": "#211d4f",
+                  ":hover": {
+                    "background-color": "#18143d"
+                  },
+                  ":focus": {
+                    "background-color": "#18143d"
+                  }
+                }
+              },
+              "googleFonts": [
+                "Roboto"
+              ]
+            }
+          },
+        });
+      });
+    }
+
+    if (window.ShopifyBuy && window.ShopifyBuy.UI) {
+      ShopifyBuyInit();
+    } else {
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = scriptURL;
+      script.onload = ShopifyBuyInit;
+      (document.head || document.body).appendChild(script);
+    }
+  }
+
+})();
+/*]]>*/
+</script>
+
+<div id="footer-placeholder"></div>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

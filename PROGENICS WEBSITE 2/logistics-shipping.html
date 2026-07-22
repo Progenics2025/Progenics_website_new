@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Logistics &amp; Shipping | Progenics</title>
+<link href="styles.css" rel="stylesheet"/>
+<style>
+ .bg-animation-container {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ z-index: -1;
+ overflow: hidden;
+ background-color: var(--bg-primary);
+ }
+
+ .bg-layer {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-size: cover;
+ background-position: center;
+ opacity: 0;
+ }
+
+ .layer-1 {
+ background-image: url('Images/dna_helix_bg.png');
+ animation: layerFadeRotate 45s infinite alternate;
+ opacity: 0.2;
+ filter: blur(1.5px);
+ }
+
+ .layer-2 {
+ background-image: url('Images/genomics-bg.png');
+ animation: layerZoom 65s infinite alternate;
+ opacity: 0.14;
+ }
+
+ @keyframes layerFadeRotate {
+ 0% {
+ transform: scale(1) rotate(0deg);
+ opacity: 0.1;
+ }
+
+ 100% {
+ transform: scale(1.1) rotate(1deg);
+ opacity: 0.25;
+ }
+ }
+
+ @keyframes layerZoom {
+ 0% {
+ transform: scale(1.2);
+ opacity: 0.1;
+ }
+
+ 100% {
+ transform: scale(1);
+ opacity: 0.2;
+ }
+ }
+
+ .ambient-glow {
+ position: absolute;
+ width: 65vw;
+ height: 65vw;
+ background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%);
+ opacity: 0.2;
+ filter: blur(130px);
+ border-radius: 50%;
+ pointer-events: none;
+ z-index: 0;
+ }
+
+ .glow-1 {
+ top: -15%;
+ left: -10%;
+ animation: glowMove1 35s infinite alternate;
+ }
+
+ .glow-2 {
+ bottom: -15%;
+ right: -10%;
+ animation: glowMove2 40s infinite alternate;
+ background: radial-gradient(circle, #aed5ae 0%, transparent 70%);
+ }
+
+ @keyframes glowMove1 {
+ 0% {
+ transform: translate(0, 0) scale(1);
+ }
+
+ 100% {
+ transform: translate(25%, 25%) scale(1.15);
+ }
+ }
+
+ @keyframes glowMove2 {
+ 0% {
+ transform: translate(0, 0) scale(1.1);
+ }
+
+ 100% {
+ transform: translate(-25%, -25%) scale(1.3);
+ }
+ }
+
+ .bg-overlay {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: linear-gradient(to bottom, var(--bg-primary) 0%, rgba(250, 249, 246, 0.5) 20%, rgba(250, 249, 246, 0.5) 80%, var(--bg-primary) 100%);
+ z-index: 1;
+ }
+
+ .data-point {
+ position: absolute;
+ width: 3.5px;
+ height: 3.5px;
+ background: var(--accent-blue);
+ border-radius: 50%;
+ opacity: 0.35;
+ pointer-events: none;
+ z-index: 2;
+ }
+
+ /* Timeline Layout Styles */
+ .timeline-section {
+ max-width: 1200px;
+ margin: -80px auto 100px;
+ padding: 0 5vw;
+ position: relative;
+ z-index: 10;
+ }
+
+ .timeline-container {
+ position: relative;
+ padding: 4rem 0;
+ }
+
+ .timeline-container::before {
+ content: '';
+ position: absolute;
+ left: 50%;
+ top: 0;
+ width: 2px;
+ height: 100%;
+ background: linear-gradient(to bottom, transparent, var(--accent-blue), transparent);
+ transform: translateX(-50%);
+ }
+
+ .timeline-item {
+ display: flex;
+ justify-content: flex-end;
+ padding-right: 50%;
+ position: relative;
+ margin-bottom: 5rem;
+ width: 100%;
+ }
+
+ .timeline-item:nth-child(even) {
+ justify-content: flex-start;
+ padding-right: 0;
+ padding-left: 50%;
+ }
+
+ .timeline-dot {
+ position: absolute;
+ left: 50%;
+ top: 30px;
+ width: 20px;
+ height: 20px;
+ background: var(--accent-blue);
+ border: 4px solid var(--bg-primary);
+ border-radius: 50%;
+ transform: translateX(-50%);
+ z-index: 2;
+ box-shadow: 0 0 15px var(--accent-blue);
+ }
+
+ .timeline-content {
+ background: var(--card-bg);
+ backdrop-filter: blur(12px);
+ border: 1px solid var(--card-border);
+ padding: 2.5rem;
+ border-radius: 30px;
+ width: 90%;
+ box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+ transition: all 0.4s ease;
+ }
+
+ .timeline-item:nth-child(odd) .timeline-content {
+ margin-right: 40px;
+ text-align: right;
+ }
+
+ .timeline-item:nth-child(even) .timeline-content {
+ margin-left: 40px;
+ text-align: left;
+ }
+
+ .timeline-content:hover {
+ transform: translateY(-5px);
+ border-color: var(--accent-blue);
+ }
+
+ .timeline-content h3 {
+ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif ;
+ font-style: italic;
+ font-size: 1.8rem;
+ color: var(--accent-blue);
+ margin-bottom: 1rem;
+ }
+
+ .timeline-content p {
+ line-height: 1.7;
+ color: var(--text-secondary);
+ }
+
+ .shipping-footer-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+ gap: 2rem;
+ margin-top: 6rem;
+ }
+
+ .info-card {
+ background: var(--card-bg);
+ backdrop-filter: blur(12px);
+ border: 1px solid var(--card-border);
+ padding: 2.5rem;
+ border-radius: 30px;
+ text-align: center;
+ }
+
+ @media (max-width: 768px) {
+ .timeline-container::before {
+ left: 20px;
+ }
+
+ .timeline-item {
+ justify-content: flex-start !important;
+ padding-left: 45px !important;
+ padding-right: 0 !important;
+ margin-bottom: 3rem;
+ }
+
+ .timeline-dot {
+ left: 20px !important;
+ top: 25px;
+ width: 16px;
+ height: 16px;
+ }
+
+ .timeline-content {
+ width: 100% !important;
+ margin: 0 !important;
+ text-align: left !important;
+ padding: 1.5rem;
+ border-radius: 20px;
+ }
+
+ .timeline-content h3 {
+ font-size: 1.4rem;
+ }
+
+ .shipping-footer-grid {
+ margin-top: 3rem;
+ gap: 1.5rem;
+ }
+
+ .info-card {
+ padding: 1.8rem;
+ border-radius: 20px;
+ }
+ }
+ </style>
+
+ <meta name="description" content="Learn more about Logistics &amp; Shipping | Progenics at Progenics — India's leading precision genomics lab offering advanced genetic testing and personalized healthcare." />
+ <!-- SEO & Social Meta Tags -->
+ <link rel="canonical" href="https://progenicslabs.com/logistics-shipping.html" />
+ <meta property="og:title" content="Logistics &amp; Shipping | Progenics" />
+ <meta property="og:description" content="Learn more about Logistics &amp; Shipping | Progenics at Progenics — India's leading precision genomics lab offering advanced genetic testing and personalized healthcare." />
+ <meta property="og:type" content="website" />
+ <meta property="og:url" content="https://progenicslabs.com/logistics-shipping.html" />
+ <meta property="og:image" content="https://progenicslabs.com/Images/og-image.png" />
+ <meta name="twitter:card" content="summary_large_image" />
+    <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
+    <link rel="icon" href="favicon.png?v=2" type="image/png" />
+</head>
+<body>
+<!-- Custom Cursor -->
+<div class="cursor-dot" data-cursor-dot=""></div>
+<div class="cursor-outline" data-cursor-outline=""></div>
+<!-- Background Animation Container -->
+<div class="bg-animation-container">
+<div class="bg-layer layer-1"></div>
+<div class="bg-layer layer-2"></div>
+<div class="ambient-glow glow-1"></div>
+<div class="ambient-glow glow-2"></div>
+<div class="bg-overlay"></div>
+</div>
+<!-- Navigation -->
+<div id="header-placeholder"></div>
+<header class="page-header cinematic-banner" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&amp;w=2000&amp;auto=format&amp;fit=crop');">
+<div class="banner-content">
+<h1 class="serif-italic" style="color: #fff;">Logistics &amp; Shipping</h1>
+<p class="sans-caps" style="color: rgba(255,255,255,0.8); letter-spacing: 5px;">Secure Sample Transport</p>
+</div>
+</header>
+<main class="timeline-section">
+<div class="timeline-container">
+<!-- Step 1 -->
+<div class="timeline-item hidden-reveal transform-left">
+<div class="timeline-dot"></div>
+<div class="timeline-content">
+<h3>Kit Dispatch</h3>
+<p>Once you book a test, a specialized sample collection kit is dispatched within 24-48 hours. Our
+ kits are designed for maximum integrity during transit.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="timeline-item hidden-reveal transform-right">
+<div class="timeline-dot"></div>
+<div class="timeline-content">
+<h3>Sample Collection</h3>
+<p>Follow the detailed instructions included in your kit to collect your sample comfortably at home.
+ No clinic visit is required.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="timeline-item hidden-reveal transform-left">
+<div class="timeline-dot"></div>
+<div class="timeline-content">
+<h3>Secure Pickup</h3>
+<p>Schedule a pickup through our portal. Our logistics partners will collect the sample and ensure
+ it is transported under controlled conditions.</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="timeline-item hidden-reveal transform-right">
+<div class="timeline-dot"></div>
+<div class="timeline-content">
+<h3>Lab Arrival</h3>
+<p>Samples arrive at our Hyderabad laboratory within 24-72 hours. You'll receive a notification as
+ soon as the analysis begins.</p>
+</div>
+</div>
+</div>
+<div class="shipping-footer-grid">
+<div class="info-card hidden-reveal">
+<h3 class="serif-italic" style="color: var(--accent-blue); font-size: 1.5rem; margin-bottom: 1rem;">
+ Triple-Layer Packaging</h3>
+<p>We use IATA-compliant triple-layer packaging to ensure biological samples remain stable and secure
+ regardless of the distance.</p>
+</div>
+<div class="info-card hidden-reveal" style="transition-delay: 0.1s;">
+<h3 class="serif-italic" style="color: var(--accent-blue); font-size: 1.5rem; margin-bottom: 1rem;">
+ Real-time Tracking</h3>
+<p>Monitor your sample's journey every step of the way with our advanced real-time tracking system via
+ SMS and Email updates.</p>
+</div>
+</div>
+</main>
+<!-- Footer Section -->
+<div id="footer-placeholder"></div>
+<!-- Scripts -->
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="script.js?v=2"></script>
+<script>
+ document.addEventListener('DOMContentLoaded', () => {
+ // Background particles
+ const container = document.querySelector('.bg-animation-container');
+ const particleCount = 20;
+ for (let i = 0; i < particleCount; i++) {
+ const particle = document.createElement('div');
+ particle.className = 'data-point';
+ const x = Math.random() * 100;
+ const y = Math.random() * 100;
+ const size = 1.2 + Math.random() * 3;
+ particle.style.width = `${size}px`;
+ particle.style.height = `${size}px`;
+ const duration = 25 + Math.random() * 35;
+ const delay = Math.random() * -35;
+ particle.style.left = `${x}%`;
+ particle.style.top = `${y}%`;
+ const animName = `floatParticle_logistics_${i}`;
+ const style = document.createElement('style');
+ const tx = (Math.random() - 0.5) * 200;
+ const ty = (Math.random() - 0.5) * 200;
+ style.innerHTML = `@keyframes ${animName} { 0% { transform: translate(0, 0); opacity: 0; } 20% { opacity: 0.4; } 80% { opacity: 0.4; } 100% { transform: translate(${tx}px, ${ty}px); opacity: 0; } }`;
+ document.head.appendChild(style);
+ particle.style.animation = `${animName} ${duration}s infinite linear`;
+ particle.style.animationDelay = `${delay}s`;
+ container.appendChild(particle);
+ }
+ });
+ </script>
+</body>
+</html>

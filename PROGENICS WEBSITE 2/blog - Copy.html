@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Genetics & Health Blog | Progenics Labs Hyderabad</title>
+  <meta name="description"
+    content="Explore the latest articles on genetic testing, DNA health, genomics, wellness, and molecular diagnostics from the experts at Progenics Labs." />
+  <link href="styles.css" rel="stylesheet" />
+  <style>
+    .blog-header {
+      padding: 6rem 5vw 3rem;
+      text-align: center;
+      background: linear-gradient(to bottom, var(--bg-tertiary), var(--bg-primary));
+    }
+
+    .blog-title {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 3.5rem;
+      color: #211d5f;
+      margin-bottom: 1rem;
+    }
+
+    .blog-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ─── SEARCH & FILTERS ────────────────────────────────────────── */
+    .filter-section {
+      padding: 2rem 5vw 1rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .filter-container {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    }
+
+    [data-theme="dark"] .filter-container {
+      background: rgba(18, 20, 24, 0.6);
+    }
+
+    .search-box {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 20px;
+      color: var(--text-secondary);
+      pointer-events: none;
+      transition: color 0.3s;
+    }
+
+    #blog-search {
+      width: 100%;
+      padding: 16px 50px 16px 55px;
+      border-radius: 16px;
+      border: 1.5px solid var(--card-border);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      outline: none;
+      transition: all 0.3s ease;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    #blog-search:focus {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 4px rgba(0, 110, 184, 0.15);
+    }
+
+    #blog-search:focus+.search-icon {
+      color: var(--accent-blue);
+    }
+
+    .search-clear-btn {
+      position: absolute;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .search-clear-btn:hover {
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-primary);
+    }
+
+    [data-theme="dark"] .search-clear-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Category Filter List */
+    .categories-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE and Edge */
+    }
+
+    .categories-wrapper::-webkit-scrollbar {
+      display: none;
+      /* Chrome, Safari, Opera */
+    }
+
+    .categories-list {
+      display: flex;
+      gap: 10px;
+      padding-bottom: 2px;
+    }
+
+    .category-btn {
+      background: var(--bg-primary);
+      border: 1px solid var(--card-border);
+      color: var(--text-secondary);
+      padding: 10px 20px;
+      border-radius: 100px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    .category-btn:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      background: rgba(0, 110, 184, 0.05);
+    }
+
+    .category-btn.active {
+      background: var(--accent-blue);
+      border-color: var(--accent-blue);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(0, 110, 184, 0.3);
+    }
+
+    /* Tags list */
+    .tags-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .tags-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tags-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag-pill {
+      background: var(--bg-primary);
+      border: 1px solid var(--card-border);
+      color: var(--text-secondary);
+      padding: 6px 14px;
+      border-radius: 100px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.25s ease;
+    }
+
+    .tag-pill:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+
+    .tag-pill.active {
+      background: rgba(0, 110, 184, 0.15);
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    /* ─── BLOG GRID & CARDS ───────────────────────────────────────── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2.5rem;
+      padding: 2rem 5vw 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .blog-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.4s ease,
+        visibility 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 110, 184, 0.15);
+      border-color: var(--accent-blue);
+    }
+
+    .blog-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 240px;
+      overflow: hidden;
+    }
+
+    .blog-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .blog-card:hover .blog-image {
+      transform: scale(1.05);
+    }
+
+    .blog-content {
+      padding: 2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .blog-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .blog-meta-item svg {
+      color: var(--text-secondary);
+    }
+
+    .blog-meta-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: var(--card-border);
+    }
+
+    .blog-category-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(0, 110, 184, 0.08);
+      color: var(--accent-blue);
+      display: inline-block;
+    }
+
+    /* Color schemes for category badges */
+    .blog-card[data-category="Clinical Genetics"] .blog-category-badge {
+      background: rgba(79, 70, 229, 0.1);
+      color: #4f46e5;
+    }
+
+    .blog-card[data-category="Reproductive Health"] .blog-category-badge {
+      background: rgba(219, 39, 119, 0.1);
+      color: #db2777;
+    }
+
+    .blog-card[data-category="Oncology"] .blog-category-badge {
+      background: rgba(220, 38, 38, 0.1);
+      color: #dc2626;
+    }
+
+    .blog-card[data-category="Preventive Health"] .blog-category-badge {
+      background: rgba(5, 150, 105, 0.1);
+      color: #059669;
+    }
+
+    .blog-card-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #211d5f;
+      margin-bottom: 1rem;
+      line-height: 1.35;
+    }
+
+    .blog-excerpt {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .blog-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1.5rem;
+    }
+
+    .blog-card-tag {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      background: var(--bg-tertiary);
+      padding: 4px 10px;
+      border-radius: 100px;
+      border: 1px solid var(--card-border);
+      transition: all 0.2s ease;
+    }
+
+    .blog-card-tag:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+
+    .read-more {
+      margin-top: auto;
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: gap 0.3s ease;
+    }
+
+    .read-more:hover {
+      gap: 12px;
+    }
+
+    /* Filtering transition class */
+    .blog-card.filtered-out {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      pointer-events: none;
+      transform: scale(0.9);
+      width: 0;
+      height: 0;
+      padding: 0;
+      margin: 0;
+      border: none;
+      overflow: hidden;
+    }
+
+    /* No Results state styling */
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 5rem 2rem;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    }
+
+    .no-results-title {
+      font-size: 1.6rem;
+      color: #211d5f;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    .no-results-desc {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 450px;
+      line-height: 1.6;
+    }
+
+    .reset-btn {
+      background: var(--accent-blue);
+      border: none;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0, 110, 184, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .reset-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 110, 184, 0.3);
+    }
+
+    /* Dark mode adjustments */
+    [data-theme="dark"] .blog-header {
+      background: linear-gradient(to bottom, #121418, var(--bg-primary));
+    }
+
+    @media (max-width: 768px) {
+      .blog-title {
+        font-size: 2.5rem;
+      }
+
+      .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .filter-container {
+        padding: 1.25rem 45px 1.25rem 1.25rem;
+        gap: 1.25rem;
+      }
+
+      #blog-search {
+        font-size: 0.9rem;
+        padding: 12px 40px 12px 45px;
+      }
+
+      .search-icon {
+        left: 15px;
+      }
+
+      .search-clear-btn {
+        right: 15px;
+      }
+
+      .category-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+      }
+
+      .tag-pill {
+        padding: 4px 10px;
+        font-size: 0.72rem;
+      }
+    }
+  </style>
+
+  <!-- SEO & Social Meta Tags -->
+  <link rel="canonical" href="https://www.progenicslabs.com/blog/" />
+  <meta property="og:url" content="https://www.progenicslabs.com/blog/" />
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Genetics & Health Blog | Progenics Labs Hyderabad" />
+  <meta property="og:description"
+    content="Explore the latest articles on genetic testing, DNA health, genomics, wellness, and molecular diagnostics from the experts at Progenics Labs." />
+  <meta property="og:site_name" content="Progenics Labs" />
+  <meta property="og:image" content="https://www.progenicslabs.com/wp-content/uploads/2026/06/blog-og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Genetics and health blog by Progenics Labs" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@ProgenicsLabs" />
+  <meta name="twitter:title" content="Genetics & Health Blog | Progenics Labs Hyderabad" />
+  <meta name="twitter:description"
+    content="Explore the latest articles on genetic testing, DNA health, genomics, wellness, and molecular diagnostics from the experts at Progenics Labs." />
+  <meta name="twitter:image" content="https://www.progenicslabs.com/wp-content/uploads/2026/06/blog-og.jpg" />
+  <meta name="twitter:image:alt" content="Genetics and health blog by Progenics Labs" />
+  <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
+  <link rel="icon" href="favicon.png?v=2" type="image/png" />
+</head>
+
+<body>
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" data-cursor-dot=""></div>
+  <div class="cursor-outline" data-cursor-outline=""></div>
+  <!-- Background Animation Container -->
+  <div class="bg-animation-container">
+    <div class="bg-layer layer-1"></div>
+    <div class="bg-layer layer-2"></div>
+  </div>
+  <!-- Navigation -->
+  <div id="header-placeholder"></div>
+  <header class="blog-header">
+    <h1 class="blog-title serif-italic">Genetic Insights</h1>
+    <p class="blog-subtitle">Stay updated with the latest in genomics, preventive health, and personalized medicine from
+      our experts.</p>
+  </header>
+  <!-- Search & Filters Section -->
+  <section class="filter-section">
+    <div class="filter-container">
+      <!-- Search -->
+      <div class="search-box">
+        <svg class="search-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+        </svg>
+        <input id="blog-search" placeholder="Search articles..." type="text" />
+        <button aria-label="Clear search" class="search-clear-btn" id="search-clear" style="display: none;">×</button>
+      </div>
+      <!-- Categories horizontal bar -->
+      <div class="categories-wrapper">
+        <div class="categories-list" id="categories-list">
+          <button class="category-btn active" data-category="all">All Topics</button>
+          <button class="category-btn" data-category="Clinical Genetics">Clinical Genetics</button>
+          <button class="category-btn" data-category="Reproductive Health">Reproductive Health</button>
+          <button class="category-btn" data-category="Oncology">Oncology</button>
+          <button class="category-btn" data-category="Preventive Health">Preventive Health</button>
+        </div>
+      </div>
+      <!-- Tag cloud -->
+      <div class="tags-wrapper">
+        <span class="tags-label">Filter by Tag:</span>
+        <div class="tags-list" id="tags-list">
+          <button class="tag-pill active" data-tag="all">All</button>
+          <button class="tag-pill" data-tag="Counseling">Counseling</button>
+          <button class="tag-pill" data-tag="Pregnancy">Pregnancy</button>
+          <button class="tag-pill" data-tag="Cancer">Cancer</button>
+          <button class="tag-pill" data-tag="Microbiome">Microbiome</button>
+          <button class="tag-pill" data-tag="Diagnostics">Diagnostics</button>
+          <button class="tag-pill" data-tag="Hereditary">Hereditary</button>
+          <button class="tag-pill" data-tag="Early Detection">Early Detection</button>
+          <button class="tag-pill" data-tag="Prevention">Prevention</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <main class="blog-grid">
+    <!-- Blog Post 1 -->
+    <article class="blog-card" data-category="Clinical Genetics" data-tags="Counseling,Patient Care,Precision Medicine">
+      <div class="blog-image-wrapper">
+        <img alt="Professional genetic counselor discussing DNA testing results with patient" class="blog-image"
+          src="Images/blog_genetic_counselor.png" loading="lazy" width="600" height="400" />
+      </div>
+      <div class="blog-content">
+        <div class="blog-card-meta">
+          <span class="blog-category-badge">Clinical Genetics</span>
+          <span class="blog-meta-dot"></span>
+          <div class="blog-meta-item">
+            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="14">
+              <rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect>
+              <line x1="16" x2="16" y1="2" y2="6"></line>
+              <line x1="8" x2="8" y1="2" y2="6"></line>
+              <line x1="3" x2="21" y1="10" y2="10"></line>
+            </svg>
+            <span>June 15, 2026</span>
+          </div>
+          <span class="blog-meta-dot"></span>
+          <div class="blog-meta-item">
+            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="14">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>4 min read</span>
+          </div>
+        </div>
+        <h2 class="blog-card-title serif-italic">Genetic counselor could be your healthcare superhero</h2>
+        <p class="blog-excerpt">In the landscape of modern medicine, genetic testing has emerged as a transformative
+          tool, offering profound insights into our health and hereditary risks. Behind these scientific breakthroughs
+          lies a compassionate and essential profession: genetic counseling.</p>
+        <div class="blog-card-tags">
+          <span class="blog-card-tag">Counseling</span>
+          <span class="blog-card-tag">Patient Care</span>
+          <span class="blog-card-tag">Precision Medicine</span>
+        </div>
+        <a class="read-more" href="genetic-counselor-superhero.html">Read Full Post <span>→</span></a>
+      </div>
+    </article>
+    <!-- Blog Post 2 -->
+    <article class="blog-card" data-category="Reproductive Health" data-tags="Pregnancy,NIPS,Parenting,Prenatal">
+      <div class="blog-image-wrapper">
+        <img alt="Genetic testing and pregnancy screening illustration - Progenics Labs" class="blog-image"
+          src="Images/blog_pregnancy_testing.png" loading="lazy" width="600" height="400" />
+      </div>
+      <div class="blog-content">
+        <div class="blog-card-meta">
+          <span class="blog-category-badge">Reproductive Health</span>
+          <span class="blog-meta-dot"></span>
+          <div class="blog-meta-item">
+            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="14">
+              <rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect>
+              <line x1="16" x2="16" y1="2" y2="6"></line>
+              <line x1="8" x2="8" y1="2" y2="6"></line>
+              <line x1="3" x2="21" y1="10" y2="10"></line>
+            </svg>
+            <span>June 08, 2026</span>
+          </div>
+          <span class="blog-meta-dot"></span>
+          <div class="blog-meta-item">
+            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="14">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>5 min read</span>
+          </div>
+        </div>
+        <h2 class="blog-card-title serif-italic">Genetic Testing and Pregnancy: What Expectant Parents Should Know</h2>
+        <p class="blog-excerpt">Welcoming a new life into the world is an extraordinary journey filled with anticipation
+          and preparation. Among the many considerations for expectant parents, genetic testing stands out as a powerful
+          tool, providing insights into chromosomal conditions.</p>
+        <div class="blog-card-tags">
+          <span class="blog-card-tag">Pregnancy</span>
+          <span class="blog-card-tag">NIPS</span>
+          <span class="blog-card-tag">Parenting</span>
+          <span class="blog-card-tag">Prenatal</span>
+        </div>
+        <a class="read-more" href="genetic-testing-pregnancy.html">Read Full Post <span>→</span></a>
+      </div>
+    </article>
+    <!-- Blog Post 3 -->
+    <article class="blog-card" data-category="Oncology" data-tags="Cancer,Research,Microproteins,Therapy">
+      <div class="blog-image-wrapper">
+        <img alt="Microproteins and cancer genetics research - Progenics Labs" class="blog-image"
+          src="Images/blog_microproteins_cancer.png" loading="lazy" width="600" height="400" />
+      </div>
+      <div class="blog-content">
+        <div class="blog-card-meta">
+          <span class="blog-category-badge">Oncology</span>
+          <span class="blog-meta-dot"></span>
+          <div class="blog-meta-item">
+            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="14">
+              <rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect>
+              <line x1="16" x2="16" y1="2" y2="6"></line>
+              <line x1="8" x2="8" y1="2" y2="6"></line>
+              <line x1="3" x2="21" y1="10" y2="10"></line>
+            </svg>
+            <span>May 28, 2026</span>
+          </div>
+          <span class="blog-meta-dot"></span>
+          <div class="blog-meta-item">
+            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="14">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>6 min read</span>
+          </div>
+        </div>
+        <h2 class="blog-card-title serif-italic">Microproteins in Cancer: Genomic Discoveries and Therapeutic Potential
+        </h2>
+        <p class="blog-excerpt">The article “Microproteins in cancer: identification, biological functions, and clinical
+          implications” delves into the emerging field of microproteins and their role in cancer mechanism and potential
+          oncogenic processes.</p>
+        <div class="blog-card-tags">
+          <span class="blog-card-tag">Cancer</span>
+          <span class="blog-card-tag">Research</span>
+          <span class="blog-card-tag">Microproteins</span>
+          <span class="blog-card-tag">Therapy</span>
+        </div>
+        <a class="read-more" href="microproteins-cancer.html">Read Full Post <span>→</span></a>
+      </div>
+    </article>
+    <!-- Blog Post 4 -->
+    <article class="blog-card" data-category="Oncology" data-tags="BRCA,Breast Cancer,Prevention,Women's Health">
+      <div class="blog-image-wrapper">
+        <img alt="BRCA genetic testing for breast cancer risk screening" class="blog-image"
+          src="Images/blog_brca_testing.png" loading="lazy" width="600" height="400" />
+      </div>
+      <div class="blog-content">
+        <div class="blog-card-meta">
+          <span class="blog-category-badge">Oncology</span>
+          <span class="blog-meta-dot"></span>
+          <div class="blog-meta-item">
+            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="14">
+              <rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect>
+              <line x1="16" x2="16" y1="2" y2="6"></line>
+              <line x1="8" x2="8" y1="2" y2="6"></line>
+              <line x1="3" x2="21" y1="10" y2="10"></line>
+            </svg>
+            <span>May 15, 2026</span>
+          </div>
+          <span class="blog-meta-dot"></span>
+          <div class="blog-meta-item">
+            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="14">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>5 min read</span>
+          </div>
+        </div>
+        <h2 class="blog-card-title serif-italic">Behind the Genes: Why BRCA Testing is a Must for Women’s Health</h2>
+        <p class="blog-excerpt">In the realm of women’s health, knowledge is a powerful tool. Understanding your genetic
+          makeup can provide invaluable insights into your risk for certain conditions, especially breast and ovarian
+          cancers.</p>
+        <div class="blog-card-tags">
+          <span class="blog-card-tag">BRCA</span>
+          <span class="blog-card-tag">Breast Cancer</span>
+          <span class="blog-card-tag">Prevention</span>
+          <span class="blog-card-tag">Women's Health</span>
+        </div>
+        <a class="read-more" href="brca-testing-womens-health.html">Read Full Post <span>→</span></a>
+      </div>
+    </article>
+    <!-- Blog Post 5 -->
+    <article class="blog-card" data-category="Preventive Health"
+      data-tags="Gut Health,Microbiome,Mental Health,Gut-Brain Axis">
+      <div class="blog-image-wrapper">
+        <img alt="Gut microbiome and mental health connection illustration" class="blog-image"
+          src="Images/blog_gut_mental_health.png" loading="lazy" width="600" height="400" />
+      </div>
+      <div class="blog-content">
+        <div class="blog-card-meta">
+          <span class="blog-category-badge">Preventive Health</span>
+          <span class="blog-meta-dot"></span>
+          <div class="blog-meta-item">
+            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="14">
+              <rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect>
+              <line x1="16" x2="16" y1="2" y2="6"></line>
+              <line x1="8" x2="8" y1="2" y2="6"></line>
+              <line x1="3" x2="21" y1="10" y2="10"></line>
+            </svg>
+            <span>April 30, 2026</span>
+          </div>
+          <span class="blog-meta-dot"></span>
+          <div class="blog-meta-item">
+            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="14">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>4 min read</span>
+          </div>
+        </div>
+        <h2 class="blog-card-title serif-italic">Gut feelings: The surprising link between your GUT and MENTAL Health
+        </h2>
+        <p class="blog-excerpt">Have you ever felt “butterflies” in your stomach before a big presentation or a “knot”
+          when you’re stressed? These sensations aren’t just in your head—they’re in your gut too, highlighting the
+          gut-brain axis.</p>
+        <div class="blog-card-tags">
+          <span class="blog-card-tag">Gut Health</span>
+          <span class="blog-card-tag">Microbiome</span>
+          <span class="blog-card-tag">Mental Health</span>
+          <span class="blog-card-tag">Gut-Brain Axis</span>
+        </div>
+        <a class="read-more" href="gut-feelings-mental-health.html">Read Full Post <span>→</span></a>
+      </div>
+    </article>
+    <!-- Blog Post 6 -->
+    <article class="blog-card" data-category="Clinical Genetics"
+      data-tags="Exome Sequencing,Microarray,Diagnostics,WES,CMA">
+      <div class="blog-image-wrapper">
+        <img alt="Whole Exome Sequencing vs Chromosomal Microarray comparison chart" class="blog-image"
+          src="Images/blog_wes_vs_cma.png" loading="lazy" width="600" height="400" />
+      </div>
+      <div class="blog-content">
+        <div class="blog-card-meta">
+          <span class="blog-category-badge">Clinical Genetics</span>
+          <span class="blog-meta-dot"></span>
+          <div class="blog-meta-item">
+            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="14">
+              <rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect>
+              <line x1="16" x2="16" y1="2" y2="6"></line>
+              <line x1="8" x2="8" y1="2" y2="6"></line>
+              <line x1="3" x2="21" y1="10" y2="10"></line>
+            </svg>
+            <span>April 12, 2026</span>
+          </div>
+          <span class="blog-meta-dot"></span>
+          <div class="blog-meta-item">
+            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="14">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>5 min read</span>
+          </div>
+        </div>
+        <h2 class="blog-card-title serif-italic">WES vs. CMA: Understanding the Difference</h2>
+        <p class="blog-excerpt">In the ever-evolving landscape of genetics, diagnostic tools play a pivotal role. Two
+          such prominent tools are Whole Exome Sequencing (WES) and Chromosomal Microarray (CMA), each serving unique
+          diagnostic purposes.</p>
+        <div class="blog-card-tags">
+          <span class="blog-card-tag">Diagnostics</span>
+          <span class="blog-card-tag">WES</span>
+          <span class="blog-card-tag">CMA</span>
+        </div>
+        <a class="read-more" href="wes-vs-cma.html">Read Full Post <span>→</span></a>
+      </div>
+    </article>
+    <!-- Blog Post 7 -->
+    <article class="blog-card" data-category="Clinical Genetics"
+      data-tags="Hereditary,Consanguinity,Carrier Screening,Family">
+      <div class="blog-image-wrapper">
+        <img alt="Genetic risks in consanguineous marriage counseling" class="blog-image"
+          src="Images/blog_consanguineous_marriage.png" loading="lazy" width="600" height="400" />
+      </div>
+      <div class="blog-content">
+        <div class="blog-card-meta">
+          <span class="blog-category-badge">Clinical Genetics</span>
+          <span class="blog-meta-dot"></span>
+          <div class="blog-meta-item">
+            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="14">
+              <rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect>
+              <line x1="16" x2="16" y1="2" y2="6"></line>
+              <line x1="8" x2="8" y1="2" y2="6"></line>
+              <line x1="3" x2="21" y1="10" y2="10"></line>
+            </svg>
+            <span>March 25, 2026</span>
+          </div>
+          <span class="blog-meta-dot"></span>
+          <div class="blog-meta-item">
+            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="14">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>6 min read</span>
+          </div>
+        </div>
+        <h2 class="blog-card-title serif-italic">Does consanguineous marriage really cause genetic abnormalities in
+          children</h2>
+        <p class="blog-excerpt">Consanguineous marriage, the union between closely related individuals, has been
+          practiced for generations across various cultures. While providing social cohesion, it also raises significant
+          genetic concerns for offspring.</p>
+        <div class="blog-card-tags">
+          <span class="blog-card-tag">Hereditary</span>
+          <span class="blog-card-tag">Carrier Screening</span>
+          <span class="blog-card-tag">Family</span>
+        </div>
+        <a class="read-more" href="consanguineous-marriage.html">Read Full Post <span>→</span></a>
+      </div>
+    </article>
+    <!-- Blog Post 8 -->
+    <article class="blog-card" data-category="Preventive Health"
+      data-tags="Arthritis,Early Detection,Joint Health,Prevention">
+      <div class="blog-image-wrapper">
+        <img alt="Arthritis early detection genetic testing - Progenics Labs Blog" class="blog-image"
+          src="Images/blog_arthritis_early_detection.png" loading="lazy" width="600" height="400" />
+      </div>
+      <div class="blog-content">
+        <div class="blog-card-meta">
+          <span class="blog-category-badge">Preventive Health</span>
+          <span class="blog-meta-dot"></span>
+          <div class="blog-meta-item">
+            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="14">
+              <rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect>
+              <line x1="16" x2="16" y1="2" y2="6"></line>
+              <line x1="8" x2="8" y1="2" y2="6"></line>
+              <line x1="3" x2="21" y1="10" y2="10"></line>
+            </svg>
+            <span>March 10, 2026</span>
+          </div>
+          <span class="blog-meta-dot"></span>
+          <div class="blog-meta-item">
+            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="14">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>5 min read</span>
+          </div>
+        </div>
+        <h2 class="blog-card-title serif-italic">Detecting Arthritis Early: Genetic Testing for Prevention and Care</h2>
+        <p class="blog-excerpt">Did you know that genetic factors account for up to 60% of rheumatoid arthritis risk?
+          This means that your family history and genetic makeup play a significant role in early detection and care.
+        </p>
+        <div class="blog-card-tags">
+          <span class="blog-card-tag">Arthritis</span>
+          <span class="blog-card-tag">Early Detection</span>
+          <span class="blog-card-tag">Prevention</span>
+        </div>
+        <a class="read-more" href="arthritis-early-detection.html">Read Full Post <span>→</span></a>
+      </div>
+    </article>
+  </main>
+  <!-- Footer Section -->
+  <div id="footer-placeholder"></div>
+  <!-- Scripts -->
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="assets/portal-sdk.min.js"></script>
+  <script src="assets/portal-core.js"></script>
+  <script src="script.js?v=2"></script>
+  <script>
+    // ─── BLOG SEARCH & FILTER LOGIC ─────────────────────────────
+    (async function () {
+      const searchInput = document.getElementById('blog-search');
+      const searchClear = document.getElementById('search-clear');
+      const categoryBtns = document.querySelectorAll('.category-btn');
+      const tagPills = document.querySelectorAll('.tag-pill');
+      const blogGrid = document.querySelector('.blog-grid');
+
+      // Check if Supabase is configured
+      const isSupabaseConfigured = typeof SUPABASE_URL !== 'undefined' &&
+        SUPABASE_URL &&
+        !SUPABASE_URL.includes('YOUR_PROJECT_ID') &&
+        supabaseClient;
+
+      let blogCards = [];
+
+      // Helper to format date
+      function formatDate(dateStr) {
+        if (!dateStr) return '';
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateStr).toLocaleDateString('en-US', options);
+      }
+
+      // Function to render blog cards from Supabase data
+      function renderBlogsFromData(posts) {
+        // Clear existing static cards (except the No Results placeholder if it's there)
+        const staticCards = blogGrid.querySelectorAll('.blog-card');
+        staticCards.forEach(c => c.remove());
+
+        posts.forEach(post => {
+          const article = document.createElement('article');
+          article.className = 'blog-card';
+          article.setAttribute('data-category', post.category);
+          const tags = Array.isArray(post.tags) ? post.tags : (post.tags ? post.tags.split(',') : []);
+          article.setAttribute('data-tags', tags.join(','));
+
+          const tagsHtml = tags.map(tag => `<span class="blog-card-tag">${tag.trim()}</span>`).join('\n');
+
+          article.innerHTML = `
+<div class="blog-image-wrapper">
+<img alt="${post.title}" class="blog-image" src="${post.title_image_url || post.image_url || 'Images/blog_genetic_counselor.png'}" loading="lazy" width="600" height="400"/>
+</div>
+<div class="blog-content">
+<div class="blog-card-meta">
+<span class="blog-category-badge">${post.category}</span>
+<span class="blog-meta-dot"></span>
+<div class="blog-meta-item">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14"><rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
+<span>${formatDate(post.published_date)}</span>
+</div>
+<span class="blog-meta-dot"></span>
+<div class="blog-meta-item">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+<span>${post.read_time || '5 min read'}</span>
+</div>
+</div>
+<h2 class="blog-card-title serif-italic">${post.title}</h2>
+<p class="blog-excerpt">${post.excerpt}</p>
+<div class="blog-card-tags">
+${tagsHtml}
+</div>
+<a class="read-more" href="blog-post.html?slug=${post.slug}">Read Full Post <span>→</span></a>
+</div>
+        `;
+          blogGrid.appendChild(article);
+        });
+      }
+
+      if (isSupabaseConfigured) {
+        try {
+          // Show a loading text or indicator while fetching
+          const loadingEl = document.createElement('div');
+          loadingEl.className = 'blog-loading';
+          loadingEl.style.cssText = 'grid-column: 1/-1; text-align: center; padding: 4rem; font-size: 1.2rem; color: var(--text-secondary);';
+          loadingEl.textContent = 'Loading insights...';
+          blogGrid.appendChild(loadingEl);
+
+          const { data: posts, error } = await supabaseClient
+            .from('blogs')
+            .select('*')
+            .eq('publish_status', 'Published')
+            .eq('visibility', 'Public')
+            .order('published_date', { ascending: false });
+
+          if (error) throw error;
+
+          loadingEl.remove();
+
+          if (posts && posts.length > 0) {
+            renderBlogsFromData(posts);
+          }
+        } catch (err) {
+          const errEl = blogGrid.querySelector('.blog-loading');
+          if (errEl) errEl.textContent = 'Failed to load live posts. Displaying archived articles.';
+          setTimeout(() => { if (errEl) errEl.remove(); }, 3000);
+        }
+      } else {
+        // Using static content
+      }
+
+      // Now get references to all blog cards (either static or dynamically rendered)
+      blogCards = document.querySelectorAll('.blog-card');
+
+      // Create "No Results" element if not present
+      let noResultsEl = document.querySelector('.no-results');
+      if (!noResultsEl) {
+        noResultsEl = document.createElement('div');
+        noResultsEl.className = 'no-results';
+        noResultsEl.style.display = 'none';
+        noResultsEl.innerHTML = `
+      <div class="no-results-title">No Articles Found</div>
+      <div class="no-results-desc">We couldn't find any articles matching your search query or filters. Try adjusting your terms.</div>
+      <button class="reset-btn" id="reset-filters">Reset All Filters</button>
+      `;
+        blogGrid.appendChild(noResultsEl);
+      }
+
+      const resetBtn = document.getElementById('reset-filters');
+
+      let activeCategory = 'all';
+      let activeTag = 'all';
+      let searchQuery = '';
+
+      function filterPosts() {
+        let matchCount = 0;
+
+        blogCards.forEach(card => {
+          const title = card.querySelector('.blog-card-title').textContent.toLowerCase();
+          const excerpt = card.querySelector('.blog-excerpt').textContent.toLowerCase();
+          const category = card.getAttribute('data-category');
+          const tags = card.getAttribute('data-tags') ? card.getAttribute('data-tags').split(',') : [];
+
+          // 1. Check Search Query
+          const matchesSearch = searchQuery === '' ||
+            title.includes(searchQuery) ||
+            excerpt.includes(searchQuery) ||
+            tags.some(tag => tag.toLowerCase().includes(searchQuery));
+
+          // 2. Check Category
+          const matchesCategory = activeCategory === 'all' || category === activeCategory;
+
+          // 3. Check Tag
+          const matchesTag = activeTag === 'all' || tags.includes(activeTag);
+
+          if (matchesSearch && matchesCategory && matchesTag) {
+            card.classList.remove('filtered-out');
+            matchCount++;
+          } else {
+            card.classList.add('filtered-out');
+          }
+        });
+
+        // Show/hide "No Results" message
+        if (matchCount === 0) {
+          noResultsEl.style.display = 'flex';
+        } else {
+          noResultsEl.style.display = 'none';
+        }
+      }
+
+      // Search Input Event
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase().trim();
+
+        // Show/hide clear button
+        if (searchQuery.length > 0) {
+          searchClear.style.display = 'flex';
+        } else {
+          searchClear.style.display = 'none';
+        }
+
+        filterPosts();
+      });
+
+      // Clear Search Event
+      searchClear.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        searchClear.style.display = 'none';
+        searchInput.focus();
+        filterPosts();
+      });
+
+      // Category Buttons Event
+      categoryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          categoryBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeCategory = btn.getAttribute('data-category');
+          filterPosts();
+        });
+      });
+
+      // Tag Pills Event
+      tagPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          tagPills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          activeTag = pill.getAttribute('data-tag');
+          filterPosts();
+        });
+      });
+
+      // Connect tag links in cards to filter directly (using event delegation since dynamic cards are added)
+      blogGrid.addEventListener('click', (e) => {
+        if (e.target.classList.contains('blog-card-tag')) {
+          e.preventDefault();
+          e.stopPropagation();
+          const tagValue = e.target.textContent.trim();
+
+          // Find matching pill in tag cloud
+          const targetPill = Array.from(tagPills).find(p => p.getAttribute('data-tag') === tagValue);
+          if (targetPill) {
+            targetPill.click();
+            document.querySelector('.filter-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+
+      // Reset Button Event
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          searchQuery = '';
+          if (searchClear) searchClear.style.display = 'none';
+
+          categoryBtns.forEach(b => b.classList.remove('active'));
+          document.querySelector('.category-btn[data-category="all"]').classList.add('active');
+          activeCategory = 'all';
+
+          tagPills.forEach(p => p.classList.remove('active'));
+          document.querySelector('.tag-pill[data-tag="all"]').classList.add('active');
+          activeTag = 'all';
+          filterPosts();
+        });
+      }
+    })();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="MIND Services - Microbial Innovation and Discovery | Research &amp; Institutional Partnerships"
+        name="description" />
+    <title>MIND Services - Microbiome Research &amp; Innovation | Progenics Labs</title>
+    <link href="../styles.css" rel="stylesheet" />
+    <style>
+        :root {
+            --primary: #185FA5;
+            --primary-dark: #0C447C;
+            --primary-light: #E8F1F8;
+            --accent: #C9A96E;
+            --accent-light: #F5EFE0;
+            --text-primary: #000000;
+            --text-secondary: #000000;
+            --text-muted: #000000;
+            --bg-primary: #FAFBFC;
+            --bg-secondary: #FFFFFF;
+            --bg-tertiary: #F0F4F8;
+            --border: #E2E8F0;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 20px rgba(24, 95, 165, 0.08);
+            --shadow-lg: 0 20px 60px rgba(24, 95, 165, 0.12);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Background Animation */
+        .bg-animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bg-layer {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+        }
+
+        .layer-1 {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, var(--primary-light), #D6E4F0);
+            top: -10%;
+            right: -10%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .layer-2 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--accent-light), #F0E6D3);
+            bottom: -10%;
+            left: -10%;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 700;
+            line-height: 1.25;
+            color: var(--text-primary);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #211d4f;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            max-width: 640px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1380px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+
+        #header-placeholder {
+            height: 80px;
+        }
+
+        /* Cinematic Banner Header */
+        .cinematic-banner {
+            position: relative;
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+        }
+
+        .cinematic-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('../Images/Microbial Innovation and Discovery %28MIND%29.jpg') !important;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        /* About & Stats Grid */
+        .about-stats-wrapper {
+            max-width: 1380px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text-content {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+        }
+
+        .about-text-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .trust-stats-grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .ts-panel {
+            position: relative;
+            padding: 2.2rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            background: #ffffff;
+            border: 1px solid rgba(24, 95, 165, 0.08);
+        }
+
+        .ts-panel:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .ts-panel-1 {
+            background: linear-gradient(145deg, #0C447C 0%, #062340 100%);
+        }
+
+        .ts-panel-2 {
+            background: linear-gradient(145deg, #185FA5 0%, #0F3D6A 100%);
+        }
+
+        .ts-panel-3 {
+            background: linear-gradient(145deg, #185FA5 0%, #104374 100%);
+        }
+
+        .ts-panel-4 {
+            background: linear-gradient(145deg, #0C447C 0%, #082D52 100%);
+        }
+
+
+        .ts-watermark {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 150px;
+            height: 150px;
+            opacity: 0.08;
+            pointer-events: none;
+            filter: brightness(0) invert(1);
+        }
+
+        .ts-category {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+
+            margin-bottom: 0.5rem;
+        }
+
+        .ts-divider {
+            width: 24px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            margin-bottom: 0.8rem;
+        }
+
+        .ts-number {
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1;
+            margin-bottom: 0.6rem;
+            white-space: nowrap;
+        }
+
+        .ts-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .ts-desc {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.5;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        section:nth-child(even) {
+            background: var(--bg-secondary);
+        }
+
+        /* Five Service Pillars - Horizontal Lane Layout */
+        .gg-features-wrap {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .gg-feature-lane {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(24, 95, 165, 0.08);
+            background: #ffffff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .gg-feature-lane:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(24, 95, 165, 0.15);
+        }
+
+        /* Left Label Panel */
+        .gg-feature-lane-label {
+            color: #ffffff;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gg-feature-lane:nth-child(odd) .gg-feature-lane-label {
+            background: #211d4f;
+        }
+
+        .gg-feature-lane:nth-child(even) .gg-feature-lane-label {
+            background: #185FA5;
+        }
+
+        .gg-feature-lane-num {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+
+            position: absolute;
+            bottom: -0.5rem;
+            right: 1rem;
+            letter-spacing: -4px;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .gg-feature-lane-title {
+            font-size: 1.30rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        /* Right Content Panel */
+        .gg-feature-lane-content {
+            padding: 2rem 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .gg-feature-lane-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .gg-feature-lane-desc {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Capabilities List horizontally formatted */
+        .gg-feature-lane-capabilities {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem 1.5rem;
+            background: var(--primary-light);
+            padding: 1rem;
+            border-radius: 8px;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+        }
+
+        .gg-feature-lane-cap-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .gg-feature-lane-cap-item::before {
+            content: "✓";
+            font-weight: bold;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .gg-feature-lane-aside {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+        }
+
+        .gg-feature-lane-aside .btn {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 12px 24px;
+            font-size: 1.15rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+            text-align: center;
+            width: 100%;
+        }
+
+        .gg-feature-lane-aside .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile overrides for horizontal layout */
+        @media (max-width: 900px) {
+            .gg-feature-lane {
+                grid-template-columns: 1fr;
+            }
+
+            .gg-feature-lane-content {
+                grid-template-columns: 1fr;
+                padding: 1.75rem;
+                gap: 1.5rem;
+            }
+
+            .gg-feature-lane-label {
+                padding: 1.75rem;
+            }
+
+            .gg-feature-lane-aside {
+                justify-content: stretch;
+            }
+
+            .gg-feature-lane-aside .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gg-feature-lane-capabilities {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Applications Bento Grid */
+        .apps-bento {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .app-bento-card {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(24, 95, 165, 0.08);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-bento-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .app-bento-top {
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-bento-card:nth-child(odd) .app-bento-top {
+            background: #211d4f;
+        }
+
+        .app-bento-card:nth-child(even) .app-bento-top {
+            background: #185fa5;
+        }
+
+        .app-bento-top::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 80% 20%, rgba(255, 255, 255, 0.06) 0%, transparent 65%);
+        }
+
+        .app-bento-num {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+
+            margin-bottom: 0.5rem;
+        }
+
+        .app-bento-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        .app-bento-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .app-bento-body p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .app-scenario {
+            background: #E8F5E9;
+            padding: 1rem;
+            border-left: 4px solid #27AE60;
+            font-size: 1.1rem;
+            color: #2E7D32;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .app-outcomes {
+            background: #E3F2FD;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+        }
+
+        .outcome {
+            padding: 3px 0;
+        }
+
+        .outcome::before {
+            content: "→ ";
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .app-bento-body .btn {
+            margin-top: auto;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            width: 100%;
+            padding: 10px 16px;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .app-bento-body .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Comparison Table Styling */
+        .cmp-section {
+            background: var(--bg-tertiary) !important;
+        }
+
+        .cmp-section h2 {
+            color: #211d4f;
+        }
+
+        .cmp-wrap {
+            margin-top: 3rem;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(24, 95, 165, 0.08);
+        }
+
+        .cmp-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: #ffffff;
+        }
+
+        .cmp-table thead tr {
+            background: #211d4f;
+        }
+
+        .cmp-table thead th {
+            background: #211d4f;
+            color: #ffffff;
+            padding: 1.25rem 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-align: left;
+            border: none;
+        }
+
+        .cmp-table thead th:first-child {
+            font-size: 1.0rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+
+        }
+
+        .cmp-table tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+
+        .cmp-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .cmp-table tbody tr:nth-child(even) {
+            background: var(--bg-primary);
+        }
+
+        .cmp-table tbody tr:hover {
+            background: rgba(24, 95, 165, 0.03);
+        }
+
+        .cmp-table td {
+            padding: 1.1rem 1.5rem;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            border: none;
+        }
+
+        .cmp-table td:first-child {
+            font-weight: 700;
+            color: #211d4f;
+            font-size: 1.15rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .why-section h2 {
+            color: #211d4f;
+        }
+
+        /* Why Choose Progenics - Split Layout */
+        .why-split {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-top: 3rem;
+            border: 1px solid rgba(24, 95, 165, 0.08);
+        }
+
+        .why-split-left {
+            background: #211d4f;
+            color: #ffffff;
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-split-left::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 20% 30%, rgba(255, 255, 255, 0.06) 0%, transparent 60%);
+        }
+
+        .why-split-left-tag {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+
+            margin-bottom: 1rem;
+        }
+
+        .why-split-left h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: #ffffff !important;
+            margin-bottom: 1.5rem;
+        }
+
+        .why-split-left p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .why-split-stat {
+            margin-top: auto;
+            padding-top: 2rem;
+        }
+
+        .why-split-stat-num {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1;
+        }
+
+        .why-split-stat-lbl {
+            font-size: 1.0rem;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .why-split-right {
+            background: #ffffff;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+        }
+
+        .why-item {
+            padding: 2.5rem;
+            border-bottom: 1px solid #eef2f7;
+            border-right: 1px solid #eef2f7;
+            transition: background 0.25s;
+        }
+
+        .why-item:nth-child(even) {
+            border-right: none;
+        }
+
+        .why-item:nth-child(n+4) {
+            border-bottom: none;
+        }
+
+        .why-item:hover {
+            background: rgba(24, 95, 165, 0.03);
+        }
+
+        .why-item-check {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .why-item-check svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--primary);
+        }
+
+        .why-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .why-item p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Testimonials Slider Wrapper */
+        .testimonials-slider-wrapper {
+            position: relative;
+            margin-top: 3rem;
+            padding: 0 40px;
+        }
+
+        .testimonials {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 2rem;
+            padding-bottom: 2rem;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .testimonials::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial {
+            flex: 0 0 calc(33.333% - 1.34rem);
+            scroll-snap-align: start;
+            background: #ffffff;
+            border: 1px solid rgba(24, 95, 165, 0.08);
+            border-radius: 20px;
+            padding: 2.2rem;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (max-width: 992px) {
+            .testimonial {
+                flex: 0 0 calc(50% - 1rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .testimonial {
+                flex: 0 0 100%;
+            }
+
+            .testimonials-slider-wrapper {
+                padding: 0 10px;
+            }
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 45%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            background: #ffffff;
+            border: 1px solid rgba(24, 95, 165, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(24, 95, 165, 0.05);
+            z-index: 10;
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .slider-arrow:hover {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .slider-arrow.prev {
+            left: -10px;
+        }
+
+        .slider-arrow.next {
+            right: -10px;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: 0.5rem;
+            right: 1.5rem;
+            font-size: 6rem;
+            color: rgba(24, 95, 165, 0.05);
+            line-height: 1;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(24, 95, 165, 0.15);
+        }
+
+        .testimonial-quote {
+            font-size: 1.25rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+
+        .testimonial-source {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-outcome {
+            background: var(--primary-light);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            border: 1px solid rgba(24, 95, 165, 0.1);
+        }
+
+        /* Partnership Grid */
+        .partnership-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .partnership-option {
+            background: #ffffff;
+            border: 1px solid rgba(24, 95, 165, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .partnership-option:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .partnership-header {
+            padding: 1.25rem 1.5rem;
+            color: #ffffff;
+        }
+
+        .partnership-option:nth-child(odd) .partnership-header {
+            background: #211d4f;
+        }
+
+        .partnership-option:nth-child(even) .partnership-header {
+            background: #185fa5;
+        }
+
+        .partnership-header h4 {
+            color: #ffffff !important;
+            margin-bottom: 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .partnership-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .partnership-body p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .partnership-body p strong {
+            color: var(--primary-dark);
+        }
+
+        /* FAQ Style Block with rotating plus-to-cross icons */
+        .faq-cols {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border: 1px solid rgba(24, 95, 165, 0.08);
+            border-radius: 16px;
+            margin-bottom: 1.25rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: #ffffff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-primary);
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            transition: background 0.25s, color 0.25s;
+        }
+
+        .faq-question:hover {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .faq-icon {
+            position: relative;
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(24, 95, 165, 0.08);
+            color: var(--primary);
+            transition: background 0.25s, transform 0.35s, color 0.25s;
+        }
+
+        /* Pure CSS plus icon (Horizontal line) */
+        .faq-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 12px;
+            height: 2px;
+            background-color: currentColor;
+            transform: translate(-50%, -50%);
+            transition: transform 0.35s;
+        }
+
+        /* Pure CSS plus icon (Vertical line) */
+        .faq-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 12px;
+            background-color: currentColor;
+            transform: translate(-50%, -50%);
+            transition: transform 0.35s;
+        }
+
+        .faq-item.open .faq-icon {
+            background: var(--primary);
+            color: #ffffff;
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 0 1.5rem 1.5rem;
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            border-top: none;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .faq-item.open .faq-question {
+            border-bottom: 1px solid rgba(24, 95, 165, 0.08);
+        }
+
+        /* Standardized CTA Section */
+        .cta-section {
+            background: #211d4f !important;
+            color: #ffffff !important;
+            padding: 6rem 2rem !important;
+            text-align: center !important;
+            position: relative !important;
+            overflow: hidden !important;
+            margin-top: 4rem !important;
+        }
+
+        .cta-section::before {
+            content: '' !important;
+            position: absolute !important;
+            inset: 0 !important;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%) !important;
+            pointer-events: none;
+        }
+
+        .cta-section .container {
+            position: relative !important;
+            z-index: 2 !important;
+        }
+
+        .cta-section h2 {
+            color: #ffffff !important;
+            margin-bottom: 1.25rem !important;
+            font-size: clamp(2rem, 4vw, 2.75rem) !important;
+        }
+
+        .cta-section p {
+            font-size: 1.15rem !important;
+            margin-bottom: 2.5rem !important;
+            max-width: 650px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            opacity: 0.9 !important;
+            line-height: 1.7 !important;
+            color: #ffffff !important;
+        }
+
+        .cta-section .cta-buttons {
+            display: flex !important;
+            gap: 1.25rem !important;
+            justify-content: center !important;
+            flex-wrap: wrap !important;
+        }
+
+        .cta-section .btn {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+            background: #ffffff !important;
+            color: #211d4f !important;
+            padding: 1rem 2.2rem !important;
+            border-radius: 50px !important;
+            text-decoration: none !important;
+            font-weight: 600 !important;
+            font-size: 1.25rem !important;
+            border: 2px solid #ffffff !important;
+            transition: all 0.3s ease !important;
+            display: inline-block !important;
+            margin: 0 !important;
+            cursor: pointer !important;
+        }
+
+        .cta-section .btn:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2) !important;
+            background: transparent !important;
+            color: #ffffff !important;
+            border-color: #ffffff !important;
+        }
+
+        .cta-section .btn-outline {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+            background: transparent !important;
+            color: #ffffff !important;
+            border: 2px solid rgba(255, 255, 255, 0.5) !important;
+            padding: 1rem 2.2rem !important;
+            border-radius: 50px !important;
+            text-decoration: none !important;
+            font-weight: 600 !important;
+            font-size: 1.25rem !important;
+            transition: all 0.3s ease !important;
+            display: inline-block !important;
+            margin: 0 !important;
+            cursor: pointer !important;
+        }
+
+        .cta-section .btn-outline:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2) !important;
+            background: #ffffff !important;
+            color: #211d4f !important;
+            border-color: #ffffff !important;
+        }
+
+        .cta-section .cta-phone-btn:hover {
+            background: #ffffff !important;
+            color: #211d4f !important;
+            border-color: var(--accent) !important;
+        }
+
+        /* Footer placeholder minimum height */
+        #footer-placeholder {
+            min-height: 200px;
+        }
+
+        /* ── CRITICAL MOBILE OVERRIDES (1fr columns enforcement) ── */
+        @media (max-width: 1024px) {
+            .about-stats-wrapper {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .apps-bento {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .partnership-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .faq-cols {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 0;
+            }
+
+            .trust-stats-grid-container {
+                grid-template-columns: 1fr !important;
+            }
+
+            .apps-bento {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+
+            .why-split {
+                grid-template-columns: 1fr !important;
+            }
+
+            .why-split-right {
+                grid-template-columns: 1fr !important;
+            }
+
+            .why-item:nth-child(even) {
+                border-right: 1px solid #eef2f7 !important;
+            }
+
+            .why-item {
+                padding: 1.5rem !important;
+            }
+
+            .faq-cols {
+                grid-template-columns: 1fr !important;
+                gap: 1.25rem !important;
+            }
+
+            .partnership-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+
+            .cmp-wrap {
+                margin: 0 -1rem;
+                padding: 0 1rem;
+                overflow-x: auto;
+            }
+
+            .cmp-table {
+                min-width: 600px;
+            }
+
+            .cta-section .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .cta-section .btn,
+            .cta-section .btn-outline {
+                width: 100%;
+            }
+
+            .hero-btn-primary,
+            .hero-btn-outline {
+                width: 100%;
+            }
+        }
+
+        /* Hero Section Capsule Buttons */
+        .hero-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 36px !important;
+            background: #ffffff !important;
+            color: #185FA5 !important;
+            border-radius: 50px !important;
+            text-decoration: none !important;
+            font-weight: 700 !important;
+            font-size: 15px !important;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.15) !important;
+            border: none !important;
+            cursor: pointer;
+        }
+
+        .hero-btn-primary:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 16px 48px rgba(255, 255, 255, 0.3) !important;
+            background: #f0f4f8 !important;
+        }
+
+        .hero-btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 36px !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+            backdrop-filter: blur(8px) !important;
+            -webkit-backdrop-filter: blur(8px) !important;
+            color: #ffffff !important;
+            border-radius: 50px !important;
+            text-decoration: none !important;
+            font-weight: 600 !important;
+            font-size: 15px !important;
+            border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+            transition: all 0.3s ease !important;
+            cursor: pointer;
+        }
+
+        .hero-btn-outline:hover {
+            background: rgba(255, 255, 255, 0.15) !important;
+            border-color: rgba(255, 255, 255, 0.5) !important;
+            transform: translateY(-2px) !important;
+        }
+    </style>
+
+    <meta name="description"
+        content="Learn more about MIND Services - Microbiome Research &amp; Innovation | Progenics Labs at Progenics — India's leading precision genomics lab offering advanced genetic testing and personalized healthcare." />
+    <!-- SEO & Social Meta Tags -->
+    <link rel="canonical" href="https://progenicslabs.com/discovery/Microbial Innovation and Discovery.html" />
+    <meta property="og:title" content="MIND Services - Microbiome Research &amp; Innovation | Progenics Labs" />
+    <meta property="og:description"
+        content="Learn more about MIND Services - Microbiome Research &amp; Innovation | Progenics Labs at Progenics — India's leading precision genomics lab offering advanced genetic testing and personalized healthcare." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://progenicslabs.com/discovery/Microbial Innovation and Discovery.html" />
+    <meta property="og:image" content="https://progenicslabs.com/Images/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="shortcut icon" href="../favicon.ico?v=2" type="image/x-icon" />
+    <link rel="icon" href="../favicon.png?v=2" type="image/png" />
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" data-cursor-dot=""></div>
+    <div class="cursor-outline" data-cursor-outline=""></div>
+    <!-- Background Animation Container -->
+    <div class="bg-animation-container">
+        <div class="bg-layer layer-1"></div>
+        <div class="bg-layer layer-2"></div>
+    </div>
+    <!-- Navigation -->
+    <div id="header-placeholder"></div>
+    <!-- Page Header / Hero -->
+    <header class="page-header cinematic-banner">
+        <div class="banner-content" style="text-align: center; max-width: 1000px; padding: 2rem 1.5rem;">
+            <h1
+                style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size: clamp(2.5rem, 5vw, 4.2rem); font-weight: 700; color: #ffffff; margin-bottom: 20px; text-shadow: none; line-height: 1.15; letter-spacing: -0.02em;">
+                MIND: Microbial Innovation and Discovery
+            </h1>
+            <p
+                style="font-size: clamp(1.1rem, 2.5vw, 1.4rem);  margin-bottom: 25px; font-weight: 500; letter-spacing: 1px;">
+                Research-Grade Microbiome Solutions for Healthcare Innovation
+            </p>
+            <p
+                style="font-size: clamp(0.95rem, 2vw, 1.15rem); max-width: 850px; margin: 0 auto 35px; line-height: 1.65;  font-weight: 400;">
+                Advanced microbiome research, diagnostics, and therapeutic development. From gut health optimization to
+                epidemic response, MIND tackles microbial science at scale.
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                <a class="hero-btn-primary" href="#partner">Partner with MIND for Research</a>
+                <a class="hero-btn-outline" href="#pillars">Integrate Diagnostics into Practice</a>
+                <a class="hero-btn-outline" href="#pillars">Explore FMT & Therapeutics</a>
+            </div>
+        </div>
+        <div class="banner-bottom-curve"
+            style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50px; background: var(--bg-primary); clip-path: polygon(0 100%, 100% 100%, 100% 0);">
+        </div>
+    </header>
+    <!-- MISSION & TRUST STATS SECTION -->
+    <section style="background: #f9f9f9; padding: 6rem 0;">
+        <div class="container">
+            <div class="about-stats-wrapper">
+                <!-- Left Side: Mission Content -->
+                <div class="about-text-content">
+                    <h2 style="text-align: left; margin-bottom: 1.5rem;">MIND's Mission: Advancing Microbiome Science
+                        for Healthcare</h2>
+                    <p>
+                        The human microbiome is one of medicine's final frontiers. Trillions of microorganisms influence
+                        immunity, metabolism, mental health, disease susceptibility, and treatment response.
+                        Understanding microbiome composition and function is transforming how we diagnose and treat
+                        disease.
+                    </p>
+                    <p>
+                        MIND exists to accelerate microbiome science from laboratory discovery to clinical reality. We
+                        conduct research, develop diagnostics, advance therapeutics, and partner with institutions
+                        worldwide to unlock the microbiome's potential.
+                    </p>
+                    <p>
+                        Whether you're an academic researcher, healthcare institution, pharmaceutical company, or public
+                        health agency, MIND provides research-grade capabilities addressing your microbiome challenges.
+                    </p>
+                </div>
+                <!-- Right Side: Trust Stats Grid -->
+                <div class="trust-stats-grid-container">
+                    <!-- Stat 1: Speed -->
+                    <div class="ts-panel ts-panel-1">
+                        <img alt="Progenics Labs watermark logo" class="ts-watermark"
+                            src="../Images/Progenics%20I%20logo.png" />
+                        <div class="ts-category">Turnaround</div>
+                        <div class="ts-divider"></div>
+                        <div class="ts-number"><span class="counter" data-target="5">0</span>-<span class="counter"
+                                data-target="10">0</span> Days</div>
+                        <div class="ts-title">Rapid Microbiome Analysis</div>
+                        <p class="ts-desc">Fast-track sequencing, bioinformatics profiling, and clinical translation for
+                            research samples.</p>
+                    </div>
+                    <!-- Stat 2: AMR Profiling -->
+                    <div class="ts-panel ts-panel-2">
+                        <img alt="Progenics Labs watermark logo" class="ts-watermark"
+                            src="../Images/Progenics%20I%20logo.png" />
+                        <div class="ts-category">Stewardship</div>
+                        <div class="ts-divider"></div>
+                        <div class="ts-number"><span class="counter" data-target="24">0</span>-<span class="counter"
+                                data-target="48">0</span> Hrs</div>
+                        <div class="ts-title">Rapid AMR Profiling</div>
+                        <p class="ts-desc">Swift antimicrobial resistance detection enabling rapid antibiotic
+                            optimization and stewardship support.</p>
+                    </div>
+                    <!-- Stat 3: Elite Standard -->
+                    <div class="ts-panel ts-panel-3">
+                        <img alt="Progenics Labs watermark logo" class="ts-watermark"
+                            src="../Images/Progenics%20I%20logo.png" />
+                        <div class="ts-category">Lab Standard</div>
+                        <div class="ts-divider"></div>
+                        <div class="ts-number">ISO &amp; GLP</div>
+                        <div class="ts-title">Quality &amp; Precision</div>
+                        <p class="ts-desc">Backed by PCPNDT compliance, ISO certification, and Good Laboratory Practice
+                            (GLP), our laboratory maintains high standards of quality and precision in delivering
+                            reliable genetic testing services.</p>
+                    </div>
+                    <!-- Stat 4: Experience -->
+                    <div class="ts-panel ts-panel-4">
+                        <img alt="Progenics Labs watermark logo" class="ts-watermark"
+                            src="../Images/Progenics%20I%20logo.png" />
+                        <div class="ts-category">Led By</div>
+                        <div class="ts-divider"></div>
+                        <div class="ts-number"><span class="counter" data-target="12">0</span>+ Years</div>
+                        <div class="ts-title">Experienced Scientists</div>
+                        <p class="ts-desc">Led by Dr. Swapnil and nutiritional counselors offering complete
+                            academic interpretation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FIVE SERVICE PILLARS SECTION -->
+    <section id="pillars">
+        <div class="container">
+            <h2>Five MIND Service Pillars</h2>
+            <p class="section-subtitle">Comprehensive microbiome solutions from research to therapeutics</p>
+            <div class="gg-features-wrap">
+                <!-- Pillar 1 -->
+                <div class="gg-feature-lane">
+                    <div class="gg-feature-lane-label">
+                        <div class="gg-feature-lane-title">Gut Genomics</div>
+                        <div class="gg-feature-lane-num">01</div>
+                    </div>
+                    <div class="gg-feature-lane-content">
+                        <div class="gg-feature-lane-info">
+                            <p class="gg-feature-lane-desc">Comprehensive metagenomic analysis revealing microbiota
+                                composition, diversity, pathogenic organisms, and functional capacity.</p>
+                            <div class="gg-feature-lane-capabilities">
+                                <div class="gg-feature-lane-cap-item">Whole-genome metagenomic sequencing</div>
+                                <div class="gg-feature-lane-cap-item">Species-level classification</div>
+                                <div class="gg-feature-lane-cap-item">Functional pathway analysis</div>
+                                <div class="gg-feature-lane-cap-item">Dysbiosis detection</div>
+                            </div>
+                        </div>
+                        <div class="gg-feature-lane-aside">
+                            <a class="btn" href="#">Learn More About Gut Genomics</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pillar 2 -->
+                <div class="gg-feature-lane">
+                    <div class="gg-feature-lane-label">
+                        <div class="gg-feature-lane-title">Population Interventions</div>
+                        <div class="gg-feature-lane-num">02</div>
+                    </div>
+                    <div class="gg-feature-lane-content">
+                        <div class="gg-feature-lane-info">
+                            <p class="gg-feature-lane-desc">Assess microbiome impact within communities and develop
+                                population-tailored microbiome health strategies.</p>
+                            <div class="gg-feature-lane-capabilities">
+                                <div class="gg-feature-lane-cap-item">Population microbiota profiling</div>
+                                <div class="gg-feature-lane-cap-item">Intervention impact assessment</div>
+                                <div class="gg-feature-lane-cap-item">Community-specific signatures</div>
+                                <div class="gg-feature-lane-cap-item">Public health applications</div>
+                            </div>
+                        </div>
+                        <div class="gg-feature-lane-aside">
+                            <a class="btn" href="#">Discuss PAMI for Your Institution</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pillar 3 -->
+                <div class="gg-feature-lane">
+                    <div class="gg-feature-lane-label">
+                        <div class="gg-feature-lane-title">FMT Services</div>
+                        <div class="gg-feature-lane-num">03</div>
+                    </div>
+                    <div class="gg-feature-lane-content">
+                        <div class="gg-feature-lane-info">
+                            <p class="gg-feature-lane-desc">Fecal Microbiota Transplantation services including donor
+                                screening, quality control, and clinical protocols.</p>
+                            <div class="gg-feature-lane-capabilities">
+                                <div class="gg-feature-lane-cap-item">Donor screening &amp; selection</div>
+                                <div class="gg-feature-lane-cap-item">Microbiota analysis</div>
+                                <div class="gg-feature-lane-cap-item">FMT protocol development</div>
+                                <div class="gg-feature-lane-cap-item">Outcomes monitoring</div>
+                            </div>
+                        </div>
+                        <div class="gg-feature-lane-aside">
+                            <a class="btn" href="#">Explore FMT Capabilities</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pillar 4 -->
+                <div class="gg-feature-lane">
+                    <div class="gg-feature-lane-label">
+                        <div class="gg-feature-lane-title">Rapid AMR Profiling</div>
+                        <div class="gg-feature-lane-num">04</div>
+                    </div>
+                    <div class="gg-feature-lane-content">
+                        <div class="gg-feature-lane-info">
+                            <p class="gg-feature-lane-desc">Swift antimicrobial resistance detection enabling rapid
+                                antibiotic optimization and stewardship support.</p>
+                            <div class="gg-feature-lane-capabilities">
+                                <div class="gg-feature-lane-cap-item">Rapid resistance gene detection</div>
+                                <div class="gg-feature-lane-cap-item">Antibiotic susceptibility profiling</div>
+                                <div class="gg-feature-lane-cap-item">24-48 hour reporting</div>
+                                <div class="gg-feature-lane-cap-item">Stewardship support</div>
+                            </div>
+                        </div>
+                        <div class="gg-feature-lane-aside">
+                            <a class="btn" href="#">Integrate Rapid AMR Profiling</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pillar 5 -->
+                <div class="gg-feature-lane">
+                    <div class="gg-feature-lane-label">
+                        <div class="gg-feature-lane-title">Epidemic Response</div>
+                        <div class="gg-feature-lane-num">05</div>
+                    </div>
+                    <div class="gg-feature-lane-content">
+                        <div class="gg-feature-lane-info">
+                            <p class="gg-feature-lane-desc">Rapid diagnostic tools for emerging infectious threats
+                                supporting swift public health response.</p>
+                            <div class="gg-feature-lane-capabilities">
+                                <div class="gg-feature-lane-cap-item">Rapid pathogen identification</div>
+                                <div class="gg-feature-lane-cap-item">Strain characterization</div>
+                                <div class="gg-feature-lane-cap-item">Transmission analysis</div>
+                                <div class="gg-feature-lane-cap-item">Public health integration</div>
+                            </div>
+                        </div>
+                        <div class="gg-feature-lane-aside">
+                            <a class="btn" href="#">Partner on Epidemic Response</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- HEALTHCARE APPLICATIONS SECTION -->
+    <section style="background: #f9f9f9;">
+        <div class="container">
+            <h2>MIND Applications Across Healthcare</h2>
+            <p class="section-subtitle">Real-world partnership examples showing MIND's clinical and research impact</p>
+            <div class="apps-bento">
+                <!-- App 1 -->
+                <div class="app-bento-card">
+                    <div class="app-bento-top">
+                        <div class="app-bento-num">01</div>
+                        <div class="app-bento-title">Hospital Surgical Outcomes</div>
+                    </div>
+                    <div class="app-bento-body">
+                        <p>Optimize surgical outcomes through preoperative microbiome assessment and management.</p>
+                        <div class="app-scenario">"Hospital implements gut genomics in pre-surgical risk assessment.
+                            Dysbiotic patients receive microbiome optimization. Post-op infection rates decreased 22%."
+                        </div>
+                        <div class="app-outcomes">
+                            <div class="outcome">Improved surgical outcomes</div>
+                            <div class="outcome">Reduced complications</div>
+                            <div class="outcome">Competitive differentiation</div>
+                        </div>
+                        <a class="btn" href="#">Implement Hospital Program</a>
+                    </div>
+                </div>
+                <!-- App 2 -->
+                <div class="app-bento-card">
+                    <div class="app-bento-top">
+                        <div class="app-bento-num">02</div>
+                        <div class="app-bento-title">Pharma Therapeutics</div>
+                    </div>
+                    <div class="app-bento-body">
+                        <p>Accelerate microbiota-modifying drug development through comprehensive microbiota analysis.
+                        </p>
+                        <div class="app-scenario">"Biotech company partners with MIND for Phase 2b microbiota analysis.
+                            Robust biomarkers enable efficient Phase 3. FDA approval accelerated."</div>
+                        <div class="app-outcomes">
+                            <div class="outcome">Accelerated development</div>
+                            <div class="outcome">Regulatory pathways enabled</div>
+                            <div class="outcome">Market differentiation</div>
+                        </div>
+                        <a class="btn" href="#">Partner on Therapeutics</a>
+                    </div>
+                </div>
+                <!-- App 3 -->
+                <div class="app-bento-card">
+                    <div class="app-bento-top">
+                        <div class="app-bento-num">03</div>
+                        <div class="app-bento-title">Public Health Response</div>
+                    </div>
+                    <div class="app-bento-body">
+                        <p>Rapid epidemic response through advanced microbiome diagnostics and surveillance.</p>
+                        <div class="app-scenario">"Health authority faces unusual outbreak. MIND provides rapid pathogen
+                            identification in 48 hours. Public health intervention swift and effective."</div>
+                        <div class="app-outcomes">
+                            <div class="outcome">Rapid threat identification</div>
+                            <div class="outcome">Effective outbreak control</div>
+                            <div class="outcome">Population protection</div>
+                        </div>
+                        <a class="btn" href="#">Establish Public Health Partnership</a>
+                    </div>
+                </div>
+                <!-- App 4 -->
+                <div class="app-bento-card">
+                    <div class="app-bento-top">
+                        <div class="app-bento-num">04</div>
+                        <div class="app-bento-title">IBD Research</div>
+                    </div>
+                    <div class="app-bento-body">
+                        <p>Personalized microbiome management for IBD patients through continuous monitoring.</p>
+                        <div class="app-scenario">"GI practice uses gut genomics to monitor IBD microbiome during
+                            treatment. Enables optimization of both medical therapy and microbiome interventions."</div>
+                        <div class="app-outcomes">
+                            <div class="outcome">Better IBD outcomes</div>
+                            <div class="outcome">Personalized approaches</div>
+                            <div class="outcome">Research opportunities</div>
+                        </div>
+                        <a class="btn" href="#">Integrate into GI Practice</a>
+                    </div>
+                </div>
+                <!-- App 5 -->
+                <div class="app-bento-card">
+                    <div class="app-bento-top">
+                        <div class="app-bento-num">05</div>
+                        <div class="app-bento-title">Academic Research</div>
+                    </div>
+                    <div class="app-bento-body">
+                        <p>Scale microbiome research through comprehensive analytical services and partnership.</p>
+                        <div class="app-scenario">"Researcher partners with MIND for 1,000+ sample analysis. Novel
+                            sepsis biomarkers discovered. Publication-quality data delivered."</div>
+                        <div class="app-outcomes">
+                            <div class="outcome">Large-scale research enabled</div>
+                            <div class="outcome">Novel discoveries</div>
+                            <div class="outcome">Career advancement</div>
+                        </div>
+                        <a class="btn" href="#">Collaborate on Research</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- COMPARISON TABLE SECTION -->
+    <section class="cmp-section">
+        <div class="container">
+            <h2>MIND vs. Traditional Approaches</h2>
+            <p class="section-subtitle">Side-by-side comparison illustrating MIND's research-grade capabilities</p>
+            <div class="cmp-wrap">
+                <table class="cmp-table">
+                    <thead>
+                        <tr>
+                            <th>Capability</th>
+                            <th>MIND Research-Grade</th>
+                            <th>Traditional Microbiology</th>
+                            <th>Standard Testing</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Comprehensive Analysis</td>
+                            <td>Complete metagenomics</td>
+                            <td>Culture-dependent (partial)</td>
+                            <td>Limited</td>
+                        </tr>
+                        <tr>
+                            <td>Speed</td>
+                            <td>5-10 days</td>
+                            <td>2-4 weeks</td>
+                            <td>Variable</td>
+                        </tr>
+                        <tr>
+                            <td>Pathogen Detection</td>
+                            <td>All organisms</td>
+                            <td>Culturable only</td>
+                            <td>Limited scope</td>
+                        </tr>
+                        <tr>
+                            <td>Antibiotic Resistance</td>
+                            <td>Genotype-based</td>
+                            <td>Phenotype-based</td>
+                            <td>Limited</td>
+                        </tr>
+                        <tr>
+                            <td>Functional Analysis</td>
+                            <td>Yes, pathways</td>
+                            <td>Limited</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>Research Grade</td>
+                            <td>Publication-quality</td>
+                            <td>Clinical only</td>
+                            <td>Limited data</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <!-- WHY PARTNER (ADVANTAGES) SECTION -->
+    <section class="why-section">
+        <div class="container">
+            <h2>Why Institutions Partner with MIND</h2>
+            <p class="section-subtitle">Delivering precision, scalability, and scientific innovation</p>
+            <div class="why-split">
+                <!-- Left panel -->
+                <div class="why-split-left">
+                    <div>
+                        <div class="why-split-left-tag">Competitive Edge</div>
+                        <h3>Leading the Frontier of Microbiome Medicine</h3>
+                        <p>We combine advanced metagenomic assays, automated bioinformatic workflows, and clinical
+                            translation tools to provide elite-grade research capabilities.</p>
+                    </div>
+                    <div class="why-split-stat">
+                        <div class="why-split-stat-num">100%</div>
+                        <div class="why-split-stat-lbl">Research-Grade Precision</div>
+                    </div>
+                </div>
+                <!-- Right benefits grid -->
+                <div class="why-split-right">
+                    <!-- Advantage 1 -->
+                    <div class="why-item">
+                        <div class="why-item-check">✓</div>
+                        <h4>Research Excellence</h4>
+                        <p>Built on peer-reviewed methodologies, ISO-certified processes, and publication-quality data
+                            to support high-impact research.</p>
+                    </div>
+                    <!-- Advantage 2 -->
+                    <div class="why-item">
+                        <div class="why-item-check">✓</div>
+                        <h4>Clinical Impact</h4>
+                        <p>Proven applications in clinical settings. Enhanced patient outcomes. Measurable improvements
+                            supported by evidence.</p>
+                    </div>
+                    <!-- Advantage 3 -->
+                    <div class="why-item">
+                        <div class="why-item-check">✓</div>
+                        <h4>Innovation Leadership</h4>
+                        <p>Cutting-edge methodologies. Patented innovations in microbiome science. Industry-leading
+                            technical expertise.
+                        </p>
+                    </div>
+                    <!-- Advantage 4 -->
+                    <div class="why-item">
+                        <div class="why-item-check">✓</div>
+                        <h4>Global Reach</h4>
+                        <p>International partnerships. Global collaborations. Public health expertise. A trusted
+                            reputation in microbiome science.
+                        </p>
+                    </div>
+                    <!-- Advantage 5 -->
+                    <div class="why-item">
+                        <div class="why-item-check">✓</div>
+                        <h4>Strategic Partnership</h4>
+                        <p>Customized solutions designed to support long-term collaboration, shared success, and
+                            alignment with your institution's objectives.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- TESTIMONIALS SECTION -->
+    <section style="background: #f9f9f9;">
+        <div class="container">
+            <h2>Partnership Success Stories</h2>
+            <p class="section-subtitle">Real-world results delivered to leading health networks and developers</p>
+            <div class="testimonials-slider-wrapper">
+                <button class="slider-arrow prev"
+                    onclick="this.nextElementSibling.scrollBy({left: -350, behavior: 'smooth'})">&lt;</button>
+                <div class="testimonials">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial">
+                        <div class="testimonial-quote">"MIND's microbiota analysis transformed our surgical program.
+                            Preoperative microbiome assessment identified high-risk patients, enabling targeted
+                            optimization. Post-op complications decreased 22%."</div>
+                        <div class="testimonial-source">Hospital Surgery Director</div>
+                        <div class="testimonial-outcome">22% reduction in surgical complications + Hospital competitive
+                            advantage</div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial">
+                        <div class="testimonial-quote">"MIND's biomarkers enabled FDA approval of our
+                            microbiota-modifying therapeutic. Their comprehensive analysis in clinical trials
+                            accelerated our regulatory pathway significantly."</div>
+                        <div class="testimonial-source">Biotech VP Research</div>
+                        <div class="testimonial-outcome">Drug approved with MIND biomarkers + Market advantage</div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial">
+                        <div class="testimonial-quote">"When we faced an unusual outbreak, MIND provided pathogen
+                            identification in 48 hours. Their rapid response enabled swift public health intervention
+                            protecting our population."</div>
+                        <div class="testimonial-source">Health Authority Director</div>
+                        <div class="testimonial-outcome">Rapid outbreak control + Population health protected</div>
+                    </div>
+                </div>
+                <button class="slider-arrow next"
+                    onclick="this.previousElementSibling.scrollBy({left: 350, behavior: 'smooth'})">&gt;</button>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ SECTION -->
+    <section>
+        <div class="container">
+            <h2>Frequently Asked Questions About MIND</h2>
+            <p class="section-subtitle">Answers to common questions about research collaboration, turnarounds, and
+                diagnostics</p>
+            <div class="faq-cols">
+                <!-- FAQ 1 -->
+                <div class="faq-item open">
+                    <button class="faq-question">
+                        <span>How is MIND different from clinical microbiology?</span>
+                        <div class="faq-icon"></div>
+                    </button>
+                    <div class="faq-answer">
+                        MIND provides comprehensive genomic analysis for research rigor. We analyze complete microbiota
+                        composition, functional capacity, and resistance patterns. Clinical labs provide limited
+                        pathogen identification. MIND is ideal for research, advanced diagnostics, and therapeutic
+                        development.
+                    </div>
+                </div>
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can MIND results integrate into our EHR system?</span>
+                        <div class="faq-icon"></div>
+                    </button>
+                    <div class="faq-answer">
+                        Yes. MIND provides clinical-grade reports in standard formats compatible with most EHR systems.
+                        We work with your IT team for seamless integration of microbiota data into patient records.
+                    </div>
+                </div>
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What is MIND's typical turnaround time?</span>
+                        <div class="faq-icon"></div>
+                    </button>
+                    <div class="faq-answer">
+                        5-10 days for comprehensive microbiota analysis. Rapid AMR profiling: 24-48 hours. Epidemic
+                        response: expedited timelines. Standard includes metagenomics sequencing, bioinformatic
+                        analysis, and expert interpretation.
+                    </div>
+                </div>
+                <!-- FAQ 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How does MIND ensure data security and confidentiality?</span>
+                        <div class="faq-icon"></div>
+                    </button>
+                    <div class="faq-answer">
+                        HIPAA-compliant data management. Encrypted transport and storage. Access controls and audit
+                        trails. Samples de-identified when appropriate. Full compliance with all regulatory
+                        requirements.
+                    </div>
+                </div>
+                <!-- FAQ 5 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Does MIND support academic research collaborations?</span>
+                        <div class="faq-icon"></div>
+                    </button>
+                    <div class="faq-answer">
+                        Absolutely. We frequently partner with academic institutions on microbiome research. We provide
+                        sample analysis, biostatistical support, and consultation. Many partnerships result in
+                        co-authored publications.
+                    </div>
+                </div>
+                <!-- FAQ 6 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What are MIND's pricing models for institutional partnerships?</span>
+                        <div class="faq-icon"></div>
+                    </button>
+                    <div class="faq-answer">
+                        Pricing depends on scope and volume. Comprehensive analysis: Rs 25-35K per sample. Volume
+                        discounts available. FMT services: Rs 35-50K. Custom pricing for large partnerships. Contact our
+                        partnership team for quotes.
+                    </div>
+                </div>
+                <!-- FAQ 7 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Does MIND offer training for healthcare providers?</span>
+                        <div class="faq-icon"></div>
+                    </button>
+                    <div class="faq-answer">
+                        Yes. We provide customized training on microbiome science, result interpretation, and clinical
+                        applications. Training is tailored to your institution's needs. Ongoing educational support
+                        available for partnerships.
+                    </div>
+                </div>
+                <!-- FAQ 8 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can MIND support our antibiotic stewardship program?</span>
+                        <div class="faq-icon"></div>
+                    </button>
+                    <div class="faq-answer">
+                        Directly. Our Rapid AMR Profiling enables swift identification of antimicrobial resistance.
+                        Reports optimized for stewardship decision-making. We integrate with your stewardship algorithms
+                        and support program objectives.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- WAYS TO PARTNER SECTION -->
+    <section id="partner" style="background: #f9f9f9;">
+        <div class="container">
+            <h2>Ways to Partner with MIND</h2>
+            <p class="section-subtitle">Tailored solutions for academic researchers, hospitals, pharmaceutical
+                companies, and public health agencies.
+            </p>
+            <div class="partnership-grid">
+                <!-- Option 1 -->
+                <div class="partnership-option">
+                    <div class="partnership-header">
+                        <h4>Research Partnership</h4>
+                    </div>
+                    <div class="partnership-body">
+                        <p><strong>For:</strong> Academic institutions, researchers</p>
+                        <p><strong>Includes:</strong> Sample analysis, data analysis,expert consultation</p>
+                        <p><strong>Outcome:</strong> Publications, search discoveries, career advancement</p>
+                    </div>
+                </div>
+                <!-- Option 2 -->
+                <div class="partnership-option">
+                    <div class="partnership-header">
+                        <h4>Clinical Integration</h4>
+                    </div>
+                    <div class="partnership-body">
+                        <p><strong>For:</strong> Hospitals, specialty practices</p>
+                        <p><strong>Includes:</strong> Diagnostic services, protocol development, training</p>
+                        <p><strong>Outcome:</strong> Improved patient outcomes, competitive advantage</p>
+                    </div>
+                </div>
+                <!-- Option 3 -->
+                <div class="partnership-option">
+                    <div class="partnership-header">
+                        <h4>Therapeutic Development</h4>
+                    </div>
+                    <div class="partnership-body">
+                        <p><strong>For:</strong> Pharma, biotech companies</p>
+                        <p><strong>Includes:</strong> Preclinical studies, clinical trials, biomarkers</p>
+                        <p><strong>Outcome:</strong> Accelerated development, regulatory approval</p>
+                    </div>
+                </div>
+                <!-- Option 4 -->
+                <div class="partnership-option">
+                    <div class="partnership-header">
+                        <h4>Public Health Partnership</h4>
+                    </div>
+                    <div class="partnership-body">
+                        <p><strong>For:</strong> Health agencies, governments</p>
+                        <p><strong>Includes:</strong> Surveillance, outbreak response, capacity</p>
+                        <p><strong>Outcome:</strong> Population protection, epidemic control</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- STANDARDIZED CTA SECTION -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <h2>Ready to Partner with MIND?</h2>
+            <p>Whether you're an academic researcher, healthcare institution, pharmaceutical company, or public health
+                agency, MIND offers tailored solutions to address your microbiome research and clinical challenges.</p>
+            <div class="cta-buttons">
+                <a class="btn" href="#">Start Research Collaboration</a>
+                <a class="btn btn-outline" href="#">Integrate Diagnostics</a>
+                <a class="btn btn-outline" href="#">Explore Therapeutics</a>
+                <a class="btn btn-outline" href="#">Establish Public Health Partnership</a>
+            </div>
+            <div style="margin-top: 2.5rem;">
+                <a class="btn btn-outline cta-phone-btn" href="tel:+918977751239"
+                    style="border-color: var(--accent); color: var(--accent); background: transparent;" title="Call Progenics Labs">Call MIND
+                    Director: +91-8977751239 / +91-8977507781</a>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    <!-- Smooth Scroll & Scripts -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="../script.js"></script>
+    <script>
+        // Counter Animation Logic
+        const counters = document.querySelectorAll('.counter');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = +entry.target.getAttribute('data-target');
+                    let count = 0;
+                    const updateCount = () => {
+                        const inc = target / 40;
+                        if (count < target) {
+                            count += inc;
+                            entry.target.innerText = Math.ceil(count);
+                            setTimeout(updateCount, 40);
+                        } else {
+                            entry.target.innerText = target;
+                        }
+                    };
+                    updateCount();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(counter => observer.observe(counter));
+
+
+    </script>
+</body>
+
+</html>

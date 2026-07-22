@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Gallery & Media | Progenics Labs Hyderabad</title>
+  <meta name="description" content="Explore Progenics Labs research publications, scientific events, and news coverage in preventive genomics, reproductive health, and oncology." />
+  <link href="styles.css" rel="stylesheet"/>
+  <style>
+    .gallery-header {
+      padding: 6rem 5vw 3rem;
+      text-align: center;
+      background: linear-gradient(to bottom, var(--bg-tertiary), var(--bg-primary));
+    }
+
+    .gallery-title {
+      font-size: 3.5rem;
+      color: #211d5f;
+      margin-bottom: 1rem;
+    }
+
+    .gallery-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Tabs Styling */
+    .gallery-tabs-section {
+      padding: 2rem 5vw 1rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .tabs-container {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .gallery-tab-btn {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      color: var(--text-secondary);
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    }
+
+    [data-theme="dark"] .gallery-tab-btn {
+      background: rgba(18, 20, 24, 0.6);
+    }
+
+    .gallery-tab-btn:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      transform: translateY(-2px);
+    }
+
+    .gallery-tab-btn.active {
+      background: var(--accent-blue);
+      color: white;
+      border-color: var(--accent-blue);
+      box-shadow: 0 10px 20px rgba(0, 110, 184, 0.15);
+    }
+
+    /* Grid Layout */
+    .gallery-grid {
+      padding: 0 5vw 6rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 2.5rem;
+      min-height: 300px;
+    }
+
+    /* Card Designs */
+    .gallery-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06);
+      border-color: rgba(0, 110, 184, 0.15);
+    }
+
+    .card-body {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .card-category-tag {
+      background: rgba(0, 110, 184, 0.08);
+      color: var(--accent-blue);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      color: #211d5f;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+      font-weight: 600;
+    }
+
+    [data-theme="dark"] .card-title {
+      color: var(--text-primary);
+    }
+
+    .card-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .card-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: color 0.3s, transform 0.2s;
+      margin-top: auto;
+      width: fit-content;
+    }
+
+    .card-action-btn:hover {
+      color: var(--accent-blue-deep);
+      transform: translateX(4px);
+    }
+
+    /* Sub-type styles */
+    /* 1. Publications Card */
+    .publication-icon-wrapper {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: rgba(0, 110, 184, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-blue);
+      margin-bottom: 1.5rem;
+    }
+
+    /* 2. Events/News Cards */
+    .card-image-wrapper {
+      position: relative;
+      height: 220px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-card:hover .card-image {
+      transform: scale(1.05);
+    }
+
+    .no-items-state {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 6rem 2rem;
+      background: var(--bg-secondary);
+      border: 1.5px dashed var(--card-border);
+      border-radius: 24px;
+      color: var(--text-secondary);
+    }
+
+    .no-items-title {
+      font-size: 1.5rem;
+      color: #211d5f;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    [data-theme="dark"] .no-items-title {
+      color: var(--text-primary);
+    }
+
+    .gallery-loading-spinner {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 4rem;
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .gallery-title {
+        font-size: 2.5rem;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    /* Gallery Details Modal Styles */
+    .gallery-details-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .gallery-details-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .gallery-details-modal-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 3rem;
+      max-width: 1100px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+      position: relative;
+      transform: translateY(20px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .gallery-details-overlay.active .gallery-details-modal-card {
+      transform: translateY(0);
+    }
+
+    @media (min-width: 768px) {
+      .gallery-details-content-wrapper {
+        flex-direction: row !important;
+        align-items: flex-start !important;
+      }
+      #details-image-container {
+        width: 48% !important;
+        height: 420px !important;
+        max-height: 480px;
+        flex-shrink: 0;
+        margin-bottom: 0 !important;
+      }
+      #slides-wrapper {
+        height: 100% !important;
+      }
+      #slides-wrapper div {
+        height: 100% !important;
+      }
+    }
+
+    #details-image-container {
+      position: relative;
+    }
+    .slide-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      color: white;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .slide-arrow:hover {
+      background: rgba(0,0,0,0.7);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .slide-arrow-prev {
+      left: 12px;
+    }
+    .slide-arrow-next {
+      right: 12px;
+    }
+    .slide-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .slide-dot.active {
+      background: white;
+      transform: scale(1.25);
+    }
+
+    .gallery-details-close {
+      position: absolute;
+      right: 24px;
+      top: 24px;
+      background: rgba(0,0,0,0.03);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .gallery-details-close:hover {
+      background: rgba(0,0,0,0.08);
+      color: var(--text-primary);
+      transform: rotate(90deg);
+    }
+
+    [data-theme="dark"] .gallery-details-close {
+      background: rgba(255,255,255,0.05);
+    }
+
+    [data-theme="dark"] .gallery-details-close:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    [data-theme="dark"] #details-title {
+      color: var(--text-primary) !important;
+    }
+  </style>
+  <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
+  <link rel="icon" href="favicon.png?v=2" type="image/png" />
+</head>
+<body>
+
+  <!-- Navigation Placeholder -->
+  <div id="header-placeholder"></div>
+
+  <!-- Header Banner -->
+  <header class="gallery-header">
+    <h1 class="gallery-title serif-italic">Gallery & Media</h1>
+    <p class="gallery-subtitle">Discover our research publications, hosted scientific events, and recent news coverage in genetics and healthcare.</p>
+  </header>
+
+  <!-- Filter Tabs -->
+  <section class="gallery-tabs-section">
+    <div class="tabs-container">
+      <button class="gallery-tab-btn active" data-category="Publications">Publications</button>
+      <button class="gallery-tab-btn" data-category="Events">Events</button>
+      <button class="gallery-tab-btn" data-category="News">News</button>
+    </div>
+  </section>
+
+  <!-- Main Content Grid -->
+  <main class="gallery-grid" id="gallery-grid-container">
+    <div class="gallery-loading-spinner">Loading gallery...</div>
+  </main>
+
+  <!-- Gallery Item Details Modal -->
+  <div class="gallery-details-overlay" id="gallery-details-overlay">
+    <div class="gallery-details-modal-card" data-lenis-prevent>
+      <button class="gallery-details-close" id="close-gallery-details">&times;</button>
+      <div class="gallery-details-content-wrapper" style="display: flex; flex-direction: column; gap: 2.5rem; align-items: flex-start;">
+        <!-- Left Column: Slider Container -->
+        <div id="details-image-container" style="width: 100%; height: 350px; overflow: hidden; border-radius: 18px; display: none; position: relative;">
+          <!-- Slides Wrapper -->
+          <div id="slides-wrapper" style="display: flex; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); width: 100%; height: 100%;">
+          </div>
+          <!-- Navigation Arrows -->
+          <button id="slide-prev" class="slide-arrow slide-arrow-prev" style="display: none;">&#10094;</button>
+          <button id="slide-next" class="slide-arrow slide-arrow-next" style="display: none;">&#10095;</button>
+          <!-- Indicators / Dots -->
+          <div id="slide-dots" style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10;">
+          </div>
+        </div>
+        <!-- Right Column: Info -->
+        <div style="flex: 1; width: 100%;">
+          <div class="card-meta" style="margin-bottom: 1.5rem; display: flex; justify-content: flex-start; align-items: center;">
+            <span class="card-category-tag" id="details-tag">Category</span>
+            <span id="details-date" style="color: var(--text-secondary); font-size: 0.9rem; margin-left: 1rem;">Date</span>
+          </div>
+          <h2 class="serif-italic" id="details-title" style="font-size: 2.2rem; color: #211d5f; margin-bottom: 1.5rem; line-height: 1.3; font-weight: 600;">Event Title</h2>
+          <div id="details-description" style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; white-space: pre-line;">
+            Event Description...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Core Scripts -->
+  <script src="assets/portal-sdk.min.js"></script>
+  <script src="assets/portal-core.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="script.js?v=2"></script>
+
+  <script>
+    (async function() {
+      const gridContainer = document.getElementById('gallery-grid-container');
+      const tabBtns = document.querySelectorAll('.gallery-tab-btn');
+
+      // Check if Supabase is configured
+      const isSupabaseConfigured = typeof SUPABASE_URL !== 'undefined' && 
+                                   SUPABASE_URL && 
+                                   !SUPABASE_URL.includes('YOUR_PROJECT_ID') &&
+                                   supabaseClient;
+
+      let activeCategory = 'Publications';
+      let galleryItems = []; // Caches loaded items for modal detail lookup
+
+      // Parse URL tab parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const tabParam = urlParams.get('tab');
+      if (tabParam) {
+        const matchingCategory = Array.from(tabBtns).find(btn => 
+          btn.getAttribute('data-category').toLowerCase() === tabParam.toLowerCase()
+        );
+        if (matchingCategory) {
+          tabBtns.forEach(btn => btn.classList.remove('active'));
+          matchingCategory.classList.add('active');
+          activeCategory = matchingCategory.getAttribute('data-category');
+        }
+      }
+
+      // Render cards function
+      function renderGallery(items) {
+        gridContainer.innerHTML = '';
+        galleryItems = items || [];
+
+        if (!items || items.length === 0) {
+          gridContainer.innerHTML = `
+            <div class="no-items-state">
+              <div class="no-items-title">No Items Found</div>
+              <p>There are currently no items under the ${activeCategory} category.</p>
+            </div>
+          `;
+          return;
+        }
+
+        items.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'gallery-card';
+
+          if (activeCategory === 'Publications') {
+            // Academic Paper Layout
+            card.innerHTML = `
+              <div class="card-body">
+                <div class="publication-icon-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                </div>
+                <div class="card-meta">
+                  <span class="card-category-tag">Scientific Paper</span>
+                  <span>${item.date}</span>
+                </div>
+                <h3 class="card-title">${item.title}</h3>
+                <p class="card-desc">${item.description || 'No description provided.'}</p>
+                <div class="card-actions-wrapper" style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 15px;">
+                  ${(() => {
+                    if (!item.external_link || item.external_link === '#') {
+                      return `<a href="#" class="card-action-btn" style="margin-top: 0;">Read Publication <span>&rarr;</span></a>`;
+                    }
+                    return item.external_link.split('|').map(lnk => {
+                      const cleanLnk = lnk.trim();
+                      if (!cleanLnk) return '';
+                      let label = 'Read Publication';
+                      let icon = '&rarr;';
+                      if (cleanLnk.toLowerCase().includes('ncbi.nlm.nih.gov') || cleanLnk.toLowerCase().includes('pubmed')) {
+                        label = 'Read on NCBI';
+                        icon = '↗';
+                      } else if (cleanLnk.toLowerCase().endsWith('.pdf') || cleanLnk.toLowerCase().includes('/publications/') || cleanLnk.toLowerCase().includes('/assets/')) {
+                        label = 'View PDF';
+                        icon = '⤓';
+                      } else {
+                        label = 'Open in Website';
+                        icon = '↗';
+                      }
+                      return `<a href="${cleanLnk}" class="card-action-btn" target="${cleanLnk.startsWith('http') ? '_blank' : '_self'}" style="margin-top: 0;">${label} <span>${icon}</span></a>`;
+                    }).join('');
+                  })()}
+                </div>
+              </div>
+            `;
+          } else if (activeCategory === 'Events') {
+            // Event Media Layout (Opens modal in website)
+            const firstImage = item.image_url ? item.image_url.split('|')[0].trim() : '';
+            card.innerHTML = `
+              ${firstImage ? `
+                <div class="card-image-wrapper">
+                  <img src="${firstImage}" class="card-image" alt="${item.title}" loading="lazy"/>
+                </div>
+              ` : ''}
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="card-category-tag" style="background: rgba(16, 185, 129, 0.08); color: #10b981;">Hosted Event</span>
+                  <span>${item.date}</span>
+                </div>
+                <h3 class="card-title">${item.title}</h3>
+                <p class="card-desc">${item.description || 'No details provided.'}</p>
+                <button class="card-action-btn view-details-btn" data-id="${item.id}" style="background: none; border: none; cursor: pointer; padding: 0; font-family: inherit; font-size: inherit; margin-top: auto;">
+                  Event Details <span>&rarr;</span>
+                </button>
+              </div>
+            `;
+          } else if (activeCategory === 'News') {
+            // News Layout (Opens modal in website)
+            const firstImage = item.image_url ? item.image_url.split('|')[0].trim() : '';
+            card.innerHTML = `
+              ${firstImage ? `
+                <div class="card-image-wrapper">
+                  <img src="${firstImage}" class="card-image" alt="${item.title}" loading="lazy"/>
+                </div>
+              ` : ''}
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="card-category-tag" style="background: rgba(245, 158, 11, 0.08); color: #f59e0b;">Media Coverage</span>
+                  <span>${item.date}</span>
+                </div>
+                <h3 class="card-title">${item.title}</h3>
+                <p class="card-desc">${item.description || 'No summary provided.'}</p>
+                <button class="card-action-btn view-details-btn" data-id="${item.id}" style="background: none; border: none; cursor: pointer; padding: 0; font-family: inherit; font-size: inherit; margin-top: auto;">
+                  Read Details <span>&rarr;</span>
+                </button>
+              </div>
+            `;
+          }
+
+          gridContainer.appendChild(card);
+        });
+      }
+
+      // Fetch function
+      async function loadGalleryItems() {
+        gridContainer.innerHTML = '<div class="gallery-loading-spinner">Loading gallery...</div>';
+
+        if (isSupabaseConfigured) {
+          try {
+            const { data, error } = await supabaseClient
+              .from('gallery')
+              .select('*')
+              .eq('category', activeCategory)
+              .eq('publish_status', 'Published')
+              .eq('visibility', 'Public')
+              .order('id', { ascending: false }); // Show newest first
+
+            if (error) throw error;
+            if (data && data.length > 0) {
+              renderGallery(data);
+            } else {
+              renderGallery(getDemoItems(activeCategory));
+            }
+          } catch(err) {
+            console.error('Error loading gallery from database, falling back to demo items:', err);
+            renderGallery(getDemoItems(activeCategory));
+          }
+        } else {
+          renderGallery(getDemoItems(activeCategory));
+        }
+      }
+
+      // Rich local fallback data for Events and News
+      function getDemoItems(category) {
+        if (category === 'Publications') {
+          return [
+            {
+              id: -1,
+              category: 'Publications',
+              title: 'Clinical Utility of Chromosomal Microarray in Prenatal Diagnosis',
+              date: '2026',
+              description: 'A comprehensive study evaluating the clinical diagnostic yield of chromosomal microarray analysis (CMA) compared to conventional karyotyping in high-risk prenatal cases. The study demonstrates the superior resolution of CMA in identifying microdeletions and microduplications.',
+              external_link: 'https://pubmed.ncbi.nlm.nih.gov/ | genetic-testing-pregnancy.html'
+            },
+            {
+              id: -2,
+              category: 'Publications',
+              title: 'Next-Generation Sequencing Panels for Hereditary Cancer Syndromes',
+              date: '2025',
+              description: 'Investigation of multigene NGS testing in individuals with a family history of breast, ovarian, and colorectal cancers. Highlights the detection rates of pathogenic variants and variant of uncertain significance (VUS) rate optimization.',
+              external_link: 'https://pubmed.ncbi.nlm.nih.gov/'
+            }
+          ];
+        } else if (category === 'Events') {
+          return [
+            {
+              id: -3,
+              category: 'Events',
+              title: 'International Symposium on Clinical Genomics & Diagnostics',
+              date: 'October 12, 2026',
+              description: 'Progenics Labs Hyderabad is proud to host the International Symposium on Clinical Genomics & Diagnostics. This prestigious event serves as a premier global platform, bringing together leading clinical geneticists, molecular pathologists, bioinformatics specialists, and healthcare administrators.\n\nThroughout this three-day symposium, attendees will explore critical breakthroughs in next-generation sequencing (NGS), target identification, molecular counseling, and advanced carrier screenings.\n\nKey Highlights of the Event:\n• Keynote Panel: "Integrating AI and Machine Learning into NGS Variant Interpretation" featuring international industry pioneers.\n• Hands-on Workshops: Interactive sessions on Chromosomal Microarray (CMA) interpretation and Sanger sequencing troubleshooting.\n• Roundtable Discussions: Addressing the ethical considerations and clinical guidelines of prenatal screening in South Asia.\n• Networking Gala: Connect with peers, research leads, and industry exhibitors to explore collaborative research opportunities.\n\nWho Should Attend?\nClinical geneticists, diagnostics professionals, bioinformatics engineers, genetic counselors, oncology specialists, and postgraduate students in life sciences.',
+              image_url: 'Images/discovery_new_bg_lab_1773638137390.png',
+              external_link: '#'
+            },
+            {
+              id: -4,
+              category: 'Events',
+              title: 'Community Awareness Seminar: Genetics & Family Health',
+              date: 'August 24, 2026',
+              description: 'Progenics Labs is organizing a free, interactive public seminar dedicated to empowering families with knowledge about genetics and hereditary health conditions.\n\nUnderstanding your DNA is the first step toward proactive health management. In this community-focused session, our panel of certified genetic counselors will explain genomics in simple, everyday language.\n\nWhat We Will Cover:\n• Hereditary Cancer Risks: Recognizing red flags in family history and when to consider genetic testing.\n• Prenatal & Preconception Screenings: Understanding genetic tests available during pregnancy for a healthy child.\n• Understanding DNA Reports: Demystifying genetic jargon and what positive, negative, or VUS results mean.\n• Interactive Q&A Session: An open forum where you can ask our counseling experts anything about genetic testing, privacy, and clinical diagnostics.\n\nRegistration:\nThis seminar is free and open to the general public. Registration is required to secure a seat and receive the seminar workbook kit.',
+              image_url: 'Images/counseling_bg_new_1773638078558.png',
+              external_link: '#'
+            }
+          ];
+        } else if (category === 'News') {
+          return [
+            {
+              id: -5,
+              category: 'News',
+              title: 'Progenics Labs Expands Testing Portfolio with Advanced Oncology Panels',
+              date: 'July 10, 2026',
+              description: 'Progenics Labs has announced the launch of its new comprehensive oncology panels designed for early detection and targeted therapy matching. Using high-throughput sequencing technology, these panels analyze somatic mutations in cancer-related genes, helping clinicians design personalized treatment strategies.\n\nThis expansion reinforces our commitment to providing cutting-edge molecular diagnostics in India and significantly improving early cancer detection yields.',
+              image_url: 'Images/about_scientist_data.png',
+              external_link: '#'
+            },
+            {
+              id: -6,
+              category: 'News',
+              title: 'Featured Interview: The Future of Personalized Medicine in India',
+              date: 'June 2, 2026',
+              description: 'Our Chief Scientific Officer was featured in Healthcare India Magazine, discussing the growth and future of genomic testing.\n\nThe interview highlights the clinical utility of prenatal screening, the decreasing cost of genetic sequencing, and how personalized medicine is improving patient outcomes in complex diseases across the region.',
+              image_url: 'Images/about_hero_lab.png',
+              external_link: '#'
+            }
+          ];
+        }
+        return [];
+      }
+
+      // Tab click events
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeCategory = btn.getAttribute('data-category');
+          
+          // Update URL query state silently so refreshes keep the tab
+          const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?tab=${activeCategory.toLowerCase()}`;
+          window.history.pushState({ path: newUrl }, '', newUrl);
+
+          loadGalleryItems();
+        });
+      });
+
+      // Modal Controls
+      const detailsOverlay = document.getElementById('gallery-details-overlay');
+      const detailsCloseBtn = document.getElementById('close-gallery-details');
+      const detailsTag = document.getElementById('details-tag');
+      const detailsDate = document.getElementById('details-date');
+      const detailsTitle = document.getElementById('details-title');
+      const detailsImgContainer = document.getElementById('details-image-container');
+      const slidesWrapper = document.getElementById('slides-wrapper');
+      const slidePrevBtn = document.getElementById('slide-prev');
+      const slideNextBtn = document.getElementById('slide-next');
+      const slideDots = document.getElementById('slide-dots');
+      const detailsDesc = document.getElementById('details-description');
+
+      function openDetailsModal(item) {
+        if (item.category === 'Events') {
+          detailsTag.textContent = 'Hosted Event';
+          detailsTag.style.cssText = 'background: rgba(16, 185, 129, 0.08); color: #10b981;';
+        } else if (item.category === 'News') {
+          detailsTag.textContent = 'Media Coverage';
+          detailsTag.style.cssText = 'background: rgba(245, 158, 11, 0.08); color: #f59e0b;';
+        } else {
+          detailsTag.textContent = 'Scientific Paper';
+          detailsTag.style.cssText = 'background: rgba(0, 110, 184, 0.08); color: var(--accent-blue);';
+        }
+
+        detailsDate.textContent = item.date;
+        detailsTitle.textContent = item.title;
+
+        // Reset and build image slider
+        slidesWrapper.innerHTML = '';
+        slideDots.innerHTML = '';
+        slidesWrapper.style.transform = 'translateX(0)';
+
+        if (item.image_url) {
+          const images = item.image_url.split('|').map(s => s.trim()).filter(Boolean);
+          if (images.length > 0) {
+            detailsImgContainer.style.display = 'block';
+
+            images.forEach((imgUrl, index) => {
+              const slide = document.createElement('div');
+              slide.style.cssText = 'min-width: 100%; width: 100%; height: 100%; overflow: hidden;';
+              slide.innerHTML = `<img src="${imgUrl}" style="width: 100%; height: 100%; object-fit: cover;" alt="Slide ${index + 1}">`;
+              slidesWrapper.appendChild(slide);
+
+              if (images.length > 1) {
+                const dot = document.createElement('span');
+                dot.className = 'slide-dot' + (index === 0 ? ' active' : '');
+                dot.addEventListener('click', () => goToSlide(index));
+                slideDots.appendChild(dot);
+              }
+            });
+
+            if (images.length > 1) {
+              slidePrevBtn.style.display = 'flex';
+              slideNextBtn.style.display = 'flex';
+
+              let currentSlide = 0;
+              function goToSlide(index) {
+                currentSlide = index;
+                slidesWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+                const dots = slideDots.querySelectorAll('span');
+                dots.forEach((dot, dIdx) => {
+                  if (dIdx === currentSlide) {
+                    dot.classList.add('active');
+                  } else {
+                    dot.classList.remove('active');
+                  }
+                });
+              }
+
+              slidePrevBtn.onclick = () => {
+                let prevIdx = currentSlide - 1;
+                if (prevIdx < 0) prevIdx = images.length - 1;
+                goToSlide(prevIdx);
+              };
+
+              slideNextBtn.onclick = () => {
+                let nextIdx = currentSlide + 1;
+                if (nextIdx >= images.length) nextIdx = 0;
+                goToSlide(nextIdx);
+              };
+            } else {
+              slidePrevBtn.style.display = 'none';
+              slideNextBtn.style.display = 'none';
+            }
+          } else {
+            detailsImgContainer.style.display = 'none';
+          }
+        } else {
+          detailsImgContainer.style.display = 'none';
+        }
+
+        let descHtml = item.description || '';
+        if (item.category !== 'Events' && item.external_link && item.external_link !== '#') {
+          descHtml += `
+            <div style="margin-top: 2rem; border-top: 1px solid var(--card-border); padding-top: 1.5rem;">
+              <a href="${item.external_link}" class="card-action-btn" target="_blank" style="margin-top: 0; display: inline-flex; align-items: center; gap: 8px; color: var(--accent-blue); text-decoration: none; font-weight: 700;" rel="noopener noreferrer">
+                Visit External Source <span>↗</span>
+              </a>
+            </div>
+          `;
+        }
+        detailsDesc.innerHTML = descHtml;
+
+        detailsOverlay.classList.add('active');
+        if (window.lenis) window.lenis.stop();
+      }
+
+      function closeDetailsModal() {
+        detailsOverlay.classList.remove('active');
+        if (window.lenis) window.lenis.start();
+      }
+
+      // Delegate click to capture view details actions
+      gridContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('.view-details-btn');
+        if (btn) {
+          const itemId = parseInt(btn.getAttribute('data-id'));
+          const item = galleryItems.find(x => x.id === itemId);
+          if (item) {
+            openDetailsModal(item);
+          }
+        }
+      });
+
+      detailsCloseBtn.addEventListener('click', closeDetailsModal);
+      detailsOverlay.addEventListener('click', (e) => {
+        if (e.target === detailsOverlay) {
+          closeDetailsModal();
+        }
+      });
+
+      // Initial Load
+      await loadGalleryItems();
+    })();
+  </script>
+</body>
+</html>

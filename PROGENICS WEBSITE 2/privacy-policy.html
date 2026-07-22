@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Privacy Policy | Progenics</title>
+<link href="styles.css" rel="stylesheet"/>
+<style>
+ .bg-animation-container {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ z-index: -1;
+ overflow: hidden;
+ background-color: var(--bg-primary);
+ }
+
+ .bg-layer {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-size: cover;
+ background-position: center;
+ opacity: 0;
+ }
+
+ .layer-1 {
+ background-image: url('Images/dna_helix_bg.png');
+ animation: layerFadeRotate 45s infinite alternate;
+ opacity: 0.2;
+ filter: blur(1.5px);
+ }
+
+ .layer-2 {
+ background-image: url('Images/genomics-bg.png');
+ animation: layerZoom 65s infinite alternate;
+ opacity: 0.14;
+ }
+
+ @keyframes layerFadeRotate {
+ 0% { transform: scale(1) rotate(0deg); opacity: 0.1; }
+ 100% { transform: scale(1.1) rotate(1deg); opacity: 0.25; }
+ }
+
+ @keyframes layerZoom {
+ 0% { transform: scale(1.2); opacity: 0.1; }
+ 100% { transform: scale(1); opacity: 0.2; }
+ }
+
+ .ambient-glow {
+ position: absolute;
+ width: 65vw;
+ height: 65vw;
+ background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%);
+ opacity: 0.2;
+ filter: blur(130px);
+ border-radius: 50%;
+ pointer-events: none;
+ z-index: 0;
+ }
+
+ .glow-1 { top: -15%; left: -10%; animation: glowMove1 35s infinite alternate; }
+ .glow-2 { bottom: -15%; right: -10%; animation: glowMove2 40s infinite alternate; background: radial-gradient(circle, #aed5ae 0%, transparent 70%); }
+
+ @keyframes glowMove1 {
+ 0% { transform: translate(0, 0) scale(1); }
+ 100% { transform: translate(25%, 25%) scale(1.15); }
+ }
+
+ @keyframes glowMove2 {
+ 0% { transform: translate(0, 0) scale(1.1); }
+ 100% { transform: translate(-25%, -25%) scale(1.3); }
+ }
+
+ .bg-overlay {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: linear-gradient(to bottom, var(--bg-primary) 0%, rgba(250, 249, 246, 0.5) 20%, rgba(250, 249, 246, 0.5) 80%, var(--bg-primary) 100%);
+ z-index: 1;
+ }
+
+ [data-theme="dark"] .bg-overlay {
+ background: linear-gradient(to bottom, var(--bg-primary) 0%, rgba(10, 11, 13, 0.7) 20%, rgba(10, 11, 13, 0.7) 80%, var(--bg-primary) 100%);
+ }
+
+ .data-point {
+ position: absolute;
+ width: 3.5px;
+ height: 3.5px;
+ background: var(--accent-blue);
+ border-radius: 50%;
+ opacity: 0.35;
+ pointer-events: none;
+ z-index: 2;
+ }
+
+ /* Sidebar Layout Styles */
+ .split-layout {
+ display: grid;
+ grid-template-columns: 300px 1fr;
+ gap: 4rem;
+ max-width: 1400px;
+ margin: -50px auto 100px;
+ padding: 0 5vw;
+ position: relative;
+ z-index: 10;
+ }
+
+ .policy-sidebar {
+ position: sticky;
+ top: 120px;
+ height: fit-content;
+ }
+
+ .sidebar-nav {
+ background: var(--card-bg);
+ backdrop-filter: blur(12px);
+ border: 1px solid var(--card-border);
+ border-radius: 24px;
+ padding: 2rem;
+ }
+
+ .sidebar-link {
+ display: block;
+ padding: 1rem;
+ color: var(--text-secondary);
+ text-decoration: none;
+ font-weight: 500;
+ border-radius: 12px;
+ transition: all 0.3s ease;
+ margin-bottom: 0.5rem;
+ }
+
+ .sidebar-link:hover, .sidebar-link.active {
+ background: rgba(0, 110, 184, 0.1);
+ color: var(--accent-blue);
+ transform: translateX(5px);
+ }
+
+ .policy-main {
+ background: var(--card-bg);
+ backdrop-filter: blur(12px);
+ border: 1px solid var(--card-border);
+ padding: 4rem;
+ border-radius: 40px;
+ box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+ }
+
+ .policy-content section {
+ margin-bottom: 4rem;
+ scroll-margin-top: 150px;
+ }
+
+ .policy-content h2 {
+ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif ;
+ font-style: italic;
+ font-size: 2.2rem;
+ color: var(--text-primary);
+ margin-bottom: 1.5rem;
+ display: flex;
+ align-items: center;
+ gap: 15px;
+ }
+
+ .policy-content h2::before {
+ content: "";
+ width: 30px;
+ height: 2px;
+ background: var(--accent-blue);
+ }
+
+ .policy-content p {
+ line-height: 1.8;
+ color: var(--text-secondary);
+ margin-bottom: 1.5rem;
+ font-size: 1.1rem;
+ }
+
+ @media (max-width: 1000px) {
+ .split-layout {
+ grid-template-columns: 1fr;
+ margin-top: 0;
+ }
+ .policy-sidebar {
+ display: none;
+ }
+ .policy-main {
+ padding: 2rem 1.5rem;
+ border-radius: 24px;
+ }
+ .policy-content h2 {
+ font-size: 1.6rem;
+ gap: 10px;
+ }
+ .policy-content h2::before {
+ width: 20px;
+ }
+ }
+ </style>
+
+ <meta name="description" content="Learn more about Privacy Policy | Progenics at Progenics — India's leading precision genomics lab offering advanced genetic testing and personalized healthcare." />
+ <!-- SEO & Social Meta Tags -->
+ <link rel="canonical" href="https://progenicslabs.com/privacy-policy.html" />
+ <meta property="og:title" content="Privacy Policy | Progenics" />
+ <meta property="og:description" content="Learn more about Privacy Policy | Progenics at Progenics — India's leading precision genomics lab offering advanced genetic testing and personalized healthcare." />
+ <meta property="og:type" content="website" />
+ <meta property="og:url" content="https://progenicslabs.com/privacy-policy.html" />
+ <meta property="og:image" content="https://progenicslabs.com/Images/og-image.png" />
+ <meta name="twitter:card" content="summary_large_image" />
+    <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
+    <link rel="icon" href="favicon.png?v=2" type="image/png" />
+</head>
+<body>
+<!-- Custom Cursor -->
+<div class="cursor-dot" data-cursor-dot=""></div>
+<div class="cursor-outline" data-cursor-outline=""></div>
+<!-- Background Animation Container -->
+<div class="bg-animation-container">
+<div class="bg-layer layer-1"></div>
+<div class="bg-layer layer-2"></div>
+<div class="ambient-glow glow-1"></div>
+<div class="ambient-glow glow-2"></div>
+<div class="bg-overlay"></div>
+</div>
+<!-- Navigation -->
+<div id="header-placeholder"></div>
+<header class="page-header cinematic-banner" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&amp;w=2000&amp;auto=format&amp;fit=crop');">
+<div class="banner-content">
+<h1 class="serif-italic" style="color: #fff; text-shadow: 0 10px 30px rgba(0,0,0,0.3);">Privacy Policy</h1>
+<p class="sans-caps" style="color: rgba(255,255,255,0.8); letter-spacing: 5px;">Your Trust, Our Priority</p>
+</div>
+</header>
+<main class="split-layout">
+<aside class="policy-sidebar hidden-reveal transform-left">
+<nav class="sidebar-nav">
+<a class="sidebar-link active" href="#introduction">Introduction</a>
+<a class="sidebar-link" href="#collection">Data Collection</a>
+<a class="sidebar-link" href="#cookies">Cookies Policy</a>
+<a class="sidebar-link" href="#genetic">Genetic Info</a>
+<a class="sidebar-link" href="#security">Security</a>
+<a class="sidebar-link" href="#contact">Contact</a>
+</nav>
+</aside>
+<div class="policy-main hidden-reveal transform-right">
+<div class="policy-content">
+<section id="introduction">
+<h2 class="serif-italic">Introduction</h2>
+<p>Respecting your privacy is important to Progenics Laboratories Private Limited. The purpose of this statement is to inform you of the kinds of information that we may gather when you use our website, how we may use the information, and how we may disclose it to other parties.</p>
+<p>By using our products and services, you agree that this Privacy Statement is acceptable to you and that Progenics Laboratories is permitted to use your personal information as stated below.</p>
+</section>
+<section id="collection">
+<h2 class="serif-italic">Information We Collect</h2>
+<p>Visitors to our website do not provide any personal information. However, our server might automatically collect some data such as your IP address, browser type, and duration of your visit.</p>
+<p>If you choose to contact us or subscribe to our newsletter, you may provide your name, email address, and other contact information.</p>
+<p>Customers who purchase genetic tests provide their health history through a questionnaire. This information is stored in our secure Laboratory Information Management System.</p>
+</section>
+<section id="cookies">
+<h2 class="serif-italic">How We Use Cookies</h2>
+<p>A cookie is a small piece of data that is sent to your browser from a web server and stored on your computer’s hard drive. Progenics Laboratories uses cookies to collect information on how you use our website, such as which pages you visit and for how long.</p>
+<p>Most web browsers are set to accept cookies by default. You can choose to set your browser to remove or reject cookies. Please note that if you choose to remove or reject cookies, this could affect the availability and functionality of our Services.</p>
+</section>
+<section id="genetic">
+<h2 class="serif-italic">Health &amp; Genetic Information</h2>
+<p>The health history and genetic data that we collect from our customers is used solely for the purpose of providing the requested genetic tests or counseling services.</p>
+<p>This information is stored in our secure system and is only accessible by authorized personnel. We do not share this information with third parties without your explicit consent, except as required by law.</p>
+</section>
+<section id="security">
+<h2 class="serif-italic">Security</h2>
+<p>We take the security of your personal information seriously and have implemented measures to protect it from unauthorized access, use, or disclosure. We use secure servers and encryption to protect your data.</p>
+</section>
+<section id="contact">
+<h2 class="serif-italic">Contact Us</h2>
+<p>If you have any questions about this Privacy Statement, please contact us at <a href="mailto:connect@progenicslabs.com" style="color: var(--accent-blue); text-decoration: none; font-weight: 600;" title="Email Progenics Labs">connect@progenicslabs.com</a>.</p>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer Section -->
+<div id="footer-placeholder"></div>
+<!-- Scripts -->
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="script.js?v=2"></script>
+<script>
+ document.addEventListener('DOMContentLoaded', () => {
+ // Background particles
+ const container = document.querySelector('.bg-animation-container');
+ const particleCount = 20;
+
+ for (let i = 0; i < particleCount; i++) {
+ const particle = document.createElement('div');
+ particle.className = 'data-point';
+ const x = Math.random() * 100;
+ const y = Math.random() * 100;
+ const size = 1.2 + Math.random() * 3;
+ particle.style.width = `${size}px`;
+ particle.style.height = `${size}px`;
+ const duration = 25 + Math.random() * 35;
+ const delay = Math.random() * -35;
+ particle.style.left = `${x}%`;
+ particle.style.top = `${y}%`;
+ const animName = `floatParticle_privacy_${i}`;
+ const style = document.createElement('style');
+ const tx = (Math.random() - 0.5) * 200;
+ const ty = (Math.random() - 0.5) * 200;
+ style.innerHTML = `@keyframes ${animName} { 0% { transform: translate(0, 0); opacity: 0; } 20% { opacity: 0.4; } 80% { opacity: 0.4; } 100% { transform: translate(${tx}px, ${ty}px); opacity: 0; } }`;
+ document.head.appendChild(style);
+ particle.style.animation = `${animName} ${duration}s infinite linear`;
+ particle.style.animationDelay = `${delay}s`;
+ container.appendChild(particle);
+ }
+
+ // Scroll highlighting for sidebar
+ const sections = document.querySelectorAll('section');
+ const navLinks = document.querySelectorAll('.sidebar-link');
+
+ window.addEventListener('scroll', () => {
+ let current = '';
+ sections.forEach(section => {
+ const sectionTop = section.offsetTop;
+ const sectionHeight = section.clientHeight;
+ if (pageYOffset >= sectionTop - 200) {
+ current = section.getAttribute('id');
+ }
+ });
+
+ navLinks.forEach(link => {
+ link.classList.remove('active');
+ if (link.getAttribute('href').includes(current)) {
+ link.classList.add('active');
+ }
+ });
+ });
+ });
+ </script>
+</body>
+</html>

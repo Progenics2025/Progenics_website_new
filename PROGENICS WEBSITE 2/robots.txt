@@ -1,0 +1,11 @@
+User-agent: *
+# Block admin panel from being indexed
+Disallow: /admin.html
+# Block all internal JS assets from being indexed by search engines
+Disallow: /supabase-config.js
+Disallow: /assets/portal-core.js
+Disallow: /assets/portal-sdk.min.js
+# Allow everything else
+Allow: /
+
+Sitemap: https://progenicslabs.com/sitemap.xml

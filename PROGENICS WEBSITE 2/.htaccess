@@ -1,0 +1,52 @@
+# --- PROGENICS LABS - SERVER SECURITY RULES -------------------
+# Block direct browser access to internal JS config and SDK files.
+# These files are only served as <script src> from the HTML pages.
+
+<FilesMatch "^(supabase-config\.js)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+<Files "assets/portal-core.js">
+  # Allow loading via Referer from our own pages only
+  SetEnvIfNoCase Referer "progenicslabs\.com" LOCAL_REFERER
+  Order Deny,Allow
+  Deny from all
+  Allow from env=LOCAL_REFERER
+</Files>
+
+# Prevent directory listing for security
+Options -Indexes
+
+# Block access to hidden files (like .htaccess itself from browsers)
+<FilesMatch "^\.">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# --- SEO FRIENDLY BLOG URL REWRITING --------------------------
+RewriteEngine On
+
+# Rewrite assets requested from within /blog/ folder to the root folders
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^blog/((assets|Images|components)/.*)$ $1 [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^blog/([^/]+\.(css|js|ico|png|gif|jpg|jpeg|svg|webp))$ $1 [L]
+
+# Rewrite /blog/static-slug (with or without .html) to the static HTML file if it exists in root
+RewriteCond %{DOCUMENT_ROOT}/PROGENICS\ WEBSITE\ 2/$1.html -f [OR]
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^blog/([^/.]+)$ $1.html [L]
+
+RewriteCond %{DOCUMENT_ROOT}/PROGENICS\ WEBSITE\ 2/$1.html -f [OR]
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^blog/([^/]+)\.html$ $1.html [L]
+
+# Otherwise rewrite /blog/slug (with or without .html) to blog-post.html?slug=slug
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^blog/([^/.]+)$ blog-post.html?slug=$1 [QSA,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^blog/([^/]+)\.html$ blog-post.html?slug=$1 [QSA,L]

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Careers at Progenics Labs | Join Our Genetic Testing Team</title>
+<link href="styles.css" rel="stylesheet"/>
+<style>
+ .careers-hero {
+ padding: var(--section-padding);
+ text-align: center;
+ background: linear-gradient(135deg, var(--accent-blue-deep), #003a61);
+ color: white;
+ }
+
+ .careers-title {
+ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif ;
+ font-size: 4rem;
+ margin-bottom: 1.5rem;
+ }
+
+ .careers-subtitle {
+ font-size: 1.25rem;
+ max-width: 800px;
+ margin: 0 auto;
+ opacity: 0.9;
+ line-height: 1.6;
+ }
+
+ .openings-section {
+ padding: 5rem 5vw;
+ max-width: 1200px;
+ margin: 0 auto;
+ }
+
+ .section-header {
+ margin-bottom: 3rem;
+ text-align: left;
+ }
+
+ .section-header h2 {
+ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif ;
+ font-size: 2.5rem;
+ color: var(--accent-blue-deep);
+ margin-bottom: 0.5rem;
+ }
+
+ .job-card {
+ background: var(--card-bg);
+ border-radius: 20px;
+ padding: 2.5rem;
+ border: 1px solid var(--card-border);
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 2rem;
+ transition: all 0.3s ease;
+ box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+ }
+
+ .job-card:hover {
+ transform: translateX(10px);
+ border-color: var(--accent-blue);
+ box-shadow: 0 15px 40px rgba(0, 110, 184, 0.1);
+ }
+
+ .job-info h3 {
+ font-size: 1.8rem;
+ color: var(--text-primary);
+ margin-bottom: 0.5rem;
+ }
+
+ .job-meta {
+ display: flex;
+ gap: 20px;
+ color: var(--text-secondary);
+ font-size: 0.95rem;
+ }
+
+ .job-meta span {
+ display: flex;
+ align-items: center;
+ gap: 6px;
+ }
+
+ .apply-btn {
+ background-color: var(--accent-blue);
+ color: white;
+ text-decoration: none;
+ padding: 1rem 2.5rem;
+ border-radius: 50px;
+ font-weight: 600;
+ transition: all 0.3s ease;
+ }
+
+ .apply-btn:hover {
+ background-color: var(--accent-blue-deep);
+ transform: scale(1.05);
+ box-shadow: 0 10px 20px rgba(0, 110, 184, 0.2);
+ }
+
+ .no-openings {
+ text-align: center;
+ padding: 4rem;
+ background: var(--bg-tertiary);
+ border-radius: 20px;
+ color: var(--text-secondary);
+ }
+
+ /* Form Section */
+ .application-form-section {
+ padding: 5rem 5vw;
+ background-color: var(--bg-tertiary);
+ }
+
+ .form-container {
+ max-width: 800px;
+ margin: 0 auto;
+ background: var(--bg-secondary);
+ padding: 4rem;
+ border-radius: 30px;
+ box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+ }
+
+ .form-container h2 {
+ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif ;
+ font-size: 2.2rem;
+ margin-bottom: 1rem;
+ text-align: center;
+ }
+
+ .form-container p {
+ text-align: center;
+ color: var(--text-secondary);
+ margin-bottom: 3rem;
+ }
+
+ .form-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 2rem;
+ }
+
+ .form-group {
+ display: flex;
+ flex-direction: column;
+ gap: 0.8rem;
+ }
+
+ .full-width {
+ grid-column: span 2;
+ }
+
+ label {
+ font-weight: 600;
+ font-size: 0.9rem;
+ color: var(--text-primary);
+ }
+
+ input, select, textarea {
+ padding: 1.2rem;
+ border-radius: 12px;
+ border: 1.5px solid var(--card-border);
+ background: var(--bg-primary);
+ color: var(--text-primary);
+ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif ;
+ transition: border-color 0.3s ease;
+ }
+
+ input:focus, select:focus, textarea:focus {
+ outline: none;
+ border-color: var(--accent-blue);
+ }
+
+ .submit-btn {
+ background: var(--accent-blue);
+ color: white;
+ border: none;
+ padding: 1.2rem;
+ border-radius: 12px;
+ font-weight: 700;
+ cursor: pointer;
+ transition: all 0.3s ease;
+ margin-top: 1rem;
+ }
+
+ .submit-btn:hover {
+ background: var(--accent-blue-deep);
+ transform: translateY(-2px);
+ }
+
+ @media (max-width: 768px) {
+ .careers-title { font-size: 2.2rem; }
+ .careers-subtitle { font-size: 1rem; }
+ .openings-section { padding: 3rem 4vw; }
+ .section-header h2 { font-size: 2rem; }
+ 
+ .job-card { 
+ padding: 1.5rem; 
+ flex-direction: column; 
+ align-items: flex-start; 
+ gap: 1.5rem; 
+ }
+ 
+ .job-info h3 { font-size: 1.4rem; }
+ 
+ .job-meta { 
+ flex-direction: column; 
+ gap: 8px; 
+ font-size: 0.85rem; 
+ }
+ 
+ .apply-btn { 
+ width: 100%; 
+ text-align: center; 
+ padding: 0.8rem 1.5rem; 
+ }
+
+ .form-grid { grid-template-columns: 1fr; gap: 1rem; }
+ .full-width { grid-column: span 1; }
+ .form-container { padding: 2rem 1.2rem; }
+ .form-container h2 { font-size: 1.8rem; }
+ .form-group { gap: 0.5rem; }
+ input, select, textarea { padding: 0.8rem; }
+ }
+ </style>
+
+ <meta name="description" content="Explore career opportunities at Progenics Labs in Hyderabad. Join our team in genetic testing, molecular diagnostics, genomics, and healthcare innovation." />
+  <!-- SEO & Social Meta Tags -->
+  <link rel="canonical" href="https://www.progenicslabs.com/careers/" />
+  <meta property="og:url" content="https://www.progenicslabs.com/careers/" />
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Careers at Progenics Labs | Join Our Genetic Testing Team" />
+  <meta property="og:description" content="Explore career opportunities at Progenics Labs in Hyderabad. Join our team in genetic testing, molecular diagnostics, genomics, and healthcare innovation." />
+  <meta property="og:site_name" content="Progenics Labs" />
+  <meta property="og:image" content="https://www.progenicslabs.com/wp-content/uploads/2026/06/careers-og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Careers at Progenics Labs, Hyderabad" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@ProgenicsLabs" />
+  <meta name="twitter:title" content="Careers at Progenics Labs | Join Our Genetic Testing Team" />
+  <meta name="twitter:description" content="Explore career opportunities at Progenics Labs in Hyderabad. Join our team in genetic testing, molecular diagnostics, genomics, and healthcare innovation." />
+  <meta name="twitter:image" content="https://www.progenicslabs.com/wp-content/uploads/2026/06/careers-og.jpg" />
+  <meta name="twitter:image:alt" content="Careers at Progenics Labs, Hyderabad" />
+    <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
+    <link rel="icon" href="favicon.png?v=2" type="image/png" />
+</head>
+<body>
+<!-- Custom Cursor -->
+<div class="cursor-dot" data-cursor-dot=""></div>
+<div class="cursor-outline" data-cursor-outline=""></div>
+<!-- Background Animation Container -->
+<div class="bg-animation-container">
+<div class="bg-layer layer-1"></div>
+<div class="bg-layer layer-2"></div>
+</div>
+<!-- Navigation -->
+<div id="header-placeholder"></div>
+<header class="careers-hero">
+<h1 class="careers-title serif-italic">Join Our Mission</h1>
+<p class="careers-subtitle">At Progenics, we are bridging the gap between scientific discovery and personalized wellness. Come build the future of genomics with us.</p>
+</header>
+<section class="openings-section">
+<div class="section-header">
+<h2 class="serif-italic">Current Openings</h2>
+<p>Explore opportunities to make a real impact on human health.</p>
+</div>
+<div id="jobs-list-container">
+<!-- Static Fallback Job -->
+<div class="job-card">
+<div class="job-info">
+<h3>Product Designer &amp; Developer</h3>
+<div class="job-meta">
+<span>📍 Hyderabad</span>
+<span>🕒 Full-time</span>
+<span>💼 Mid-Level</span>
+</div>
+</div>
+<a class="apply-btn" href="#apply">Apply Now</a>
+</div>
+</div>
+<!-- Add more jobs if needed, or show empty state if none -->
+<div class="no-openings" style="display: none;">
+<p>No other openings at the moment. But we're always looking for talent!</p>
+</div>
+</section>
+<section class="application-form-section" id="apply">
+<div class="form-container">
+<h2 class="serif-italic">Work with us</h2>
+<p>Submit your details and we'll get in touch with you for current or future opportunities.</p>
+<form action="/submit" class="form-grid" method="POST">
+<div class="form-group">
+<label for="name">Full Name</label>
+<input id="name" name="name" placeholder="John Doe" required="" type="text"/>
+</div>
+<div class="form-group">
+<label for="email">Email Address</label>
+<input id="email" name="email" placeholder="john@example.com" required="" type="email"/>
+</div>
+<div class="form-group">
+<label for="phone">Phone Number</label>
+<input id="phone" name="phone" placeholder="+91 00000 00000" required="" type="tel"/>
+</div>
+<div class="form-group">
+<label for="position">Interested Position</label>
+<select id="position" name="position">
+<option value="designer">Product Designer &amp; Developer</option>
+<option value="scientist">Genetic Scientist</option>
+<option value="lab">Lab Technician</option>
+<option value="other">Other / General Application</option>
+</select>
+</div>
+<div class="form-group full-width">
+<label for="resume">Upload Resume</label>
+<input accept=".pdf,.doc,.docx" id="resume" name="resume" required="" type="file"/>
+</div>
+<div class="form-group full-width">
+<label for="message">Cover Letter / Message</label>
+<textarea id="message" name="message" placeholder="Tell us why you want to join Progenics..." rows="5"></textarea>
+</div>
+<button class="submit-btn full-width" type="submit">Submit Application</button>
+</form>
+</div>
+</section>
+<!-- Footer Section -->
+<div id="footer-placeholder"></div>
+<!-- Scripts -->
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/portal-sdk.min.js"></script>
+<script src="assets/portal-core.js"></script>
+<script src="script.js?v=2"></script>
+<script>
+  (async function() {
+    const jobsListContainer = document.getElementById('jobs-list-container');
+    const noOpeningsEl = document.querySelector('.no-openings');
+    const positionSelect = document.getElementById('position');
+
+    // Check if Supabase is configured
+    const isSupabaseConfigured = typeof SUPABASE_URL !== 'undefined' && 
+                                 SUPABASE_URL && 
+                                 !SUPABASE_URL.includes('YOUR_PROJECT_ID') &&
+                                 supabaseClient;
+
+    if (isSupabaseConfigured) {
+      try {
+        // Show loading indicator
+        jobsListContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text-secondary);">Loading open positions...</div>';
+
+        const { data: jobs, error } = await supabaseClient
+          .from('careers')
+          .select('*')
+          .eq('is_active', true)
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        jobsListContainer.innerHTML = '';
+
+        if (jobs && jobs.length > 0) {
+          noOpeningsEl.style.display = 'none';
+          
+          // Clear current position options except the "Other" option
+          positionSelect.innerHTML = '';
+
+          jobs.forEach(job => {
+            // Render job card
+            const jobCard = document.createElement('div');
+            jobCard.className = 'job-card';
+            jobCard.innerHTML = `
+              <div class="job-info">
+                <h3>${job.title}</h3>
+                <div class="job-meta">
+                  <span>📍 ${job.location || 'Hyderabad'}</span>
+                  <span>🕒 ${job.type || 'Full-time'}</span>
+                  <span>💼 ${job.level || 'Mid-Level'}</span>
+                </div>
+              </div>
+              <a class="apply-btn" href="#apply" data-job-title="${job.title}">Apply Now</a>
+            `;
+            jobsListContainer.appendChild(jobCard);
+
+            // Add option to application select dropdown
+            const option = document.createElement('option');
+            option.value = job.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            option.textContent = job.title;
+            positionSelect.appendChild(option);
+          });
+
+          // Add "Other" back to select dropdown
+          const otherOption = document.createElement('option');
+          otherOption.value = 'other';
+          otherOption.textContent = 'Other / General Application';
+          positionSelect.appendChild(otherOption);
+
+          // Hook apply buttons to auto-select the job in the dropdown
+          jobsListContainer.querySelectorAll('.apply-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const jobTitle = btn.getAttribute('data-job-title');
+              const valueToSelect = jobTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+              
+              // Select matching option
+              for (let i = 0; i < positionSelect.options.length; i++) {
+                if (positionSelect.options[i].value === valueToSelect) {
+                  positionSelect.selectedIndex = i;
+                  break;
+                }
+              }
+            });
+          });
+
+        } else {
+          // No active jobs
+          jobsListContainer.innerHTML = '';
+          noOpeningsEl.style.display = 'block';
+          
+          // Fallback options in select
+          positionSelect.innerHTML = `
+            <option value="general">General Application</option>
+            <option value="other">Other</option>
+          `;
+        }
+      } catch (err) {
+        // Fallback to static job already loaded in DOM
+      }
+    } else {
+      // Using static content
+    }
+  })();
+</script>
+</body>
+</html>

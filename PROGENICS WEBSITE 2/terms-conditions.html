@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Terms &amp; Conditions | Progenics</title>
+<link href="styles.css" rel="stylesheet"/>
+<style>
+ .bg-animation-container {
+ position: fixed;
+ top: 0; left: 0; width: 100%; height: 100%;
+ z-index: -1; overflow: hidden; background-color: var(--bg-primary);
+ }
+
+ .bg-layer {
+ position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+ background-size: cover; background-position: center; opacity: 0;
+ }
+
+ .layer-1 { background-image: url('Images/dna_helix_bg.png'); animation: layerFadeRotate 45s infinite alternate; opacity: 0.2; filter: blur(1.5px); }
+ .layer-2 { background-image: url('Images/genomics-bg.png'); animation: layerZoom 65s infinite alternate; opacity: 0.14; }
+
+ @keyframes layerFadeRotate { 0% { transform: scale(1) rotate(0deg); opacity: 0.1; } 100% { transform: scale(1.1) rotate(1deg); opacity: 0.25; } }
+ @keyframes layerZoom { 0% { transform: scale(1.2); opacity: 0.1; } 100% { transform: scale(1); opacity: 0.2; } }
+
+ .ambient-glow {
+ position: absolute; width: 65vw; height: 65vw;
+ background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%);
+ opacity: 0.2; filter: blur(130px); border-radius: 50%; pointer-events: none; z-index: 0;
+ }
+
+ .glow-1 { top: -15%; left: -10%; animation: glowMove1 35s infinite alternate; }
+ .glow-2 { bottom: -15%; right: -10%; animation: glowMove2 40s infinite alternate; background: radial-gradient(circle, #aed5ae 0%, transparent 70%); }
+
+ .bg-overlay {
+ position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+ background: linear-gradient(to bottom, var(--bg-primary) 0%, rgba(250, 249, 246, 0.5) 20%, rgba(250, 249, 246, 0.5) 80%, var(--bg-primary) 100%);
+ z-index: 1;
+ }
+
+ .data-point {
+ position: absolute; width: 3.5px; height: 3.5px;
+ background: var(--accent-blue); border-radius: 50%; opacity: 0.35; pointer-events: none; z-index: 2;
+ }
+
+ /* Terms Grid Layout */
+ .terms-grid-container {
+ max-width: 1400px;
+ margin: -60px auto 100px;
+ padding: 0 5vw;
+ position: relative;
+ z-index: 10;
+ }
+
+ .terms-intro {
+ background: var(--card-bg);
+ backdrop-filter: blur(12px);
+ border: 1px solid var(--card-border);
+ padding: 3rem;
+ border-radius: 30px;
+ margin-bottom: 3rem;
+ text-align: center;
+ }
+
+ .terms-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+ gap: 2rem;
+ }
+
+ @media (max-width: 768px) {
+ .terms-grid-container { margin-top: 0; padding: 0 20px; }
+ .terms-intro { padding: 2rem 1.5rem; border-radius: 20px; }
+ .term-block { padding: 2rem 1.5rem; border-radius: 20px; }
+ .term-block h2 { font-size: 1.5rem; }
+ }
+
+ .term-block {
+ background: var(--card-bg);
+ backdrop-filter: blur(12px);
+ border: 1px solid var(--card-border);
+ padding: 3rem;
+ border-radius: 30px;
+ transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+ }
+
+ .term-block:hover {
+ transform: translateY(-10px);
+ border-color: var(--accent-blue);
+ box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+ }
+
+ .term-icon {
+ font-size: 2.5rem;
+ margin-bottom: 1.5rem;
+ display: inline-block;
+ }
+
+ .term-block h2 {
+ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif ;
+ font-style: italic;
+ font-size: 1.8rem;
+ color: var(--text-primary);
+ margin-bottom: 1rem;
+ }
+
+ .term-block p {
+ line-height: 1.7;
+ color: var(--text-secondary);
+ font-size: 1.05rem;
+ }
+
+ @media (max-width: 900px) {
+ .refund-steps-grid {
+ grid-template-columns: 1fr;
+ }
+ .policy-card-featured {
+ padding: 2.5rem 1.5rem;
+ border-radius: 24px;
+ }
+ .policy-card-featured h2 {
+ font-size: 1.8rem !important;
+ }
+ .refund-steps-grid {
+ gap: 1.5rem;
+ }
+ .step-card {
+ padding: 2rem 1.5rem;
+ }
+ }
+
+ @media (max-width: 600px) {
+ .terms-grid {
+ grid-template-columns: 1fr;
+ }
+ }
+ </style>
+
+ <meta name="description" content="Learn more about Terms &amp; Conditions | Progenics at Progenics — India's leading precision genomics lab offering advanced genetic testing and personalized healthcare." />
+ <!-- SEO & Social Meta Tags -->
+ <link rel="canonical" href="https://progenicslabs.com/terms-conditions.html" />
+ <meta property="og:title" content="Terms &amp; Conditions | Progenics" />
+ <meta property="og:description" content="Learn more about Terms &amp; Conditions | Progenics at Progenics — India's leading precision genomics lab offering advanced genetic testing and personalized healthcare." />
+ <meta property="og:type" content="website" />
+ <meta property="og:url" content="https://progenicslabs.com/terms-conditions.html" />
+ <meta property="og:image" content="https://progenicslabs.com/Images/og-image.png" />
+ <meta name="twitter:card" content="summary_large_image" />
+    <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
+    <link rel="icon" href="favicon.png?v=2" type="image/png" />
+</head>
+<body>
+<!-- Custom Cursor -->
+<div class="cursor-dot" data-cursor-dot=""></div>
+<div class="cursor-outline" data-cursor-outline=""></div>
+<!-- Background Animation Container -->
+<div class="bg-animation-container">
+<div class="bg-layer layer-1"></div>
+<div class="bg-layer layer-2"></div>
+<div class="ambient-glow glow-1"></div>
+<div class="ambient-glow glow-2"></div>
+<div class="bg-overlay"></div>
+</div>
+<!-- Navigation -->
+<div id="header-placeholder"></div>
+<header class="page-header cinematic-banner" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&amp;w=2000&amp;auto=format&amp;fit=crop');">
+<div class="banner-content">
+<h1 class="serif-italic" style="color: #fff;">Terms &amp; Conditions</h1>
+<p class="sans-caps" style="color: rgba(255,255,255,0.8); letter-spacing: 5px;">Our Mutual Agreement</p>
+</div>
+</header>
+<main class="terms-grid-container">
+<div class="terms-intro hidden-reveal">
+<p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-secondary);">Please read these Terms and Conditions carefully before using the Progenics website or purchasing any of our products and services. By using our products and services, you agree that these Terms and Conditions are acceptable to you.</p>
+</div>
+<div class="terms-grid">
+<div class="term-block hidden-reveal">
+<span class="term-icon">🌐</span>
+<h2 class="serif-italic">Use of Website</h2>
+<p>The Progenics website is for your personal and non-commercial use. You may not use this website for any purpose that is unlawful or prohibited by these Terms and Conditions.</p>
+</div>
+<div class="term-block hidden-reveal">
+<span class="term-icon">⚖️</span>
+<h2 class="serif-italic">Intellectual Property</h2>
+<p>All content on the Progenics website, including text, graphics, logos, and software, is the property of Progenics Laboratories and is protected by copyright laws.</p>
+</div>
+<div class="term-block hidden-reveal">
+<span class="term-icon">📜</span>
+<h2 class="serif-italic">Product Accuracy</h2>
+<p>Progenics Laboratories attempts to be as accurate as possible in its product and service descriptions. However, we do not warrant that all content is entirely error-free.</p>
+</div>
+<div class="term-block hidden-reveal">
+<span class="term-icon">💳</span>
+<h2 class="serif-italic">Orders &amp; Payments</h2>
+<p>By placing an order, you represent that you are at least 18 years of age and have the legal right to use the payment method provided. All payments are secure.</p>
+</div>
+<div class="term-block hidden-reveal">
+<span class="term-icon">🏥</span>
+<h2 class="serif-italic">Medical Disclaimer</h2>
+<p>Our services are for informational and educational purposes only and are not a substitute for professional medical advice, diagnosis, or treatment.</p>
+</div>
+<div class="term-block hidden-reveal">
+<span class="term-icon">🛡️</span>
+<h2 class="serif-italic">Limitation of Liability</h2>
+<p>In no event shall Progenics Laboratories be liable for any direct or indirect damages arising out of or in any way connected with the use of our services.</p>
+</div>
+</div>
+</main>
+<!-- Footer Section -->
+<div id="footer-placeholder"></div>
+<!-- Scripts -->
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="script.js?v=2"></script>
+<script>
+ document.addEventListener('DOMContentLoaded', () => {
+ // Background particles
+ const container = document.querySelector('.bg-animation-container');
+ const particleCount = 20;
+ for (let i = 0; i < particleCount; i++) {
+ const particle = document.createElement('div');
+ particle.className = 'data-point';
+ const x = Math.random() * 100;
+ const y = Math.random() * 100;
+ const size = 1.2 + Math.random() * 3;
+ particle.style.width = `${size}px`;
+ particle.style.height = `${size}px`;
+ const duration = 25 + Math.random() * 35;
+ const delay = Math.random() * -35;
+ particle.style.left = `${x}%`;
+ particle.style.top = `${y}%`;
+ const animName = `floatParticle_terms_${i}`;
+ const style = document.createElement('style');
+ const tx = (Math.random() - 0.5) * 200;
+ const ty = (Math.random() - 0.5) * 200;
+ style.innerHTML = `@keyframes ${animName} { 0% { transform: translate(0, 0); opacity: 0; } 20% { opacity: 0.4; } 80% { opacity: 0.4; } 100% { transform: translate(${tx}px, ${ty}px); opacity: 0; } }`;
+ document.head.appendChild(style);
+ particle.style.animation = `${animName} ${duration}s infinite linear`;
+ particle.style.animationDelay = `${delay}s`;
+ container.appendChild(particle);
+ }
+ });
+ </script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+﻿diff --git a/script.js b/script.js
+index 140827d..9531206 100644
+--- a/script.js
++++ b/script.js
+@@ -92,13 +92,90 @@ document.addEventListener("DOMContentLoaded", async () => {
+     }
+   };
+ 
++  // Navbar Auto-Hide Scroll and 3-Second Timeout Logic (Mobile Only)
++  let headerTimeout = null;
++
++  function startHeaderTimeout() {
++    if (headerTimeout) clearTimeout(headerTimeout);
++    if (window.innerWidth > 768) return; // Only run on mobile
++    
++    headerTimeout = setTimeout(() => {
++      const navbarEl = document.querySelector('.navbar');
++      const mobileToggle = document.getElementById("mobile-toggle");
++      const isMobileMenuActive = mobileToggle && mobileToggle.classList.contains('active');
++      if (navbarEl && !isMobileMenuActive && window.scrollY < 50) {
++        navbarEl.classList.add('navbar--hidden');
++      }
++    }, 3000);
++  }
++
++  // Start the initial 3-second auto-hide timer
++  startHeaderTimeout();
++
++  const handleNavbarScroll = (scrollY) => {
++    const navbarEl = document.querySelector('.navbar');
++    if (!navbarEl) return;
++
++    // Desktop check: always show navbar and cancel timeout
++    if (window.innerWidth > 768) {
++      navbarEl.classList.remove('navbar--hidden');
++      if (headerTimeout) {
++        clearTimeout(headerTimeout);
++        headerTimeout = null;
++      }
++      return;
++    }
++
++    const mobileToggle = document.getElementById("mobile-toggle");
++    const isMobileMenuActive = mobileToggle && mobileToggle.classList.contains('active');
++    
++    if (isMobileMenuActive) {
++      navbarEl.classList.remove('navbar--hidden');
++      if (headerTimeout) clearTimeout(headerTimeout);
++      return;
++    }
++
++    if (scrollY < 50) {
++      // Near the top: ensure navbar is visible and restart the 3s auto-hide timer
++      navbarEl.classList.remove('navbar--hidden');
++      startHeaderTimeout();
++    } else {
++      // Scrolled down: clear the timer and ensure navbar is always visible
++      if (headerTimeout) {
++        clearTimeout(headerTimeout);
++        headerTimeout = null;
++      }
++      navbarEl.classList.remove('navbar--hidden');
++    }
++  };
++
++  // Add resize listener to dynamically adapt navbar state
++  window.addEventListener('resize', () => {
++    const navbarEl = document.querySelector('.navbar');
++    if (window.innerWidth > 768) {
++      if (navbarEl) {
++        navbarEl.classList.remove('navbar--hidden');
++      }
++      if (headerTimeout) {
++        clearTimeout(headerTimeout);
++        headerTimeout = null;
++      }
++    } else {
++      if (window.scrollY < 50) {
++        startHeaderTimeout();
++      }
++    }
++  });
++
+   if (lenis) {
+     lenis.on("scroll", (e) => {
+       scrollHandler(e.animatedScroll);
++      handleNavbarScroll(e.animatedScroll);
+     });
+   } else {
+     window.addEventListener("scroll", () => {
+       scrollHandler(window.scrollY);
++      handleNavbarScroll(window.scrollY);
+     });
+   }
+ 
+@@ -114,7 +191,7 @@ document.addEventListener("DOMContentLoaded", async () => {
+     }, 5000);
+   }
+ 
+-  // Theme Toggle Logic
++  // Theme Toggle Logic (icons removed from header; keeping data-theme for CSS compatibility)
+   const themeToggle = document.getElementById("theme-toggle");
+   const moonIcon = document.getElementById("moon-icon");
+   const sunIcon = document.getElementById("sun-icon");
+@@ -139,12 +216,14 @@ document.addEventListener("DOMContentLoaded", async () => {
+   }
+ 
+   function updateIcons(theme) {
+-    if (theme === "dark") {
+-      moonIcon.style.display = "none";
+-      sunIcon.style.display = "block";
+-    } else {
+-      moonIcon.style.display = "block";
+-      sunIcon.style.display = "none";
++    if (moonIcon && sunIcon) {
++      if (theme === "dark") {
++        moonIcon.style.display = "none";
++        sunIcon.style.display = "block";
++      } else {
++        moonIcon.style.display = "block";
++        sunIcon.style.display = "none";
++      }
+     }
+   }
+ 
+@@ -230,6 +309,7 @@ document.addEventListener("DOMContentLoaded", async () => {
+     if (window.lenis) window.lenis.start();
+     dropdowns.forEach((d) => d.classList.remove("active"));
+     document.querySelectorAll(".nested-dropdown").forEach(n => n.classList.remove("active"));
++    startHeaderTimeout();
+   }
+ 
+   if (mobileToggle) {
+@@ -284,7 +364,7 @@ document.addEventListener("DOMContentLoaded", async () => {
+   // List of service sub-pages to associate with the Services tile
+   const servicePages = [
+     "Next Generation Sequencing (NGS).html",
+-    "Multiplex Ligation-Dependent Probe Amplification.html",
++
+     "Chromosomal Microarray Analysis (CMA).html",
+     "Microbial Innovation and Discovery.html",
+     "Noninvasive Prenatal Testing.html",
+@@ -412,3 +492,122 @@ document.addEventListener('DOMContentLoaded', () => {
+     });
+   }
+ });
++
++// Statistics Counter Animation (handles multiple sections per page)
++document.addEventListener("DOMContentLoaded", () => {
++  const statsSections = document.querySelectorAll('.stats-section');
++
++  statsSections.forEach(section => {
++    const statNumbers = section.querySelectorAll('.stat-number');
++    if (statNumbers.length === 0) return;
++
++    let animated = false;
++
++    const animateStats = () => {
++      if (animated) return;
++      animated = true;
++
++      statNumbers.forEach(stat => {
++        const text = stat.textContent.trim();
++        const numberMatch = text.match(/[\d,.]+/);
++        if (!numberMatch) return;
++
++        const rawNumberStr = numberMatch[0];
++        const suffix = text.replace(rawNumberStr, '');
++        const hasComma = rawNumberStr.includes(',');
++        const isFloat = rawNumberStr.includes('.') && !hasComma;
++        const targetVal = parseFloat(rawNumberStr.replace(/,/g, ''));
++        
++        let startVal = 0;
++        const duration = 2000;
++        const startTime = performance.now();
++
++        const updateNumber = (currentTime) => {
++          const elapsedTime = currentTime - startTime;
++          const progress = Math.min(elapsedTime / duration, 1);
++          
++          const easeProgress = progress * (2 - progress);
++          const currentVal = startVal + (targetVal - startVal) * easeProgress;
++
++          let formattedVal;
++          if (isFloat) {
++            formattedVal = currentVal.toFixed(1);
++          } else {
++            formattedVal = Math.floor(currentVal);
++            if (hasComma) {
++              formattedVal = formattedVal.toLocaleString('en-US');
++            }
++          }
++
++          stat.textContent = formattedVal + suffix;
++
++          if (progress < 1) {
++            requestAnimationFrame(updateNumber);
++          } else {
++            stat.textContent = text;
++          }
++        };
++
++        requestAnimationFrame(updateNumber);
++      });
++    };
++
++    const statsObserver = new IntersectionObserver((entries) => {
++      entries.forEach(entry => {
++        if (entry.isIntersecting) {
++          animateStats();
++          statsObserver.unobserve(entry.target);
++        }
++      });
++    }, { threshold: 0.1 });
++
++    statsObserver.observe(section);
++  });
++});
++
++// Testimonials Carousel Animation (Homepage)
++document.addEventListener("DOMContentLoaded", () => {
++  const carousel = document.getElementById('home-testi-carousel');
++  const prev = document.getElementById('home-testi-prev');
++  const next = document.getElementById('home-testi-next');
++  if (!carousel) return;
++
++  let timer;
++
++  function scroll(dir) {
++    const card = carousel.querySelector('.testimonial-card');
++    if (!card) return;
++    const w = card.offsetWidth + 24;
++    carousel.scrollBy({ left: dir * w, behavior: 'smooth' });
++  }
++
++  function loopScroll() {
++    const max = carousel.scrollWidth - carousel.clientWidth;
++    if (carousel.scrollLeft >= max - 10) {
++      carousel.scrollTo({ left: 0, behavior: 'smooth' });
++    } else {
++      scroll(1);
++    }
++  }
++
++  function start() {
++    clearInterval(timer);
++    timer = setInterval(loopScroll, 4500);
++  }
++
++  function stop() {
++    clearInterval(timer);
++  }
++
++  if (prev) prev.addEventListener('click', () => { scroll(-1); stop(); start(); });
++  if (next) next.addEventListener('click', () => { scroll(1); stop(); start(); });
++
++  carousel.addEventListener('mouseenter', stop);
++  carousel.addEventListener('mouseleave', start);
++  carousel.addEventListener('touchstart', stop, { passive: true });
++  carousel.addEventListener('touchend', start);
++
++  start();
++});
++
++

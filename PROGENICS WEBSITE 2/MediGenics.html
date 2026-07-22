@@ -1,0 +1,3354 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>MediGenics DNA Health Test in Hyderabad | Progenics Labs</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Get a personalized MediGenics health test in Hyderabad at Progenics Labs to understand inherited health risks and make informed healthcare decisions." />
+    <link href="styles.css" rel="stylesheet" />
+    <style>
+        /* =====================================================
+ MEDIGENICS PAGE — PREMIUM REDESIGN
+ Color Palette: #003d82 (Deep Indigo) + #185FA5 (Blue)
+ ===================================================== */
+
+        :root {
+            --gg-indigo: #211d4f;
+            --gg-indigo-80: rgba(33, 29, 79, 0.80);
+            --gg-indigo-10: rgba(33, 29, 79, 0.08);
+            --gg-blue: #006eb8;
+            --gg-blue-lt: #e6f3fb;
+            --gg-blue-glow: rgba(0, 110, 184, 0.25);
+            --gg-white: #ffffff;
+            --gg-off: #f7f8fc;
+            --gg-text: #000000;
+            --gg-muted: #000000;
+            --gg-red: #e53935;
+            --gg-green: #1b8a5a;
+            --radius-lg: 20px;
+            --radius-xl: 32px;
+        }
+
+        /* ── GLOBAL RESET/BODY OVERRIDES ────────────────────── */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+            color: var(--gg-text);
+            background-color: var(--gg-white);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ── HERO ───────────────────────────────────────────── */
+        .gg-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-image: url('Images/Medigenics Hero.png');
+            background-size: cover;
+            background-position: top center;
+            background-repeat: no-repeat;
+            padding: 120px 5vw 80px;
+        }
+
+        /* Dark overlay for text readability over hero image */
+        .gg-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    rgba(13, 27, 62, 0.72) 0%,
+                    rgba(0, 26, 74, 0.55) 50%,
+                    rgba(0, 74, 124, 0.40) 100%);
+            animation: gg-mesh-drift 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes gg-mesh-drift {
+            0% {
+                transform: scale(1) translateY(0);
+            }
+
+            100% {
+                transform: scale(1.05) translateY(-20px);
+            }
+        }
+
+        /* Grid dots overlay */
+        .gg-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+            background-size: 36px 36px;
+            pointer-events: none;
+        }
+
+        .gg-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            text-align: center;
+            margin: 0 auto;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            pointer-events: none;
+            /* prevent invisible buttons from being clickable */
+        }
+
+        .gg-hero:hover .gg-hero-inner {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .gg-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 28px;
+        }
+
+        .gg-hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #4ade80;
+            animation: gg-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes gg-pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 4px #4ade80;
+            }
+
+            50% {
+                box-shadow: 0 0 16px #4ade80, 0 0 32px rgba(74, 222, 128, 0.4);
+            }
+        }
+
+        .gg-hero h1 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-size: clamp(2.4rem, 6vw, 4.8rem);
+            font-weight: 400;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .gg-hero h1 span {
+            background: linear-gradient(135deg, #60c3ff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gg-hero-sub {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.75;
+            font-weight: 400;
+        }
+
+        .gg-hero-ctas {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .gg-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 36px;
+            background: var(--gg-blue);
+            color: #fff;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 8px 32px rgba(24, 95, 165, 0.45);
+            border: none;
+            cursor: pointer;
+        }
+
+        .gg-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 48px rgba(24, 95, 165, 0.6);
+            background: #0080d4;
+        }
+
+        .gg-btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 36px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #fff;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gg-btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Stat strip */
+        .gg-hero-stats {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .gg-stat {
+            flex: 1;
+            padding: 24px 16px;
+            text-align: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gg-stat:last-child {
+            border-right: none;
+        }
+
+        .gg-stat-num {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .gg-stat-num span {
+            color: #60c3ff;
+        }
+
+        .gg-stat-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Scroll cue */
+        .gg-scroll-cue {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .gg-scroll-line {
+            width: 1.5px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
+            animation: gg-scroll-line 2s ease-in-out infinite;
+        }
+
+        @keyframes gg-scroll-line {
+            0% {
+                transform: scaleY(0);
+                transform-origin: top;
+            }
+
+            50% {
+                transform: scaleY(1);
+                transform-origin: top;
+            }
+
+            51% {
+                transform: scaleY(1);
+                transform-origin: bottom;
+            }
+
+            100% {
+                transform: scaleY(0);
+                transform-origin: bottom;
+            }
+        }
+
+        /* ── SECTION COMMONS ────────────────────────────────── */
+        .gg-section {
+            padding: 80px 5vw;
+        }
+
+        .gg-section-alt {
+            background: var(--gg-off);
+        }
+
+        .gg-section-dark {
+            background: var(--gg-indigo);
+            color: #fff;
+        }
+
+        .gg-section-center {
+            text-align: center;
+        }
+
+        .gg-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gg-blue);
+            background: var(--gg-blue-lt);
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+        }
+
+        .gg-label-dark {
+            color: #60c3ff;
+            background: rgba(96, 195, 255, 0.12);
+        }
+
+        .gg-title {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 400;
+            color: var(--gg-indigo);
+            line-height: 1.25;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .gg-title-dark {
+            color: #ffffff;
+        }
+
+        .gg-subtitle {
+            font-size: clamp(1.25rem, 2vw, 1.45rem);
+            color: var(--gg-muted);
+            line-height: 1.75;
+            max-width: 800px;
+        }
+
+        .gg-subtitle-dark {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .gg-subtitle-center {
+            margin: 0 auto;
+        }
+
+        /* ── PROBLEM vs SOLUTION (Redesigned Transformation Grid) ── */
+        .gg-prob-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            margin-top: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gg-transform-row {
+            display: grid;
+            grid-template-columns: 1fr 60px 1fr;
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid rgba(0, 61, 130, 0.06);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            box-shadow: 0 4px 30px rgba(0, 61, 130, 0.02);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gg-transform-row:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 61, 130, 0.07);
+        }
+
+        .gg-transform-problem {
+            padding-right: 28px;
+        }
+
+        .gg-transform-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gg-blue);
+            width: 44px;
+            height: 44px;
+            background: var(--gg-blue-lt);
+            border-radius: 50%;
+            margin: 0 auto;
+            border: 1px solid rgba(24, 95, 165, 0.15);
+            box-shadow: 0 4px 10px rgba(24, 95, 165, 0.08);
+            z-index: 2;
+        }
+
+        .gg-transform-arrow svg {
+            width: 20px;
+            height: 20px;
+            animation: bounce-horizontal 2.5s infinite ease-in-out;
+        }
+
+        @keyframes bounce-horizontal {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(4px);
+            }
+        }
+
+        .gg-transform-solution {
+            padding-left: 32px;
+            position: relative;
+        }
+
+        /* Labels and typography */
+        .gg-transform-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 14px;
+            border-radius: 50px;
+            margin-bottom: 16px;
+        }
+
+        .gg-transform-badge.problem {
+            background: rgba(229, 57, 53, 0.06);
+            color: var(--gg-red);
+            border: 1px solid rgba(229, 57, 53, 0.12);
+        }
+
+        .gg-transform-badge.solution {
+            background: var(--gg-blue-lt);
+            color: var(--gg-blue);
+            border: 1px solid rgba(24, 95, 165, 0.15);
+        }
+
+        .gg-transform-text {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--gg-text);
+        }
+
+        .gg-transform-text strong {
+            color: var(--gg-indigo);
+            font-weight: 700;
+        }
+
+        .gg-transform-solution .gg-transform-text strong {
+            color: var(--gg-blue);
+        }
+
+        /* ── HOW IT WORKS — NUMBERED STEPS ─────────────────── */
+        #how-it-works .container {
+            max-width: 1600px;
+            width: 95%;
+        }
+
+        .gg-steps {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .gg-steps::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: calc(7.14% + 28px);
+            right: calc(7.14% + 28px);
+            height: 6px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='6' viewBox='0 0 24 6'%3E%3Cpath d='M9 1l2 2-2 2M21 1l2 2-2 2' fill='none' stroke='%23185FA5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            background-size: 24px 6px;
+            z-index: 0;
+            opacity: 0.6;
+            animation: flow-arrows-gg 2s linear infinite;
+        }
+
+        .gg-steps:hover::before {
+            opacity: 1;
+            animation-duration: 1s;
+        }
+
+        @keyframes flow-arrows-gg {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 24px 0;
+            }
+        }
+
+        .gg-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0 12px;
+            position: relative;
+        }
+
+        .gg-step-num {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--gg-indigo);
+            color: #fff;
+            font-weight: 800;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 0 6px var(--gg-blue-lt), 0 8px 24px var(--gg-blue-glow);
+            transition: all 0.3s ease;
+        }
+
+        .gg-step:hover .gg-step-num {
+            background: var(--gg-blue);
+            transform: scale(1.1);
+            box-shadow: 0 0 0 8px rgba(24, 95, 165, 0.15), 0 12px 32px var(--gg-blue-glow);
+        }
+
+        .gg-step-title {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--gg-indigo);
+            margin-bottom: 8px;
+        }
+
+        @media (min-width: 1025px) {
+            .gg-step-title {
+                font-size: 0.95rem;
+            }
+        }
+
+        .gg-step-desc {
+            font-size: 1.15rem;
+            color: var(--gg-muted);
+            line-height: 1.6;
+        }
+
+        /* ── FEATURES GRID (Zig-Zag Header Cards) ────────── */
+        .gg-features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-top: 40px;
+        }
+
+        .gg-feature-card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 61, 130, 0.08);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px rgba(0, 61, 130, 0.02);
+        }
+
+        .gg-feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 36px rgba(0, 61, 130, 0.08);
+        }
+
+        /* Top Header block */
+        .gg-feature-card-header {
+            padding: 24px 24px;
+            color: #ffffff;
+            position: relative;
+        }
+
+        /* Alternating (Zig-Zag) Backgrounds */
+        .gg-feature-card:nth-child(odd) .gg-feature-card-header {
+            background: #211d4f;
+            /* Progenics Indigo */
+        }
+
+        .gg-feature-card:nth-child(even) .gg-feature-card-header {
+            background: #006eb8;
+            /* Progenics Blue */
+        }
+
+        .gg-feature-title {
+            font-size: 17px !important;
+            font-weight: 700 !important;
+            color: #ffffff !important;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Card Body */
+        .gg-feature-card-body {
+            padding: 28px 24px 56px;
+            /* Space at bottom for the number */
+            flex-grow: 1;
+            position: relative;
+            background: #ffffff;
+        }
+
+        .gg-feature-desc {
+            font-size: 18px;
+            color: var(--gg-muted);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* Number at bottom right */
+        .gg-feature-num {
+            position: absolute;
+            bottom: 12px;
+            right: 20px;
+            font-size: 56px;
+            font-weight: 900;
+            color: rgba(0, 61, 130, 0.04);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .gg-feature-card:hover .gg-feature-num {
+            color: rgba(0, 61, 130, 0.09);
+            transform: scale(1.05);
+        }
+
+        /* ── MEDICAL COVERAGE SECTION ──────────────────────── */
+        .medical-coverage {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .coverage-item {
+            background: var(--gg-white);
+            border-radius: 24px;
+            padding: 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border: 1px solid rgba(0, 61, 130, 0.06);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .coverage-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: var(--gg-blue);
+        }
+
+        .coverage-img-wrapper {
+            width: 100%;
+            height: 160px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .coverage-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .coverage-item:hover .coverage-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .coverage-content {
+            padding: 0 1.5rem 2rem 1.5rem;
+        }
+
+        .coverage-item h4 {
+            color: var(--gg-blue);
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .coverage-item p {
+            font-size: 13px;
+            color: var(--gg-muted);
+        }
+
+        /* ── TESTIMONIALS CAROUSEL ──────────────────────────── */
+        .gg-testi-track {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding: 20px 4px 40px;
+            margin-top: 36px;
+            scrollbar-width: none;
+        }
+
+        .gg-testi-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gg-testi-card {
+            flex: 0 0 calc(33.333% - 16px);
+            scroll-snap-align: start;
+            background: #ffffff;
+            border: 1px solid rgba(0, 61, 130, 0.08);
+            border-radius: var(--radius-xl);
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 61, 130, 0.02);
+        }
+
+        .gg-testi-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 36px rgba(0, 61, 130, 0.08);
+        }
+
+        .gg-testi-stars {
+            display: flex;
+            gap: 4px;
+            color: #fbbf24;
+            font-size: 16px;
+        }
+
+        .gg-testi-quote {
+            font-size: 15px;
+            color: var(--gg-muted);
+            line-height: 1.75;
+            font-style: italic;
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .gg-testi-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .gg-testi-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gg-blue) 0%, #185FA5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 16px;
+            color: #fff;
+            flex-shrink: 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gg-testi-name {
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--gg-indigo);
+        }
+
+        .gg-testi-loc {
+            font-size: 12px;
+            color: var(--gg-muted);
+            margin-top: 2px;
+        }
+
+        .gg-carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 0;
+        }
+
+        .gg-carousel-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(0, 61, 130, 0.15);
+            background: #ffffff;
+            color: var(--gg-indigo);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .gg-carousel-btn:hover {
+            background: var(--gg-blue);
+            border-color: var(--gg-blue);
+            color: #ffffff;
+        }
+
+        /* ── PRICING ─────────────────────────────────────────── */
+        .gg-pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gg-pricing-card {
+            background: var(--gg-white);
+            border: 1px solid rgba(0, 61, 130, 0.1);
+            border-radius: var(--radius-xl);
+            padding: 44px 36px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .gg-pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 32px 80px rgba(0, 61, 130, 0.15);
+        }
+
+        .gg-pricing-card.featured {
+            background: linear-gradient(145deg, #003d82 0%, #00224d 100%);
+            border: 1.5px solid rgba(24, 95, 165, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 61, 130, 0.2);
+        }
+
+        .gg-pricing-card.featured:hover {
+            box-shadow: 0 32px 80px rgba(0, 61, 130, 0.4);
+            transform: translateY(-8px);
+        }
+
+        .gg-featured-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gg-blue);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 50px;
+        }
+
+        .gg-plan-name {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gg-blue);
+            margin-bottom: 16px;
+        }
+
+        .gg-pricing-card.featured .gg-plan-name {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .gg-price-wrap {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .gg-price {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--gg-indigo);
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .gg-pricing-card.featured .gg-price {
+            color: #ffffff;
+        }
+
+        .gg-price-old {
+            font-size: 1.2rem;
+            color: var(--gg-muted);
+            text-decoration: line-through;
+        }
+
+        .gg-pricing-card.featured .gg-price-old {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .gg-save-chip {
+            display: inline-block;
+            background: rgba(24, 95, 165, 0.1);
+            color: var(--gg-blue);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin-bottom: 28px;
+        }
+
+        .gg-pricing-card.featured .gg-save-chip {
+            background: rgba(96, 195, 255, 0.15);
+            color: #60c3ff;
+        }
+
+        .gg-pricing-divider {
+            height: 1px;
+            background: rgba(0, 61, 130, 0.08);
+            margin: 0 0 24px;
+        }
+
+        .gg-pricing-card.featured .gg-pricing-divider {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .gg-feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .gg-feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--gg-text);
+            line-height: 1.5;
+        }
+
+        .gg-pricing-card.featured .gg-feature-list li {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .gg-feature-list li .check {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(24, 95, 165, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+            color: var(--gg-blue);
+        }
+
+        .gg-pricing-card.featured .gg-feature-list li .check {
+            background: rgba(96, 195, 255, 0.15);
+            color: #60c3ff;
+        }
+
+        .gg-cta-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            border-radius: 50px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .gg-cta-btn.solid-blue {
+            background: var(--gg-blue);
+            color: #ffffff;
+            box-shadow: 0 8px 24px rgba(24, 95, 165, 0.25);
+        }
+
+        .gg-cta-btn.solid-blue:hover {
+            background: #003d82;
+            box-shadow: 0 12px 36px rgba(0, 61, 130, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .gg-emi-note {
+            font-size: 12px;
+            color: var(--gg-muted);
+            text-align: center;
+            margin-top: 14px;
+        }
+
+        .gg-pricing-card.featured .gg-emi-note {
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        /* ── COMPARISON TABLE ──────────────────────────────── */
+        .gg-comparison-wrap {
+            margin-top: 20px;
+            background: var(--gg-white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 61, 130, 0.04);
+            border: 1px solid rgba(0, 61, 130, 0.06);
+        }
+
+        .gg-compare-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .gg-compare-table thead tr {
+            background: var(--gg-indigo);
+        }
+
+        .gg-compare-table th {
+            padding: 18px 20px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: 0.5px;
+        }
+
+        .gg-compare-table th:first-child {
+            text-align: left;
+        }
+
+        .gg-compare-table td {
+            padding: 14px 20px;
+            font-size: 13.5px;
+            color: var(--gg-text);
+            border-bottom: 1px solid rgba(0, 61, 130, 0.05);
+            text-align: center;
+        }
+
+        .gg-compare-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: var(--gg-indigo);
+        }
+
+        .gg-compare-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .gg-compare-table tr:nth-child(even) {
+            background: rgba(0, 61, 130, 0.01);
+        }
+
+        .gg-best {
+            color: var(--gg-green) !important;
+            font-weight: 700 !important;
+        }
+
+        .gg-check-green {
+            color: var(--gg-green);
+            font-size: 18px;
+        }
+
+        .gg-check-blue {
+            color: var(--gg-blue);
+            font-size: 18px;
+        }
+
+        /* Highlight column */
+        .gg-compare-table th:nth-child(2),
+        .gg-compare-table td:nth-child(2) {
+            background: rgba(24, 95, 165, 0.03);
+            font-weight: 600;
+        }
+
+        /* ── FAQ ───────────────────────────────────────────── */
+        .faq-cols {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        .faq-item {
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 61, 130, 0.10);
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 61, 130, 0.05);
+            transition: box-shadow 0.25s;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 6px 24px rgba(0, 61, 130, 0.10);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            gap: 1rem;
+            text-align: left;
+        }
+
+        .faq-question span:first-child {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #000000;
+            line-height: 1.4;
+        }
+
+        .faq-icon {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(0, 61, 130, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: #003d82;
+            transition: background 0.25s, transform 0.35s;
+        }
+
+        .faq-item.open .faq-icon {
+            background: #003d82;
+            color: #fff;
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 0 1.5rem 1.25rem;
+            font-size: 1.05rem;
+            color: #000000;
+            line-height: 1.7;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .faq-item.open .faq-question {
+            border-bottom: 1px solid rgba(0, 61, 130, 0.08);
+        }
+
+        /* ── FINAL CTA SECTION ─────────────────────────────── */
+        .gg-final-cta {
+            background: linear-gradient(135deg, var(--gg-indigo) 0%, #00224d 40%, #003d82 100%);
+            padding: 120px 5vw;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gg-final-cta::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .gg-final-cta::after {
+            content: '';
+            position: absolute;
+            width: 900px;
+            height: 900px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .gg-final-cta-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .gg-final-cta h2 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            color: #fff;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .gg-final-cta p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        /* ── SCROLL ANIMATIONS ─────────────────────────────── */
+        .gg-reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .gg-reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        .gg-reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .gg-reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .gg-reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .gg-reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        .gg-reveal-delay-5 {
+            transition-delay: 0.5s;
+        }
+
+        .gg-reveal-delay-6 {
+            transition-delay: 0.6s;
+        }
+
+        .gg-reveal-delay-7 {
+            transition-delay: 0.7s;
+        }
+
+        /* ── RESPONSIVE ────────────────────────────────────── */
+        @media (max-width: 1024px) {
+            .gg-features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gg-steps {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 32px;
+            }
+
+            .gg-steps::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            /* Fixes for MediGenics mobile view */
+            .gg-transform-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                text-align: center;
+                padding: 24px;
+            }
+
+            .gg-transform-problem {
+                padding-right: 0;
+            }
+
+            .gg-transform-solution {
+                padding-left: 0;
+            }
+
+            .gg-transform-arrow {
+                transform: rotate(90deg);
+                margin: 0 auto;
+            }
+
+            .gg-testi-card {
+                flex: 0 0 85%;
+                scroll-snap-align: center;
+                padding: 24px;
+            }
+
+            .faq-cols {
+                grid-template-columns: 1fr;
+                margin-top: 1.5rem;
+            }
+
+            .gg-hero h1 {
+                font-size: clamp(2rem, 8vw, 2.5rem);
+            }
+
+            .gg-hero {
+                padding: 100px 5vw 60px;
+                background-position: 75% center;
+                /* Focus on the subjects on the right */
+                background-size: cover;
+                -webkit-background-size: cover;
+                background-attachment: scroll;
+                min-height: 100svh;
+            }
+
+            .gg-hero::before {
+                background: linear-gradient(180deg,
+                        rgba(13, 27, 62, 0.65) 0%,
+                        rgba(0, 26, 74, 0.5) 60%,
+                        rgba(0, 50, 100, 0.35) 100%);
+            }
+
+            .gg-section {
+                padding: 70px 5vw;
+            }
+
+            .gg-prob-grid {
+                gap: 20px;
+            }
+
+            .gg-steps {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gg-features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gg-pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gg-hero-stats {
+                flex-direction: column;
+            }
+
+            .gg-stat {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .gg-stat:last-child {
+                border-bottom: none;
+            }
+
+            .medical-coverage {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .medical-coverage {
+                grid-template-columns: 1fr;
+            }
+
+            .gg-steps {
+                grid-template-columns: 1fr;
+            }
+
+            #how-it-works .container {
+                padding: 0 1.25rem;
+                width: 95%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .gg-reveal {
+                transition: none;
+            }
+
+            .gg-hero::before {
+                animation: none;
+            }
+
+            .gg-hero-badge-dot {
+                animation: none;
+            }
+
+            .gg-scroll-line {
+                animation: none;
+            }
+        }
+
+        /* Dark Theme overrides */
+        [data-theme="dark"] .gg-pricing-card:not(.featured) {
+            background: rgba(0, 61, 130, 0.3);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="dark"] .gg-feature-list li:not(.featured *) {
+            color: #c7d2fe;
+        }
+
+        [data-theme="dark"] .gg-price:not(.featured *) {
+            color: #e0e7ff;
+        }
+
+        [data-theme="dark"] .gg-comparison-wrap {
+            background: rgba(0, 61, 130, 0.4);
+        }
+
+        [data-theme="dark"] .gg-compare-table td {
+            color: #c7d2fe;
+        }
+
+        [data-theme="dark"] .gg-compare-table tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        [data-theme="dark"] .gg-compare-table th:nth-child(2),
+        [data-theme="dark"] .gg-compare-table td:nth-child(2) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        [data-theme="dark"] .faq-item {
+            background: rgba(0, 61, 130, 0.3);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="dark"] .faq-question span:first-child {
+            color: #c7d2fe;
+        }
+
+        [data-theme="dark"] .faq-icon {
+            background: rgba(255, 255, 255, 0.08);
+            color: #c7d2fe;
+        }
+
+        [data-theme="dark"] .faq-item.open .faq-icon {
+            background: var(--gg-blue);
+            color: #fff;
+        }
+
+        [data-theme="dark"] .faq-answer {
+            color: #8b8baa;
+        }
+
+        [data-theme="dark"] .faq-item.open .faq-question {
+            border-bottom-color: rgba(255, 255, 255, 0.06);
+        }
+
+        [data-theme="dark"] .gg-transform-row {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="dark"] .gg-transform-arrow {
+            background: rgba(24, 95, 165, 0.15);
+            border-color: rgba(24, 95, 165, 0.3);
+            color: #ffffff;
+        }
+
+        [data-theme="dark"] .gg-transform-badge.problem {
+            background: rgba(229, 57, 53, 0.12);
+            color: #f87171;
+            border-color: rgba(229, 57, 53, 0.25);
+        }
+
+        [data-theme="dark"] .gg-transform-badge.solution {
+            background: rgba(24, 95, 165, 0.15);
+            color: #60a5fa;
+            border-color: rgba(24, 95, 165, 0.25);
+        }
+
+        [data-theme="dark"] .gg-transform-text {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        [data-theme="dark"] .gg-transform-text strong {
+            color: #ffffff;
+        }
+
+        [data-theme="dark"] .gg-transform-solution .gg-transform-text strong {
+            color: #60a5fa;
+        }
+
+        [data-theme="dark"] .gg-step-title {
+            color: #e0e7ff;
+        }
+
+        [data-theme="dark"] .gg-step-num {
+            box-shadow: 0 0 0 6px rgba(0, 61, 130, 0.5), 0 8px 24px rgba(24, 95, 165, 0.4);
+        }
+
+        [data-theme="dark"] .gg-feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="dark"] .gg-feature-card-body {
+            background: rgba(0, 61, 130, 0.2);
+        }
+
+        [data-theme="dark"] .gg-feature-desc {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        [data-theme="dark"] .gg-feature-num {
+            color: rgba(255, 255, 255, 0.03);
+        }
+
+        [data-theme="dark"] .gg-feature-card:hover .gg-feature-num {
+            color: rgba(255, 255, 255, 0.08);
+        }
+
+        [data-theme="dark"] .coverage-item {
+            background: rgba(0, 61, 130, 0.3);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="dark"] .coverage-item h4 {
+            color: #c7d2fe;
+        }
+
+        [data-theme="dark"] .coverage-item p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        [data-theme="dark"] .gg-testi-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="dark"] .gg-testi-quote {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        [data-theme="dark"] .gg-testi-name {
+            color: #ffffff;
+        }
+
+        [data-theme="dark"] .gg-testi-loc {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        [data-theme="dark"] .gg-carousel-btn {
+            background: rgba(0, 61, 130, 0.3);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+
+        /* ── TESTIMONIALS SLIDER WRAPPER ─────────────────────── */
+        .gg-testimonials-slider-wrapper {
+            position: relative;
+            padding: 0 60px;
+        }
+
+        .gg-testimonials-slider-wrapper .gg-carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(33, 29, 79, 0.1);
+            background: #ffffff;
+            color: var(--gg-indigo);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(33, 29, 79, 0.08);
+            transition: all 0.25s ease;
+        }
+
+        .gg-testimonials-slider-wrapper .gg-carousel-btn:hover {
+            background: var(--gg-blue);
+            color: #ffffff;
+            border-color: var(--gg-blue);
+        }
+
+        .gg-testimonials-slider-wrapper .gg-carousel-btn.prev {
+            left: 0;
+        }
+
+        .gg-testimonials-slider-wrapper .gg-carousel-btn.next {
+            right: 0;
+        }
+
+        @media (max-width: 768px) {
+            .gg-testimonials-slider-wrapper {
+                padding: 0;
+            }
+
+            .gg-testimonials-slider-wrapper .gg-carousel-btn {
+                display: none;
+            }
+        }
+
+        /* ── PRODUCT CARD & MODAL PAGE-SPECIFIC OVERRIDES ───── */
+        .view-product-btn {
+            background-color: var(--gg-indigo) !important;
+            color: #ffffff !important;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+        }
+
+        .view-product-btn:hover {
+            background-color: var(--gg-blue) !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25) !important;
+            transform: translateY(-2px) !important;
+        }
+
+        [data-theme="dark"] .view-product-btn {
+            background-color: var(--gg-blue) !important;
+            color: #121212 !important;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        [data-theme="dark"] .view-product-btn:hover {
+            background-color: var(--gg-indigo) !important;
+            color: #ffffff !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .product-details button {
+            background: var(--gg-indigo) !important;
+            color: #ffffff !important;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+        }
+
+        .product-details button:hover {
+            background: var(--gg-blue) !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25) !important;
+            transform: translateY(-2px) !important;
+        }
+
+        [data-theme="dark"] .product-details button {
+            background: var(--gg-blue) !important;
+            color: #121212 !important;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        [data-theme="dark"] .product-details button:hover {
+            background: var(--gg-indigo) !important;
+            color: #ffffff !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .product-modal-body span[style*="line-through"],
+        .product-modal-body p[style*="line-through"] {
+            color: var(--gg-indigo) !important;
+            opacity: 0.75 !important;
+        }
+
+        [data-theme="dark"] .product-modal-body span[style*="line-through"],
+        [data-theme="dark"] .product-modal-body p[style*="line-through"] {
+            color: var(--text-secondary) !important;
+            opacity: 0.75 !important;
+        }
+
+        .product-modal-body span[style*="color: #7ab55c"][style*="border-radius: 20px"] {
+            color: var(--gg-indigo) !important;
+            background: var(--gg-indigo-10) !important;
+            border-color: var(--gg-indigo-10) !important;
+        }
+
+        [data-theme="dark"] .product-modal-body span[style*="color: #7ab55c"][style*="border-radius: 20px"] {
+            color: var(--gg-blue) !important;
+            background: rgba(24, 95, 165, 0.1) !important;
+            border-color: rgba(24, 95, 165, 0.2) !important;
+        }
+    </style>
+
+    <!-- SEO & Social Meta Tags -->
+    <link rel="canonical" href="https://www.progenicslabs.com/medigenics-health-test-hyderabad/" />
+    <meta property="og:url" content="https://www.progenicslabs.com/medigenics-health-test-hyderabad/" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="MediGenics DNA Health Test in Hyderabad | Progenics Labs" />
+    <meta property="og:description" content="Get a personalized MediGenics health test in Hyderabad at Progenics Labs to understand inherited health risks and make informed healthcare decisions." />
+    <meta property="og:site_name" content="Progenics Labs" />
+    <meta property="og:image" content="https://www.progenicslabs.com/wp-content/uploads/2026/06/medigenics-og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="MediGenics DNA health test by Progenics Labs" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ProgenicsLabs" />
+    <meta name="twitter:title" content="MediGenics DNA Health Test in Hyderabad | Progenics Labs" />
+    <meta name="twitter:description" content="Get a personalized MediGenics health test in Hyderabad at Progenics Labs to understand inherited health risks and make informed healthcare decisions." />
+    <meta name="twitter:image" content="https://www.progenicslabs.com/wp-content/uploads/2026/06/medigenics-og.jpg" />
+    <meta name="twitter:image:alt" content="MediGenics DNA health test by Progenics Labs" />
+    <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
+    <link rel="icon" href="favicon.png?v=2" type="image/png" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is pharmacogenomics and why does it matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pharmacogenomics is how your genes affect medication response. Some people metabolize drugs 10x faster or slower than others due to genetic differences. This causes one person's optimal dose to be toxic for another. MediGenics reveals YOUR genetic drug metabolism so doctors can prescribe the RIGHT medication at the RIGHT dose for YOUR body."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can MediGenics help with my current medications?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! Get your test even if you're already on medications. MediGenics helps your doctor understand if your current medications are optimal for YOUR genetics. May reveal why you're experiencing side effects or why a medication isn't working well."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is MediGenics?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our analysis is highly accurate . Results are based on peer-reviewed pharmacogenomic research. Thousands of doctors across India use MediGenics results to make treatment decisions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need my doctor's approval to get tested?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. You can order directly. However, results are most valuable when shared with your doctor. Most doctors will incorporate MediGenics insights into your treatment plan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I don't have any health conditions yet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Still valuable! Having your MediGenics profile ready means when you eventually need medications (for any reason), your doctor immediately knows which drugs will work best. Prevention is better than trial-and-error during a health crisis."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long until I get my results?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Results in 21-28 working days . You'll receive a comprehensive report analyzing your genetic response to 200+ medications across 8 medical specialties. Quick enough to help with treatment decisions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my genetic information private and secure?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. All data is encrypted, HIPAA-compliant . Your genetic information is strictly confidential. Results can only be accessed by you and doctors you authorize."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is MediGenics different from other pharmacogenomic tests?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MediGenics offers comprehensive coverage across 8 medical specialties and analyzes 200+ medications. Most tests only cover less drugs."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" data-cursor-dot=""></div>
+    <div class="cursor-outline" data-cursor-outline=""></div>
+    <!-- Navigation -->
+    <div id="header-placeholder"></div>
+    <!-- HERO SECTION -->
+    <section class="gg-hero">
+        <div class="gg-hero-inner">
+            <div class="gg-hero-logo"
+                style="display: inline-flex; justify-content: center; align-items: center; margin-bottom: 24px; background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.8); border-radius: 100px; padding: 12px 40px; box-shadow: 0 8px 32px rgba(0,0,0,0.15), inset 0 4px 12px rgba(255,255,255,0.6);">
+                <img src="Images/Medigenics logo.png" alt="MediGenics Health DNA Test Logo"
+                    style="max-height: 70px; width: auto; max-width: 100%;" title="MediGenics Health DNA Test Logo">
+            </div>
+            <h1>
+                Stop Trial &amp; Error.<br>
+                Get The Right Medication First Time.
+            </h1>
+            <p class="gg-hero-sub">
+                Discover which medications work for YOUR genetics. Prevent adverse drug reactions, optimize dosages, and
+                get effective treatment faster.
+            </p>
+            <div class="gg-hero-ctas">
+                <a class="gg-btn-primary" href="genetic-test-kits/" id="hero-cta-primary" title="Shop Genetic Test Kits">
+                    Get Your Medication Profile →
+                </a>
+                <a class="gg-btn-ghost" href="#how-it-works" id="hero-cta-secondary">
+                    See How It Works
+                </a>
+            </div>
+            <div class="gg-hero-stats">
+                <div class="gg-stat">
+                    <div class="gg-stat-num">95<span>%</span></div>
+                    <div class="gg-stat-label">Adverse Reactions Reduction</div>
+                </div>
+                <div class="gg-stat">
+                    <div class="gg-stat-num">99.8<span>%</span></div>
+                    <div class="gg-stat-label">Sensitive</div>
+                </div>
+                <div class="gg-stat">
+                    <div class="gg-stat-num">20</div>
+                    <div class="gg-stat-label">Days to Results</div>
+                </div>
+                <div class="gg-stat">
+                    <div class="gg-stat-num">5<span>K+</span></div>
+                    <div class="gg-stat-label">Patients Tested</div>
+                </div>
+            </div>
+        </div>
+        <div class="gg-scroll-cue">
+            <div class="gg-scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+    <!-- THE PROBLEM -->
+    <section class="gg-section gg-section-alt">
+        <div class="container">
+            <div class="gg-section-center gg-reveal">
+                <span class="gg-label">The Challenge</span>
+                <h2 class="gg-title">Why Medication Trial &amp; Error Is Ineffective</h2>
+                <p class="gg-subtitle gg-subtitle-center">
+                    In India, over 149,400 deaths per year are attributed to adverse drug reactions (ADRs). Most are
+                    preventable with precision genetic testing.
+                </p>
+            </div>
+            <div class="gg-prob-grid">
+                <!-- Row 1 -->
+                <div class="gg-transform-row gg-reveal">
+                    <div class="gg-transform-problem">
+                        <span class="gg-transform-badge problem">Without MediGenics</span>
+                        <div class="gg-transform-text">
+                            Doctors prescribe medications based on <strong>Experience,</strong> not genetics.
+                        </div>
+                    </div>
+                    <div class="gg-transform-arrow">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2.5" viewBox="0 0 24 24">
+                            <line x1="5" x2="19" y1="12" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </div>
+                    <div class="gg-transform-solution">
+                        <span class="gg-transform-badge solution">With MediGenics</span>
+                        <div class="gg-transform-text">
+                            <strong>Identify exactly</strong> which medications work best for YOUR genes.
+                        </div>
+                    </div>
+                </div>
+                <!-- Row 2 -->
+                <div class="gg-transform-row gg-reveal gg-reveal-delay-1">
+                    <div class="gg-transform-problem">
+                        <span class="gg-transform-badge problem">Without MediGenics</span>
+                        <div class="gg-transform-text">
+                            Drug trial-and-error wastes <strong>months of valuable time</strong> and money.
+                        </div>
+                    </div>
+                    <div class="gg-transform-arrow">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2.5" viewBox="0 0 24 24">
+                            <line x1="5" x2="19" y1="12" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </div>
+                    <div class="gg-transform-solution">
+                        <span class="gg-transform-badge solution">With MediGenics</span>
+                        <div class="gg-transform-text">
+                            Get safe and effective treatment with in <strong>No Time</strong>.
+                        </div>
+                    </div>
+                </div>
+                <!-- Row 3 -->
+                <div class="gg-transform-row gg-reveal gg-reveal-delay-2">
+                    <div class="gg-transform-problem">
+                        <span class="gg-transform-badge problem">Without MediGenics</span>
+                        <div class="gg-transform-text">
+                            Wrong medications cause <strong>dangerous and potentially fatal</strong> side effects.
+                        </div>
+                    </div>
+                    <div class="gg-transform-arrow">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2.5" viewBox="0 0 24 24">
+                            <line x1="5" x2="19" y1="12" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </div>
+                    <div class="gg-transform-solution">
+                        <span class="gg-transform-badge solution">With MediGenics</span>
+                        <div class="gg-transform-text">
+                            <strong>Reduce the risk</strong> of adverse drug reactions.
+                        </div>
+                    </div>
+                </div>
+                <!-- Row 4 -->
+                <div class="gg-transform-row gg-reveal gg-reveal-delay-3">
+                    <div class="gg-transform-problem">
+                        <span class="gg-transform-badge problem">Without MediGenics</span>
+                        <div class="gg-transform-text">
+                            Multiple medications interact in <strong>unpredictable and toxic</strong> ways.
+                        </div>
+                    </div>
+                    <div class="gg-transform-arrow">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2.5" viewBox="0 0 24 24">
+                            <line x1="5" x2="19" y1="12" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </div>
+                    <div class="gg-transform-solution">
+                        <span class="gg-transform-badge solution">With MediGenics</span>
+                        <div class="gg-transform-text">
+                            <strong>Avoid dangerous drug interactions</strong> before they ever happen.
+                        </div>
+                    </div>
+                </div>
+                <!-- Row 5 -->
+                <div class="gg-transform-row gg-reveal gg-reveal-delay-4">
+                    <div class="gg-transform-problem">
+                        <span class="gg-transform-badge problem">Without MediGenics</span>
+                        <div class="gg-transform-text">
+                            Generic dosages aren't personalized to your body's <strong>unique metabolism</strong>.
+                        </div>
+                    </div>
+                    <div class="gg-transform-arrow">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2.5" viewBox="0 0 24 24">
+                            <line x1="5" x2="19" y1="12" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </div>
+                    <div class="gg-transform-solution">
+                        <span class="gg-transform-badge solution">With MediGenics</span>
+                        <div class="gg-transform-text">
+                            Predict the <strong>precise, optimal dosages</strong> for your unique body.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- MEDICAL COVERAGE -->
+    <!-- MEDICAL COVERAGE -->
+    <section class="gg-section gg-reveal">
+        <div class="container">
+            <div class="gg-section-center">
+                <span class="gg-label">Coverage</span>
+                <h2 class="gg-title">What MediGenics Covers</h2>
+                <p class="gg-subtitle gg-subtitle-center">
+                    Comprehensive pharmacogenomic analysis across 8 medical specialties
+                </p>
+            </div>
+            <div class="medical-coverage">
+                <div class="coverage-item">
+                    <div class="coverage-img-wrapper">
+                        <img alt="Cardiology genetic testing for inherited heart risks" src="Images/Cardiology.webp" />
+                    </div>
+                    <div class="coverage-content">
+                        <h4>Cardiology</h4>
+                        <p>Heart medications, anticoagulants, blood pressure drugs</p>
+                    </div>
+                </div>
+                <div class="coverage-item">
+                    <div class="coverage-img-wrapper">
+                        <img alt="Gastroenterology and gut health genetics screening" src="Images/GE.png" />
+                    </div>
+                    <div class="coverage-content">
+                        <h4>Gastroenterology</h4>
+                        <p>Digestive medications, anti-ulcer drugs, probiotics response</p>
+                    </div>
+                </div>
+                <div class="coverage-item">
+                    <div class="coverage-img-wrapper">
+                        <img alt="Oncology genetic testing for cancer risk assessment" src="Images/Oncology.png" />
+                    </div>
+                    <div class="coverage-content">
+                        <h4>Oncology</h4>
+                        <p>Cancer treatment response, chemotherapy metabolism</p>
+                    </div>
+                </div>
+                <div class="coverage-item">
+                    <div class="coverage-img-wrapper">
+                        <img alt="Infectious disease DNA molecular diagnostics - Progenics Labs"
+                            src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&amp;fit=crop&amp;w=600&amp;q=80" />
+                    </div>
+                    <div class="coverage-content">
+                        <h4>Infectious Disease</h4>
+                        <p>Antibiotic effectiveness, antiviral metabolism</p>
+                    </div>
+                </div>
+                <div class="coverage-item">
+                    <div class="coverage-img-wrapper">
+                        <img alt="Psychiatric medication and pharmacogenomics testing"
+                            src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&amp;fit=crop&amp;w=600&amp;q=80" />
+                    </div>
+                    <div class="coverage-content">
+                        <h4>Psychiatry</h4>
+                        <p>Antidepressants, anti-anxiety, psychiatric medications</p>
+                    </div>
+                </div>
+                <div class="coverage-item">
+                    <div class="coverage-img-wrapper">
+                        <img alt="Diabetes management and genetic predisposition testing"
+                            src="https://images.unsplash.com/photo-1593491034932-844ab981ed7c?auto=format&fit=crop&w=600&q=80" />
+                    </div>
+                    <div class="coverage-content">
+                        <h4>Diabetes Management</h4>
+                        <p>Diabetes medications, insulin response, glucose control drugs</p>
+                    </div>
+                </div>
+                <div class="coverage-item">
+                    <div class="coverage-img-wrapper">
+                        <img alt="Pain management DNA analysis - Progenics Labs"
+                            src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&amp;fit=crop&amp;w=600&amp;q=80" title="WellGenics Yoga and Wellness" />
+                    </div>
+                    <div class="coverage-content">
+                        <h4>Pain Management</h4>
+                        <p>Painkillers, opioid metabolism, effectiveness prediction</p>
+                    </div>
+                </div>
+                <div class="coverage-item">
+                    <div class="coverage-img-wrapper">
+                        <img alt="General Medicine genetics screening - Progenics Labs"
+                            src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&amp;fit=crop&amp;w=600&amp;q=80" />
+                    </div>
+                    <div class="coverage-content">
+                        <h4>General Medicine</h4>
+                        <p>Common medications across all medical conditions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- HOW IT WORKS -->
+    <section class="gg-section gg-section-alt" id="how-it-works">
+        <div class="container">
+            <div class="gg-section-center gg-reveal">
+                <span class="gg-label">Process</span>
+                <h2 class="gg-title">7 Simple Steps to Medication Optimization</h2>
+                <p class="gg-subtitle gg-subtitle-center">
+                    From order to effective treatment.
+                </p>
+            </div>
+            <div class="gg-steps">
+                <!-- Step 1 -->
+                <div class="gg-step gg-reveal gg-reveal-delay-1">
+                    <div class="gg-step-num">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                    </div>
+                    <div class="gg-step-title">Book a test</div>
+                    <div class="gg-step-desc">Schedule your MediGenics test conveniently through our website.</div>
+                </div>
+                <!-- Step 2 -->
+                <div class="gg-step gg-reveal gg-reveal-delay-2">
+                    <div class="gg-step-num">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24">
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                            </path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" x2="12" y1="22.08" y2="12"></line>
+                        </svg>
+                    </div>
+                    <div class="gg-step-title">Receive Your Collection Kit</div>
+                    <div class="gg-step-desc">Your sample collection kit will be securely dispatched.</div>
+                </div>
+                <!-- Step 3 -->
+                <div class="gg-step gg-reveal gg-reveal-delay-3">
+                    <div class="gg-step-num">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                            <path d="M9 14h6"></path>
+                            <path d="M9 16h6"></path>
+                            <path d="M9 12h6"></path>
+                        </svg>
+                    </div>
+                    <div class="gg-step-title">Complete the TRF</div>
+                    <div class="gg-step-desc">Complete the Test Requisition Form provided inside your kit.</div>
+                </div>
+                <!-- Step 4 -->
+                <div class="gg-step gg-reveal gg-reveal-delay-4">
+                    <div class="gg-step-num">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24">
+                            <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-13-7-13S5 10.7 5 15a7 7 0 0 0 7 7z"></path>
+                        </svg>
+                    </div>
+                    <div class="gg-step-title">Collect the sample</div>
+                    <div class="gg-step-desc">Use our sterile collection tools to easily and safely collect your
+                        blood/buccal swab sample.
+                    </div>
+                </div>
+                <!-- Step 5 -->
+                <div class="gg-step gg-reveal gg-reveal-delay-5">
+                    <div class="gg-step-num">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <div class="gg-step-title">Courier Pickup</div>
+                    <div class="gg-step-desc">Pack your sample and it will be seamlessly collected.</div>
+                </div>
+                <!-- Step 6 -->
+                <div class="gg-step gg-reveal gg-reveal-delay-6">
+                    <div class="gg-step-num">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24">
+                            <path d="M6 18h8"></path>
+                            <path d="M3 22h18"></path>
+                            <path d="M14 22a7 7 0 1 0 0-14h-1"></path>
+                            <path d="M9 14h2"></path>
+                            <path d="M9 12a2 2 0 1 0-2-2v6"></path>
+                            <path d="M11 6V3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v6"></path>
+                        </svg>
+                    </div>
+                    <div class="gg-step-title">Sample Processing</div>
+                    <div class="gg-step-desc">Your sample arrives at our laboratory for advanced sequencing.</div>
+                </div>
+                <!-- Step 7 -->
+                <div class="gg-step gg-reveal gg-reveal-delay-7">
+                    <div class="gg-step-num">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" x2="8" y1="13" y2="13"></line>
+                            <line x1="16" x2="8" y1="17" y2="17"></line>
+                        </svg>
+                    </div>
+                    <div class="gg-step-title">Digital Report Released</div>
+                    <div class="gg-step-desc">Access your comprehensive report securely within the turnaround time.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- KEY BENEFITS -->
+    <!-- KEY BENEFITS -->
+    <section class="gg-section gg-reveal">
+        <div class="container">
+            <div class="gg-section-center gg-reveal">
+                <span class="gg-label">Benefits</span>
+                <h2 class="gg-title">Why Get MediGenics Testing</h2>
+            </div>
+            <div class="gg-features-grid">
+                <!-- Card 1 -->
+                <div class="gg-feature-card gg-reveal gg-reveal-delay-1">
+                    <div class="gg-feature-card-header">
+                        <h3 class="gg-feature-title">Right Medication Time</h3>
+                    </div>
+                    <div class="gg-feature-card-body">
+                        <p class="gg-feature-desc">Stop trial-and-error. Know which medications will work for YOUR
+                            genetics before starting treatment.</p>
+                        <div class="gg-feature-num">01</div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="gg-feature-card gg-reveal gg-reveal-delay-2">
+                    <div class="gg-feature-card-header">
+                        <h3 class="gg-feature-title">Prevent Adverse Reactions</h3>
+                    </div>
+                    <div class="gg-feature-card-body">
+                        <p class="gg-feature-desc">Identify medications that cause dangerous side effects in YOUR body
+                            and avoid them completely.</p>
+                        <div class="gg-feature-num">02</div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="gg-feature-card gg-reveal gg-reveal-delay-3">
+                    <div class="gg-feature-card-header">
+                        <h3 class="gg-feature-title">Save Time &amp; Money</h3>
+                    </div>
+                    <div class="gg-feature-card-body">
+                        <p class="gg-feature-desc">Get effective treatment faster. Avoid wasting months trying wrong
+                            medications.</p>
+                        <div class="gg-feature-num">03</div>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="gg-feature-card gg-reveal gg-reveal-delay-1">
+                    <div class="gg-feature-card-header">
+                        <h3 class="gg-feature-title">Optimized Dosing</h3>
+                    </div>
+                    <div class="gg-feature-card-body">
+                        <p class="gg-feature-desc">Your genetic profile reveals optimal drug dosages. Too much =
+                            toxicity, too little = ineffective.</p>
+                        <div class="gg-feature-num">04</div>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="gg-feature-card gg-reveal gg-reveal-delay-2">
+                    <div class="gg-feature-card-header">
+                        <h3 class="gg-feature-title">Drug Interaction Prediction</h3>
+                    </div>
+                    <div class="gg-feature-card-body">
+                        <p class="gg-feature-desc">When taking multiple medications, know which combinations are safe
+                            for YOUR genetics.</p>
+                        <div class="gg-feature-num">05</div>
+                    </div>
+                </div>
+                <!-- Card 6 -->
+                <div class="gg-feature-card gg-reveal gg-reveal-delay-3">
+                    <div class="gg-feature-card-header">
+                        <h3 class="gg-feature-title">Lifetime Medical Record</h3>
+                    </div>
+                    <div class="gg-feature-card-body">
+                        <p class="gg-feature-desc">Share results with any doctor, specialist, or hospital. One test,
+                            lifelong benefit.</p>
+                        <div class="gg-feature-num">06</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- TESTIMONIALS -->
+    <section class="gg-section gg-section-alt">
+        <div class="container">
+            <div class="gg-section-center gg-reveal">
+                <span class="gg-label">Success Stories</span>
+                <h2 class="gg-title">Patients Getting Safe, Effective Treatment</h2>
+                <p class="gg-subtitle gg-subtitle-center">
+                    Thousands of Indians have taken control of their prescribing safety with MediGenics.
+                </p>
+            </div>
+            <div class="gg-testimonials-slider-wrapper gg-reveal"><button aria-label="Previous testimonial"
+                    class="gg-carousel-btn prev" id="gg-testi-prev">
+                    <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewBox="0 0 24 24" width="20">
+                        <path d="M15 18l-6-6 6-6"></path>
+                    </svg>
+                </button>
+                <div class="gg-testi-track" id="gg-testi-carousel">
+                    <!-- Card 1 -->
+                    <div class="gg-testi-card">
+                        <div class="gg-testi-stars">★★★★★</div>
+                        <p class="gg-testi-quote">"After 6 failed medications for depression, my doctor ordered
+                            MediGenics. The test showed I metabolize certain antidepressants too slowly. Changed to a
+                            different medication and within 2 weeks, I felt better. MediGenics saved my life."</p>
+                        <div class="gg-testi-author">
+                            <div class="gg-testi-avatar">RK</div>
+                            <div>
+                                <div class="gg-testi-name">Rajesh Kumar</div>
+                                <div class="gg-testi-loc">Hyderabad · IT Professional</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="gg-testi-card">
+                        <div class="gg-testi-stars">★★★★★</div>
+                        <p class="gg-testi-quote">"I had severe side effects to 3 different blood pressure medications.
+                            My cardiologist used MediGenics to find a safe medication for me. No side effects, perfect
+                            blood pressure control. Finally found peace of mind."</p>
+                        <div class="gg-testi-author">
+                            <div class="gg-testi-avatar">SM</div>
+                            <div>
+                                <div class="gg-testi-name">Sanjana Mehta</div>
+                                <div class="gg-testi-loc">Mumbai · Business Owner</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="gg-testi-card">
+                        <div class="gg-testi-stars">★★★★★</div>
+                        <p class="gg-testi-quote">"For cancer treatment, knowing my genetic response to chemotherapy was
+                            critical. MediGenics helped my oncologist choose the right drugs and dosages. Better
+                            treatment results, fewer side effects."</p>
+                        <div class="gg-testi-author">
+                            <div class="gg-testi-avatar">Rk</div>
+                            <div>
+                                <div class="gg-testi-name">Rama Krishna</div>
+                                <div class="gg-testi-loc">Visakhapatnam · Cancer Survivor</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="gg-testi-card">
+                        <div class="gg-testi-stars">★★★★★</div>
+                        <p class="gg-testi-quote">"I spent years testing different pain management medications with
+                            terrible results. MediGenics identified the specific metabolic pathway my body uses.
+                            Finally, a painkiller that works!"</p>
+                        <div class="gg-testi-author">
+                            <div class="gg-testi-avatar">NJ</div>
+                            <div>
+                                <div class="gg-testi-name">Neha Joshi</div>
+                                <div class="gg-testi-loc">Pune · Architect</div>
+                            </div>
+                        </div>
+                    </div>
+                </div><button aria-label="Next testimonial" class="gg-carousel-btn next" id="gg-testi-next">
+                    <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewBox="0 0 24 24" width="20">
+                        <path d="M9 18l6-6-6-6"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- ═══════════════════════════════════════════════════════
+ PRODUCT CARD SECTION
+ ═══════════════════════════════════════════════════════ -->
+    <section class="gg-section gg-section-alt gg-reveal" id="purchase">
+        <div class="container">
+            <div class="gg-section-center gg-reveal">
+                <span class="gg-label">Shop Now</span>
+                <h2 class="gg-title" style="white-space: nowrap !important;">Order Your MediGenics<sup
+                        style="font-size: 0.5em;">&trade;</sup> Kit</h2>
+                <p class="gg-subtitle gg-subtitle-center">
+                    Discover which medications work best for your genetics. Order your home DNA collection kit today and
+                    receive a personalized pharmacogenomics report.
+                </p>
+            </div>
+            <div style="max-width: 600px; margin: 4rem auto 0 auto;">
+                <div class="product-card" style="
+ text-align: center;
+ border-radius: 40px;
+ background: var(--bg-secondary);
+ border: 1px solid var(--card-border);
+ padding: 2.5rem;
+ box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+ transition: transform 0.3s ease;
+ ">
+                    <div class="product-image-container" style="
+ background: rgba(0, 0, 0, 0.02);
+ border-radius: 30px;
+ padding: 2.5rem 1rem;
+ margin-bottom: 1.5rem;
+ overflow: hidden;
+ ">
+                        <img alt="MediGenics Health DNA Testing Kit - Progenics Labs" src="Images/Medigenics Kit.png" style="
+ width: 100%;
+ height: clamp(200px, 40vw, 260px);
+ object-fit: contain;
+ transform: scale(1.1);
+ transition: transform 0.5s;
+ margin: 0 auto;
+ " title="MediGenics Health DNA Testing Kit - Progenics Labs" />
+                    </div>
+                    <div
+                        style="background-color: white; padding: 10px 15px; border-radius: 12px; height: 50px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img alt="MediGenics Health DNA Test Logo" src="Images/Medigenics logo.png"
+                            style="max-height: 100%; max-width: 100%; object-fit: contain;" title="MediGenics Health DNA Test Logo" />
+                    </div>
+                    <div class="product-price"
+                        style="margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 15px;">
+                        <span style="
+ color: var(--promo-color);
+ font-size: 1.6rem;
+ font-weight: 700;
+ ">Rs. 15,000.00</span>
+                        <span style="
+ text-decoration: line-through;
+ color: var(--text-secondary);
+ font-size: 1.1rem;
+ ">Rs. 18,000.00</span>
+                    </div>
+                    <a class="view-product-btn" href="product-medigenics/" style="
+ padding: 16px 50px;
+ border-radius: 40px;
+ text-decoration: none;
+ font-weight: 600;
+ font-size: 1.1rem;
+ display: inline-block;
+ " title="MediGenics Health DNA Test">View product</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ SECTION -->
+    <!-- ===== PRODUCT OVERLAY MODAL ===== -->
+    <div id="shopify-product-overlay"
+        style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;background:rgba(0,0,0,0.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);overflow-y:auto;padding:20px;box-sizing:border-box;">
+        <div
+            style="background:#ffffff;border-radius:20px;max-width:860px;width:100%;margin:40px auto;padding:40px 36px 36px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.4);">
+            <button onclick="closeProductOverlay()"
+                style="position:absolute;top:16px;right:20px;background:none;border:none;font-size:2rem;line-height:1;cursor:pointer;color:#666;"
+                aria-label="Close" onmouseover="this.style.color='#211d4f'"
+                onmouseout="this.style.color='#666'">&times;</button>
+            <div id="product-component-1782302043856"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        (function () {
+            function loadShopifyScript(cb) { var u = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js'; if (window.ShopifyBuy && window.ShopifyBuy.UI) { cb(); return; } var ex = document.querySelector('script[src="' + u + '"]'); if (ex) { var iv = setInterval(function () { if (window.ShopifyBuy && window.ShopifyBuy.UI) { clearInterval(iv); cb(); } }, 50); return; } var s = document.createElement('script'); s.async = true; s.src = u; s.onload = cb; (document.head || document.body).appendChild(s); }
+            window.openProductOverlay = function (pid) { var ov = document.getElementById('shopify-product-overlay'); var mn = document.getElementById('product-component-1782302043856'); mn.innerHTML = ''; ov.style.display = 'block'; document.body.style.overflow = 'hidden'; loadShopifyScript(function () { var c = ShopifyBuy.buildClient({ domain: 'c5452d-aa.myshopify.com', storefrontAccessToken: '816c8a8824925c2c2bc46059fd0025e2' }); ShopifyBuy.UI.onReady(c).then(function (ui) { ui.createComponent('product', { id: pid, node: document.getElementById('product-component-1782302043856'), moneyFormat: 'Rs.%20%7B%7Bamount%7D%7D', options: { "product": { "styles": { "product": { "@media (min-width: 601px)": { "max-width": "100%", "margin-left": "0", "margin-bottom": "50px" }, "text-align": "left" }, "title": { "font-family": "Roboto, sans-serif", "font-weight": "normal", "font-size": "26px" }, "button": { "font-family": "Roboto, sans-serif", ":hover": { "background-color": "#6ea451" }, "background-color": "#7ab65a", ":focus": { "background-color": "#6ea451" }, "border-radius": "21px" }, "price": { "font-family": "Roboto, sans-serif", "font-size": "18px", "color": "#f54a4a" }, "compareAt": { "font-family": "Roboto, sans-serif", "font-size": "15.3px", "color": "#f54a4a" }, "unitPrice": { "font-family": "Roboto, sans-serif", "font-size": "15.3px", "color": "#f54a4a" } }, "buttonDestination": "checkout", "layout": "horizontal", "contents": { "img": false, "imgWithCarousel": true, "description": true }, "width": "100%", "text": { "button": "Buy now" }, "googleFonts": ["Roboto"] }, "productSet": { "styles": { "products": { "@media (min-width: 601px)": { "margin-left": "-20px" } } } }, "modalProduct": { "contents": { "img": false, "imgWithCarousel": true, "button": false, "buttonWithQuantity": true }, "styles": { "product": { "@media (min-width: 601px)": { "max-width": "100%", "margin-left": "0px", "margin-bottom": "0px" } }, "button": { "font-family": "Roboto, sans-serif", ":hover": { "background-color": "#6ea451" }, "background-color": "#7ab65a", ":focus": { "background-color": "#6ea451" }, "border-radius": "21px" }, "title": { "font-family": "Roboto, sans-serif", "font-weight": "normal", "font-size": "26px", "color": "#4c4c4c" }, "price": { "font-family": "Helvetica Neue, sans-serif", "font-weight": "normal", "font-size": "18px", "color": "#ea5b5b" }, "compareAt": { "font-family": "Helvetica Neue, sans-serif", "font-weight": "normal", "font-size": "15.3px", "color": "#ea5b5b" }, "unitPrice": { "font-family": "Helvetica Neue, sans-serif", "font-weight": "normal", "font-size": "15.3px", "color": "#ea5b5b" } }, "googleFonts": ["Roboto"], "text": { "button": "Add to cart" } }, "option": { "styles": { "label": { "font-family": "Roboto, sans-serif" }, "select": { "font-family": "Roboto, sans-serif" } }, "googleFonts": ["Roboto"] }, "cart": { "styles": { "button": { "font-family": "Roboto, sans-serif", ":hover": { "background-color": "#6ea451" }, "background-color": "#7ab65a", ":focus": { "background-color": "#6ea451" }, "border-radius": "21px" } }, "text": { "total": "Subtotal", "button": "Checkout" }, "googleFonts": ["Roboto"] }, "toggle": { "styles": { "toggle": { "font-family": "Roboto, sans-serif", "background-color": "#7ab65a", ":hover": { "background-color": "#6ea451" }, ":focus": { "background-color": "#6ea451" } } }, "googleFonts": ["Roboto"] } } }); }); }); }
+            window.closeProductOverlay = function () { document.getElementById('shopify-product-overlay').style.display = 'none'; document.body.style.overflow = ''; var m = document.getElementById('product-component-1782302043856'); if (m) m.innerHTML = ''; }
+            document.addEventListener('click', function (e) { if (e.target === document.getElementById('shopify-product-overlay')) window.closeProductOverlay(); });
+            document.addEventListener('keydown', function (e) { if (e.key === 'Escape') window.closeProductOverlay(); });
+        })();
+    </script>
+    <section class="gg-section gg-section-alt" id="faq">
+        <div class="container">
+            <div class="gg-section-center gg-reveal">
+                <span class="gg-label">FAQ</span>
+                <h2 class="gg-title">Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-cols" id="gg-faq-list">
+                <div class="faq-item open">
+                    <div aria-expanded="true" class="faq-question" role="button" tabindex="0">
+                        <span>What is pharmacogenomics and why does it matter?</span>
+                        <div class="faq-icon">
+                            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="14">
+                                <line x1="12" x2="12" y1="5" y2="19"></line>
+                                <line x1="5" x2="19" y1="12" y2="12"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="gg-faq-a-inner">
+                            Pharmacogenomics is how your genes affect medication response. Some people metabolize drugs
+                            10x faster or slower than others due to genetic differences. This causes one person's
+                            optimal dose to be toxic for another. MediGenics reveals YOUR genetic drug metabolism so
+                            doctors can prescribe the RIGHT medication at the RIGHT dose for YOUR body.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div aria-expanded="false" class="faq-question" role="button" tabindex="0">
+                        <span>Can MediGenics help with my current medications?</span>
+                        <div class="faq-icon">
+                            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="14">
+                                <line x1="12" x2="12" y1="5" y2="19"></line>
+                                <line x1="5" x2="19" y1="12" y2="12"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="gg-faq-a-inner">
+                            Yes! Get your test even if you're already on medications. MediGenics helps your doctor
+                            understand if your current medications are optimal for YOUR genetics. May reveal why you're
+                            experiencing side effects or why a medication isn't working well.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div aria-expanded="false" class="faq-question" role="button" tabindex="0">
+                        <span>How accurate is MediGenics?</span>
+                        <div class="faq-icon">
+                            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="14">
+                                <line x1="12" x2="12" y1="5" y2="19"></line>
+                                <line x1="5" x2="19" y1="12" y2="12"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="gg-faq-a-inner">
+                            Our analysis is <strong>highly accurate</strong>. Results
+                            are based on peer-reviewed pharmacogenomic research. Thousands of doctors across India use
+                            MediGenics results to make treatment decisions.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div aria-expanded="false" class="faq-question" role="button" tabindex="0">
+                        <span>Do I need my doctor's approval to get tested?</span>
+                        <div class="faq-icon">
+                            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="14">
+                                <line x1="12" x2="12" y1="5" y2="19"></line>
+                                <line x1="5" x2="19" y1="12" y2="12"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="gg-faq-a-inner">
+                            No. You can order directly. However, results are most valuable when shared with your doctor.
+                            Most doctors will incorporate MediGenics insights into your treatment plan.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div aria-expanded="false" class="faq-question" role="button" tabindex="0">
+                        <span>What if I don't have any health conditions yet?</span>
+                        <div class="faq-icon">
+                            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="14">
+                                <line x1="12" x2="12" y1="5" y2="19"></line>
+                                <line x1="5" x2="19" y1="12" y2="12"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="gg-faq-a-inner">
+                            Still valuable! Having your MediGenics profile ready means when you eventually need
+                            medications (for any reason), your doctor immediately knows which drugs will work best.
+                            Prevention is better than trial-and-error during a health crisis.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div aria-expanded="false" class="faq-question" role="button" tabindex="0">
+                        <span>How long until I get my results?</span>
+                        <div class="faq-icon">
+                            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="14">
+                                <line x1="12" x2="12" y1="5" y2="19"></line>
+                                <line x1="5" x2="19" y1="12" y2="12"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="gg-faq-a-inner">
+                            Results in <strong>21-28 working days</strong>. You'll receive a comprehensive report
+                            analyzing your genetic response to 200+ medications across 8 medical specialties. Quick
+                            enough to help with treatment decisions.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div aria-expanded="false" class="faq-question" role="button" tabindex="0">
+                        <span>Is my genetic information private and secure?</span>
+                        <div class="faq-icon">
+                            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="14">
+                                <line x1="12" x2="12" y1="5" y2="19"></line>
+                                <line x1="5" x2="19" y1="12" y2="12"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="gg-faq-a-inner">
+                            Yes. All data is encrypted, <strong>HIPAA-compliant</strong>. Your
+                            genetic information is strictly confidential. Results can only be accessed by you and
+                            doctors you authorize.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div aria-expanded="false" class="faq-question" role="button" tabindex="0">
+                        <span>How is MediGenics different from other pharmacogenomic tests?</span>
+                        <div class="faq-icon">
+                            <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="14">
+                                <line x1="12" x2="12" y1="5" y2="19"></line>
+                                <line x1="5" x2="19" y1="12" y2="12"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="gg-faq-a-inner">
+                            MediGenics offers comprehensive coverage across <strong>8 medical specialties</strong> and
+                            analyzes 200+ medications. Most tests only cover less drugs.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CTA SECTION -->
+    <section class="gg-final-cta">
+        <div class="gg-final-cta-inner gg-reveal">
+            <span class="gg-label gg-label-dark" style="margin-bottom: 24px;">Ready to Begin?</span>
+            <h2>Stop Medication <br> Trail and Error Today</h2>
+            <p>Join 30,000+ Indians who have taken control of their health with personalized prescribing. Get the right
+                medication, right dosage, on your first try.</p>
+            <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+                <a class="gg-btn-primary" href="genetic-test-kits/" id="final-cta-primary"
+                    style="font-size:16px; padding:18px 44px;" title="Shop Genetic Test Kits">
+                    Order Your MediGenics Test Today →
+                </a>
+                <a class="gg-btn-ghost" href="#faq" id="final-cta-secondary" style="font-size:16px; padding:18px 44px;">
+                    Read FAQs
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="footer-divider"></div>
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <img alt="Progenics Logo" class="footer-logo" src="Images/Progenics Blue TM.png" title="Progenics Logo" />
+                <div class="company-details">
+                    <p><strong>Progenics Laboratories Pvt. Ltd.</strong></p>
+                    <p>308, 3rd floor, Jain Friends Square, sy. No. 85, Suchitra Rd, beside Suchitra Academy,</p>
+                    <p>Padmanagar Phase II, Hyderabad, Telangana 500067</p>
+                </div>
+                <div class="contact-details" style="display: flex; flex-direction: column; gap: 8px;">
+                    <a href="tel:+918977751239" title="Call Progenics Labs">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-2.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
+                        +91 89777 51239
+                    </a>
+                    <a href="tel:+918977751239" title="Call Progenics Labs">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-2.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
+                        +91 89775 07781
+                    </a>
+                    <a href="mailto:connect@progenicslabs.com" title="Email Progenics Labs">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect height="16" rx="2" width="20" x="2" y="4"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                        connect@progenicslabs.com
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html" title="Progenics Labs Home">Home</a></li>
+                    <li><a href="about-us/" title="About Progenics Labs">About Us</a></li>
+                    <li><a href="genetic-test-kits/" title="Shop Genetic Test Kits">Shop Now</a></li>
+                    <li><a href="blog/" title="Genetics & Health Blog">Blog</a></li>
+                    <li><a href="careers/" title="Careers at Progenics Labs">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3 class="footer-heading">Services</h3>
+                <ul class="footer-links">
+                    <li><a href="gut-microbiome-test-hyderabad/" title="GutGenics Gut Microbiome Test">GutGenics<sup>™</sup></a></li>
+                    <li><a href="medigenics-health-test-hyderabad/" title="MediGenics Health DNA Test">MediGenics<sup>™</sup></a></li>
+                    <li><a href="wellgenics-dna-test-hyderabad/" title="WellGenics Wellness DNA Test">WellGenics<sup>™</sup></a></li>
+                    <li><a href="fitness-dna-test-hyderabad/" title="FitGenics Fitness DNA Test">FitGenics<sup>™</sup></a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3 class="footer-heading">Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="privacy-policy.html" title="Privacy Policy">Privacy Policy</a></li>
+                    <li><a href="terms-conditions.html" title="Terms & Conditions">Terms &amp; Conditions</a></li>
+                    <li><a href="cancellation-refund-policy.html" title="Cancellation & Refund Policy">Cancellation &amp; Refund</a></li>
+                    <li><a href="logistics-shipping.html" title="Logistics & Shipping">Logistics &amp; Shipping</a></li>
+                </ul>
+            </div>
+            <div class="footer-col about-col">
+                <h3 class="footer-heading">Connect With Us</h3>
+                <div class="social-links">
+                    <a class="social-link" href="https://www.facebook.com/profile.php?id=61561307542786" target="_blank"
+                        rel="noopener noreferrer" title="Facebook">
+                        <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a class="social-link" href="https://www.instagram.com/progenics_laboratories/" target="_blank"
+                        rel="noopener noreferrer" title="Instagram">
+                        <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a class="social-link" href="https://www.linkedin.com/company/progenics-laboratories-pvt-ltd/"
+                        target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                        <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                            </path>
+                            <rect height="12" width="4" x="2" y="9"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                    <a class="social-link" href="https://x.com/Progenics_labs" target="_blank" rel="noopener noreferrer"
+                        title="Twitter/X">
+                        <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+                            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">© 2026 Progenics Laboratories Pvt. Ltd. All rights reserved.</p>
+        </div>
+    </footer>
+    <a class="map-float" href="https://maps.app.goo.gl/HdEgbu9ZnQ85wNdv7" target="_blank" rel="noopener noreferrer"
+        title="Get Directions"> <svg fill="none" height="28" stroke="currentColor" stroke-linecap="round"
+            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="28">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+        </svg> </a> <a class="call-float" href="tel:8977751239" target="_blank" rel="noopener noreferrer" title="Call Progenics Labs"> <svg
+            fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2" viewBox="0 0 24 24" width="30">
+            <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-2.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+            </path>
+        </svg> </a> <a class="whatsapp-float" href="https://wa.me/918977751239" target="_blank"
+        rel="noopener noreferrer" title="Chat with Progenics Labs on WhatsApp"> <img alt="WhatsApp Contact support at Progenics Labs" height="30"
+            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="30" title="WhatsApp Contact support at Progenics Labs" /> </a>
+    <div class="product-modal-overlay" id="medigenicsModal" data-lenis-prevent>
+        <div class="product-modal-content" data-lenis-prevent style="
+ max-width: 1200px;
+ width: 95%;
+ max-height: 90vh;
+ display: flex;
+ flex-direction: column;
+ background: var(--bg-secondary);
+ border: 1px solid rgba(255, 255, 255, 0.1);
+ backdrop-filter: blur(20px);
+ ">
+            <button class="close-modal-btn" onclick="closeActiveModals()"></button>
+            <div class="product-modal-body" data-lenis-prevent
+                style="padding: 1rem; overflow-y: auto; flex: 1; min-height: 0;">
+                <div class="product-purchase-container" style="
+ max-width: 1200px;
+ margin: 0 auto 5rem auto;
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 4rem;
+ align-items: start;
+ ">
+                    <!-- Left Column: Image Carousel -->
+                    <div class="product-carousel" style="
+ background: var(--bg-secondary);
+ border-radius: 30px;
+ padding: 2rem;
+ border: 1px solid rgba(255, 255, 255, 0.1);
+ position: relative;
+ backdrop-filter: blur(20px);
+ text-align: center;
+ ">
+                        <button class="carousel-arrow left-arrow" style="
+ position: absolute;
+ left: 20px;
+ top: 50%;
+ transform: translateY(-50%);
+ background: rgba(0, 0, 0, 0.5);
+ color: white;
+ border: none;
+ border-radius: 50%;
+ width: 40px;
+ height: 40px;
+ cursor: pointer;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ backdrop-filter: blur(5px);
+ transition: background 0.3s;
+ ">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                width="24">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <img alt="MediGenics Health DNA Testing Kit - Progenics Labs" src="Images/Medigenics Kit.png" style="
+ width: 100%;
+ max-width: 400px;
+ height: auto;
+ border-radius: 20px;
+ object-fit: contain;
+ margin: 0 auto;
+ display: block;
+ filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.3));
+ " title="MediGenics Health DNA Testing Kit - Progenics Labs" />
+                        <button class="carousel-arrow right-arrow" style="
+ position: absolute;
+ right: 20px;
+ top: 50%;
+ transform: translateY(-50%);
+ background: rgba(0, 0, 0, 0.5);
+ color: white;
+ border: none;
+ border-radius: 50%;
+ width: 40px;
+ height: 40px;
+ cursor: pointer;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ backdrop-filter: blur(5px);
+ transition: background 0.3s;
+ ">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                width="24">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Right Column: Product Details -->
+                    <div class="product-details" style="padding: 1rem 0">
+                        <h2 class="serif-italic" style="
+ color: var(--text-primary);
+ font-size: 2.5rem;
+ margin-bottom: 0.5rem;
+ ">
+                            Medigenics
+                        </h2>
+                        <div style="
+ margin-bottom: 2rem;
+ display: flex;
+ align-items: baseline;
+ gap: 15px;
+ ">
+                            <span style="
+ color: var(--promo-color);
+ font-size: 2rem;
+ font-weight: 700;
+ ">Rs. 15,000.00</span>
+                            <span style="
+ text-decoration: line-through;
+ color: rgba(255, 255, 255, 0.4);
+ font-size: 1.2rem;
+ ">Rs. 18,000.00</span>
+                        </div>
+                        <div style="display: flex; gap: 1rem; margin-bottom: 3rem">
+                            <input min="1" style="
+ width: 80px;
+ padding: 15px;
+ border: 1px solid rgba(255, 255, 255, 0.2);
+ border-radius: 12px;
+ text-align: center;
+ font-size: 1.1rem;
+ background: rgba(0, 0, 0, 0.3);
+ color: var(--text-primary);
+ " type="number" value="1" />
+                            <button onmouseout="
+ this.style.transform = 'translateY(0)';
+ this.style.boxShadow =
+ '0 10px 20px rgba(122, 181, 92, 0.3)';
+ " onmouseover="
+ this.style.transform = 'translateY(-2px)';
+ this.style.boxShadow =
+ '0 15px 25px rgba(122, 181, 92, 0.4)';
+ " style="
+ flex-grow: 1;
+ background: linear-gradient(
+ 135deg,
+ #7ab55c 0%,
+ #5a9141 100%
+ );
+ color: white;
+ border: none;
+ padding: 15px;
+ border-radius: 30px;
+ font-weight: 600;
+ font-size: 1.1rem;
+ cursor: pointer;
+ transition:
+ transform 0.2s,
+ box-shadow 0.2s;
+ box-shadow: 0 10px 20px rgba(122, 181, 92, 0.3);
+ letter-spacing: 1px;
+ text-transform: uppercase;
+ ">
+                                Add to cart
+                            </button>
+                        </div>
+                        <div style="
+ background: rgba(255, 255, 255, 0.03);
+ padding: 2rem;
+ border-radius: 20px;
+ border: 1px solid rgba(255, 255, 255, 0.05);
+ margin-bottom: 3rem;
+ ">
+                            <h3 style="
+ color: var(--accent-blue);
+ font-size: 1.4rem;
+ margin-bottom: 1.5rem;
+ font-weight: 600;
+ letter-spacing: 1px;
+ ">
+                                Benefits
+                            </h3>
+                            <ul style="list-style: none; padding: 0; margin: 0">
+                                <li style="
+ display: flex;
+ gap: 15px;
+ align-items: flex-start;
+ margin-bottom: 15px;
+ ">
+                                    <span style="color: #7ab55c; font-size: 1.2rem; flex-shrink: 0">✔️</span>
+                                    <span style="
+ color: var(--text-secondary);
+ font-size: 1rem;
+ font-weight: 400;
+ line-height: 1.5;
+ ">Understand how your genetics impact drug response.</span>
+                                </li>
+                                <li style="
+ display: flex;
+ gap: 15px;
+ align-items: flex-start;
+ margin-bottom: 15px;
+ ">
+                                    <span style="color: #7ab55c; font-size: 1.2rem; flex-shrink: 0">✔️</span>
+                                    <span style="
+ color: var(--text-secondary);
+ font-size: 1rem;
+ font-weight: 400;
+ line-height: 1.5;
+ ">Optimize medication efficacy with precision.</span>
+                                </li>
+                                <li style="
+ display: flex;
+ gap: 15px;
+ align-items: flex-start;
+ margin-bottom: 15px;
+ ">
+                                    <span style="color: #7ab55c; font-size: 1.2rem; flex-shrink: 0">✔️</span>
+                                    <span style="
+ color: var(--text-secondary);
+ font-size: 1rem;
+ font-weight: 400;
+ line-height: 1.5;
+ ">Reduce the risk of adverse drug reactions.</span>
+                                </li>
+                                <li style="
+ display: flex;
+ gap: 15px;
+ align-items: flex-start;
+ margin-bottom: 15px;
+ ">
+                                    <span style="color: #7ab55c; font-size: 1.2rem; flex-shrink: 0">✔️</span>
+                                    <span style="
+ color: var(--text-secondary);
+ font-size: 1rem;
+ font-weight: 400;
+ line-height: 1.5;
+ ">Personalized treatment recommendations based on genetic
+                                        insights.</span>
+                                </li>
+                                <li style="
+ display: flex;
+ gap: 15px;
+ align-items: flex-start;
+ margin-bottom: 15px;
+ ">
+                                    <span style="color: #7ab55c; font-size: 1.2rem; flex-shrink: 0">✔️</span>
+                                    <span style="
+ color: var(--text-secondary);
+ font-size: 1rem;
+ font-weight: 400;
+ line-height: 1.5;
+ ">Clinically validated results for better healthcare
+                                        decisions.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+ gap: 1.5rem;
+ margin-bottom: 1rem;
+ ">
+                            <!-- Combo Card 1 -->
+                            <div onmouseout="
+ this.style.borderColor = 'rgba(255,255,255,0.1)';
+ this.style.transform = 'translateY(0)';
+ " onmouseover="
+ this.style.borderColor = 'rgba(255,255,255,0.3)';
+ this.style.transform = 'translateY(-5px)';
+ " style="
+ border: 1px solid rgba(255, 255, 255, 0.1);
+ border-radius: 20px;
+ padding: 2rem 1.5rem;
+ text-align: center;
+ background: rgba(0, 0, 0, 0.2);
+ position: relative;
+ transition:
+ border-color 0.3s,
+ transform 0.3s;
+ ">
+                                <span style="
+ background: linear-gradient(
+ 90deg,
+ #ff9a9e 0%,
+ #fecfef 99%,
+ #fecfef 100%
+ );
+ color: #333;
+ font-size: 0.8rem;
+ font-weight: 800;
+ padding: 6px 15px;
+ border-radius: 20px;
+ position: absolute;
+ top: -14px;
+ left: 50%;
+ transform: translateX(-50%);
+ white-space: nowrap;
+ box-shadow: 0 5px 15px rgba(255, 154, 158, 0.3);
+ ">Save ₹4,000</span>
+                                <p style="
+ margin-top: 0.5rem;
+ color: var(--text-primary);
+ font-size: 1rem;
+ font-weight: 600;
+ margin-bottom: 0.5rem;
+ ">
+                                    Pack of 2 - Standard
+                                </p>
+                                <p style="
+ text-decoration: line-through;
+ color: rgba(255, 255, 255, 0.4);
+ font-size: 0.9rem;
+ margin-bottom: 0.2rem;
+ ">
+                                    ₹30,000
+                                </p>
+                                <p style="
+ color: var(--accent-blue);
+ font-size: 1.8rem;
+ font-weight: 700;
+ margin-bottom: 0.5rem;
+ ">
+                                    ₹25,500
+                                </p>
+                                <p style="
+ color: var(--text-secondary);
+ font-size: 0.8rem;
+ margin-bottom: 1.5rem;
+ ">
+                                    (Incl. all taxes)
+                                </p>
+                                <span style="
+ background: rgba(122, 181, 92, 0.1);
+ border: 1px solid rgba(122, 181, 92, 0.3);
+ color: #7ab55c;
+ font-size: 0.85rem;
+ font-weight: 700;
+ padding: 6px 15px;
+ border-radius: 20px;
+ ">Flat 13% Off</span>
+                            </div>
+                            <!-- Combo Card 2 -->
+                            <div onmouseout="
+ this.style.borderColor = 'rgba(255,255,255,0.1)';
+ this.style.transform = 'translateY(0)';
+ " onmouseover="
+ this.style.borderColor = 'rgba(255,255,255,0.3)';
+ this.style.transform = 'translateY(-5px)';
+ " style="
+ border: 1px solid rgba(255, 255, 255, 0.1);
+ border-radius: 20px;
+ padding: 2rem 1.5rem;
+ text-align: center;
+ background: rgba(0, 0, 0, 0.2);
+ position: relative;
+ transition:
+ border-color 0.3s,
+ transform 0.3s;
+ ">
+                                <span style="
+ background: linear-gradient(
+ 120deg,
+ #f6d365 0%,
+ #fda085 100%
+ );
+ color: #333;
+ font-size: 0.8rem;
+ font-weight: 800;
+ padding: 6px 15px;
+ border-radius: 20px;
+ position: absolute;
+ top: -14px;
+ left: 50%;
+ transform: translateX(-50%);
+ white-space: nowrap;
+ box-shadow: 0 5px 15px rgba(246, 211, 101, 0.3);
+ ">Save ₹5,000</span>
+                                <p style="
+ margin-top: 0.5rem;
+ color: var(--text-primary);
+ font-size: 1rem;
+ font-weight: 600;
+ margin-bottom: 0.5rem;
+ ">
+                                    Pack of 2 - Prime
+                                </p>
+                                <p style="
+ text-decoration: line-through;
+ color: rgba(255, 255, 255, 0.4);
+ font-size: 0.9rem;
+ margin-bottom: 0.2rem;
+ ">
+                                    ₹34,000
+                                </p>
+                                <p style="
+ color: var(--accent-blue);
+ font-size: 1.8rem;
+ font-weight: 700;
+ margin-bottom: 0.5rem;
+ ">
+                                    ₹28,900
+                                </p>
+                                <p style="
+ color: var(--text-secondary);
+ font-size: 0.8rem;
+ margin-bottom: 1.5rem;
+ ">
+                                    (Incl. all taxes)
+                                </p>
+                                <span style="
+ background: rgba(122, 181, 92, 0.1);
+ border: 1px solid rgba(122, 181, 92, 0.3);
+ color: #7ab55c;
+ font-size: 0.85rem;
+ font-weight: 700;
+ padding: 6px 15px;
+ border-radius: 20px;
+ ">Flat 15% Off</span>
+                            </div>
+                            <!-- Combo Card 3 -->
+                            <div onmouseout="
+ this.style.borderColor = 'rgba(255,255,255,0.1)';
+ this.style.transform = 'translateY(0)';
+ " onmouseover="
+ this.style.borderColor = 'rgba(255,255,255,0.3)';
+ this.style.transform = 'translateY(-5px)';
+ " style="
+ border: 1px solid rgba(255, 255, 255, 0.1);
+ border-radius: 20px;
+ padding: 2rem 1.5rem;
+ text-align: center;
+ background: rgba(0, 0, 0, 0.2);
+ position: relative;
+ transition:
+ border-color 0.3s,
+ transform 0.3s;
+ ">
+                                <span style="
+ background: linear-gradient(
+ to right,
+ #4facfe 0%,
+ #00f2fe 100%
+ );
+ color: #333;
+ font-size: 0.8rem;
+ font-weight: 800;
+ padding: 6px 15px;
+ border-radius: 20px;
+ position: absolute;
+ top: -14px;
+ left: 50%;
+ transform: translateX(-50%);
+ white-space: nowrap;
+ box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+ ">Save ₹6,000</span>
+                                <p style="
+ margin-top: 0.5rem;
+ color: var(--text-primary);
+ font-size: 1rem;
+ font-weight: 600;
+ margin-bottom: 0.5rem;
+ ">
+                                    Pack of 2 - Elite
+                                </p>
+                                <p style="
+ text-decoration: line-through;
+ color: rgba(255, 255, 255, 0.4);
+ font-size: 0.9rem;
+ margin-bottom: 0.2rem;
+ ">
+                                    ₹40,000
+                                </p>
+                                <p style="
+ color: var(--accent-blue);
+ font-size: 1.8rem;
+ font-weight: 700;
+ margin-bottom: 0.5rem;
+ ">
+                                    ₹34,000
+                                </p>
+                                <p style="
+ color: var(--text-secondary);
+ font-size: 0.8rem;
+ margin-bottom: 1.5rem;
+ ">
+                                    (Incl. all taxes)
+                                </p>
+                                <span style="
+ background: rgba(122, 181, 92, 0.1);
+ border: 1px solid rgba(122, 181, 92, 0.3);
+ color: #7ab55c;
+ font-size: 0.85rem;
+ font-weight: 700;
+ padding: 6px 15px;
+ border-radius: 20px;
+ ">Flat 15% Off</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lenis Smooth Scrolling -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // ─── SCROLL REVEAL ──────────────────────────────────────────
+        (function () {
+            const reveals = document.querySelectorAll('.gg-reveal');
+            if (!reveals.length) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+            reveals.forEach(el => observer.observe(el));
+        })();
+
+        // ─── TESTIMONIALS AUTO CAROUSEL ─────────────────────────────
+        (function () {
+            const carousel = document.getElementById('gg-testi-carousel');
+            const prev = document.getElementById('gg-testi-prev');
+            const next = document.getElementById('gg-testi-next');
+            if (!carousel) return;
+
+            let timer;
+
+            function scroll(dir) {
+                const card = carousel.querySelector('.gg-testi-card');
+                if (!card) return;
+                const w = card.offsetWidth + 24;
+                carousel.scrollBy({ left: dir * w, behavior: 'smooth' });
+            }
+
+            function loopScroll() {
+                const max = carousel.scrollWidth - carousel.clientWidth;
+                if (carousel.scrollLeft >= max - 10) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    scroll(1);
+                }
+            }
+
+            function start() { clearInterval(timer); timer = setInterval(loopScroll, 4500); }
+            function stop() { clearInterval(timer); }
+
+            if (prev) prev.addEventListener('click', () => { scroll(-1); stop(); start(); });
+            if (next) next.addEventListener('click', () => { scroll(1); stop(); start(); });
+
+            carousel.addEventListener('mouseenter', stop);
+            carousel.addEventListener('mouseleave', start);
+            carousel.addEventListener('touchstart', stop, { passive: true });
+            carousel.addEventListener('touchend', start);
+
+            start();
+        })();
+
+        // ─── SMOOTH SCROLL ANCHORS ──────────────────────────────────
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

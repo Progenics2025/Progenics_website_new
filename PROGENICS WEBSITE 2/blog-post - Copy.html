@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Loading Insight... | Progenics</title>
+  <link href="styles.css" rel="stylesheet" />
+  <style>
+    .modern-blog-header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--bg-tertiary));
+      z-index: 0;
+    }
+
+    /* Loading overlay styles */
+    .blog-loader-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-primary);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .blog-loader-overlay.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid var(--card-border);
+      border-top-color: var(--accent-blue);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <meta name="description" content="Loading article insights..." />
+  <link id="canonical-link" rel="canonical" href="" />
+  <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
+  <link rel="icon" href="favicon.png?v=2" type="image/png" />
+</head>
+
+<body>
+  <!-- Loading Spinner -->
+  <div class="blog-loader-overlay" id="loader-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" data-cursor-dot=""></div>
+  <div class="cursor-outline" data-cursor-outline=""></div>
+
+  <!-- Background Animation Container -->
+  <div class="bg-animation-container">
+    <div class="bg-layer layer-1"></div>
+    <div class="bg-layer layer-2"></div>
+  </div>
+
+  <!-- Navigation -->
+  <div id="header-placeholder"></div>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress-container">
+    <div class="reading-progress-bar"></div>
+  </div>
+
+  <article class="blog-post-page" style="opacity: 0; transition: opacity 0.5s ease;" id="blog-article-content">
+    <a class="back-btn-floating" href="blog/" title="Back to Blog">
+      <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+        <line x1="19" x2="5" y1="12" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+    </a>
+
+    <header class="modern-blog-header">
+      <div class="container">
+        <span class="modern-blog-category" id="post-category">Category</span>
+        <h1 class="modern-blog-title serif-italic" id="post-title">Loading Article Title</h1>
+        <div class="modern-blog-meta">
+          <div class="meta-item">
+            <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+              <rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect>
+              <line x1="16" x2="16" y1="2" y2="6"></line>
+              <line x1="8" x2="8" y1="2" y2="6"></line>
+              <line x1="3" x2="21" y1="10" y2="10"></line>
+            </svg>
+            <span id="post-date">Date</span>
+          </div>
+          <div class="meta-item">
+            <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span id="post-read-time">Read Time</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="modern-blog-hero">
+      <div class="hero-image-wrapper">
+        <img id="post-image" alt="Article image placeholder" src="Images/blog_genetic_counselor.png" />
+      </div>
+    </div>
+
+    <main class="modern-blog-content">
+      <div class="blog-main-article">
+        <div class="blog-body" id="post-body">
+          <!-- Dynamically populated body goes here -->
+        </div>
+      </div>
+    </main>
+  </article>
+
+  <!-- Footer Section -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="assets/portal-sdk.min.js"></script>
+  <script src="assets/portal-core.js"></script>
+  <script src="script.js?v=2"></script>
+  <script>
+    (async function () {
+      const loaderOverlay = document.getElementById('loader-overlay');
+      const articleEl = document.getElementById('blog-article-content');
+
+      const staticRedirects = {
+        'genetic-counselor-superhero': 'genetic-counselor-superhero.html',
+        'genetic-testing-pregnancy': 'genetic-testing-pregnancy.html',
+        'microproteins-cancer': 'microproteins-cancer.html',
+        'brca-testing-womens-health': 'brca-testing-womens-health.html',
+        'gut-feelings-mental-health': 'gut-feelings-mental-health.html',
+        'wes-vs-cma': 'wes-vs-cma.html',
+        'consanguineous-marriage': 'consanguineous-marriage.html',
+        'arthritis-early-detection': 'arthritis-early-detection.html'
+      };
+
+      // Get slug from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      let slug = urlParams.get('slug');
+
+      if (!slug) {
+        // Extract slug from pathname (e.g., /blog/slug or /blog/slug.html)
+        const path = window.location.pathname;
+        const blogMatch = path.match(/\/blog\/([^/]+)/);
+        if (blogMatch && blogMatch[1]) {
+          slug = blogMatch[1].replace('.html', '');
+        }
+      } else {
+        // If accessed via query string (?slug=xyz), update address bar to clean /blog/xyz.html URL
+        if (!window.location.pathname.includes('/blog/')) {
+          const newUrl = window.location.pathname.replace('blog-post.html', '') + `blog/${slug}.html`;
+          window.history.replaceState(null, '', newUrl);
+
+          // Add base tag since the base path has changed to /blog/
+          if (!document.querySelector('base')) {
+            const blogIndex = newUrl.indexOf('/blog/');
+            const physicalFolder = newUrl.substring(0, blogIndex);
+            const baseHref = window.location.origin + physicalFolder + '/';
+            const base = document.createElement('base');
+            base.href = baseHref;
+            document.head.prepend(base);
+          }
+        }
+      }
+
+      if (!slug) {
+        window.location.href = 'blog.html';
+        return;
+      }
+
+      // Check if Supabase is configured
+      const isSupabaseConfigured = typeof SUPABASE_URL !== 'undefined' &&
+        SUPABASE_URL &&
+        !SUPABASE_URL.includes('YOUR_PROJECT_ID') &&
+        supabaseClient;
+
+      // Date helper
+      function formatDate(dateStr) {
+        if (!dateStr) return '';
+        return new Date(dateStr).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+      }
+
+      // Fallback redirect function
+      function handleFallback() {
+        if (staticRedirects[slug]) {
+          console.log('Redirecting to static fallback page:', staticRedirects[slug]);
+          window.location.replace(staticRedirects[slug]);
+        } else {
+          alert('Article not found.');
+          window.location.href = 'blog.html';
+        }
+      }
+
+      if (isSupabaseConfigured) {
+        try {
+          const { data: post, error } = await supabaseClient
+            .from('blogs')
+            .select('*')
+            .eq('slug', slug)
+            .single();
+
+          if (error || !post) {
+            console.warn('Post not found in database, trying static fallback.', error);
+            handleFallback();
+            return;
+          }
+
+          // If the post has placeholder content, redirect to the styled static fallback page
+          if (post.content && (post.content.includes('Details mapped to static page') || post.content.includes('mapped to static page'))) {
+            console.log('Post content is placeholder, redirecting to static fallback.');
+            handleFallback();
+            return;
+          }
+
+          // Populate the HTML
+          document.title = post.seo_meta_title || `${post.title} | Progenics`;
+          document.querySelector('meta[name="description"]').setAttribute('content', post.excerpt || '');
+          document.getElementById('canonical-link').setAttribute('href', window.location.href);
+
+          document.getElementById('post-category').textContent = post.category;
+          document.getElementById('post-title').textContent = post.title;
+          document.getElementById('post-date').textContent = formatDate(post.published_date);
+          document.getElementById('post-read-time').textContent = post.read_time || '5 min read';
+
+          const postImg = document.getElementById('post-image');
+          postImg.src = post.banner_image_url || post.image_url || 'Images/blog_genetic_counselor.png';
+          postImg.alt = post.title;
+
+          // Insert content
+          const postBody = document.getElementById('post-body');
+          postBody.innerHTML = post.content;
+
+          // Show content, fade loader
+          loaderOverlay.classList.add('fade-out');
+          articleEl.style.opacity = 1;
+
+        } catch (err) {
+          handleFallback();
+        }
+      } else {
+        handleFallback();
+      }
+    })();
+  </script>
+</body>
+
+</html>
