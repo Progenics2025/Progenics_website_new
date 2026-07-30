@@ -356,7 +356,7 @@
           document.getElementById('post-read-time').textContent = post.read_time || '5 min read';
 
           const postImg = document.getElementById('post-image');
-          postImg.src = post.banner_image_url || post.image_url || 'Images/blog_genetic_counselor.png';
+          postImg.src = post.banner_image_url || post.image_url || post.title_image_url || 'Images/blog_genetic_counselor.png';
           postImg.alt = post.title;
 
           // Insert content

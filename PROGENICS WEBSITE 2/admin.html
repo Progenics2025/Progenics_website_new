@@ -1874,14 +1874,16 @@
         delete seoTitleField.dataset.manualEdit;
         dateField.value = new Date().toISOString().split('T')[0];
         readField.value = '5 min read';
-        titleImageField.value = 'Images/blog_genetic_counselor.png';
-        bannerImageField.value = 'Images/blog_genetic_counselor.png';
+        titleImageField.value = '';
+        bannerImageField.value = '';
+        if (typeof prevTitleImg !== 'undefined') prevTitleImg = '';
+        if (typeof prevBannerImg !== 'undefined') prevBannerImg = '';
 
-        // Show default image previews
-        blogTitlePreviewImg.src = 'Images/blog_genetic_counselor.png';
-        blogTitleImagePreview.style.display = 'block';
-        blogBannerPreviewImg.src = 'Images/blog_genetic_counselor.png';
-        blogBannerImagePreview.style.display = 'block';
+        // Reset image previews
+        blogTitlePreviewImg.src = '';
+        blogTitleImagePreview.style.display = 'none';
+        blogBannerPreviewImg.src = '';
+        blogBannerImagePreview.style.display = 'none';
         blogTitleImageFileField.value = '';
         blogBannerImageFileField.value = '';
 
@@ -1938,8 +1940,12 @@
           visibilityField.value = post.visibility || 'Public';
           dateField.value = post.published_date;
           readField.value = post.read_time;
-          titleImageField.value = post.title_image_url || post.image_url || '';
-          bannerImageField.value = post.banner_image_url || post.image_url || '';
+          const titleImg = post.title_image_url || post.image_url || post.banner_image_url || '';
+          const bannerImg = post.banner_image_url || post.image_url || post.title_image_url || '';
+          titleImageField.value = titleImg;
+          bannerImageField.value = bannerImg;
+          if (typeof prevTitleImg !== 'undefined') prevTitleImg = titleImg;
+          if (typeof prevBannerImg !== 'undefined') prevBannerImg = bannerImg;
 
           if (titleImageField.value) {
             blogTitlePreviewImg.src = titleImageField.value;
@@ -2041,9 +2047,9 @@
           visibility: visibilityField.value,
           published_date: dateField.value,
           read_time: readField.value.trim(),
-          title_image_url: titleImageField.value.trim(),
-          banner_image_url: bannerImageField.value.trim(),
-          image_url: titleImageField.value.trim(), // for backward compatibility
+          title_image_url: (titleImageField.value.trim() || bannerImageField.value.trim()),
+          banner_image_url: (bannerImageField.value.trim() || titleImageField.value.trim()),
+          image_url: (titleImageField.value.trim() || bannerImageField.value.trim()), // for backward compatibility
           publication: publicationField.value.trim(),
           author: publicationField.value.trim(), // backup
           tags: tags,
@@ -2742,14 +2748,27 @@
 
       galleryImageField.addEventListener('input', updateGalleryPreviews);
 
-      // Blog Image File Upload Handlers
+      // Blog Image File Upload Handlers with auto-sync
+      let prevTitleImg = '';
+      let prevBannerImg = '';
+
       blogTitleImageFileField.addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (file) {
           compressAndProcessImage(file, (dataUrl) => {
+            const currentBanner = bannerImageField.value.trim();
             titleImageField.value = dataUrl;
             blogTitlePreviewImg.src = dataUrl;
             blogTitleImagePreview.style.display = 'block';
+
+            // Auto-update banner image if empty, default, or equal to previous title image
+            if (!currentBanner || currentBanner === 'Images/blog_genetic_counselor.png' || currentBanner === prevTitleImg) {
+              bannerImageField.value = dataUrl;
+              blogBannerPreviewImg.src = dataUrl;
+              blogBannerImagePreview.style.display = 'block';
+              prevBannerImg = dataUrl;
+            }
+            prevTitleImg = dataUrl;
           });
         }
       });
@@ -2762,15 +2781,37 @@
         } else {
           blogTitleImagePreview.style.display = 'none';
         }
+        const currentBanner = bannerImageField.value.trim();
+        if (!currentBanner || currentBanner === 'Images/blog_genetic_counselor.png' || currentBanner === prevTitleImg) {
+          bannerImageField.value = val;
+          if (val) {
+            blogBannerPreviewImg.src = val;
+            blogBannerImagePreview.style.display = 'block';
+          } else {
+            blogBannerImagePreview.style.display = 'none';
+          }
+          prevBannerImg = val;
+        }
+        prevTitleImg = val;
       });
 
       blogBannerImageFileField.addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (file) {
           compressAndProcessImage(file, (dataUrl) => {
+            const currentTitle = titleImageField.value.trim();
             bannerImageField.value = dataUrl;
             blogBannerPreviewImg.src = dataUrl;
             blogBannerImagePreview.style.display = 'block';
+
+            // Auto-update title image if empty, default, or equal to previous banner image
+            if (!currentTitle || currentTitle === 'Images/blog_genetic_counselor.png' || currentTitle === prevBannerImg) {
+              titleImageField.value = dataUrl;
+              blogTitlePreviewImg.src = dataUrl;
+              blogTitleImagePreview.style.display = 'block';
+              prevTitleImg = dataUrl;
+            }
+            prevBannerImg = dataUrl;
           });
         }
       });
@@ -2783,6 +2824,18 @@
         } else {
           blogBannerImagePreview.style.display = 'none';
         }
+        const currentTitle = titleImageField.value.trim();
+        if (!currentTitle || currentTitle === 'Images/blog_genetic_counselor.png' || currentTitle === prevBannerImg) {
+          titleImageField.value = val;
+          if (val) {
+            blogTitlePreviewImg.src = val;
+            blogTitleImagePreview.style.display = 'block';
+          } else {
+            blogTitleImagePreview.style.display = 'none';
+          }
+          prevTitleImg = val;
+        }
+        prevBannerImg = val;
       });
 
       // ─── RECYCLE BIN MANAGEMENT ─────────────────────────────
